@@ -20,7 +20,7 @@
   }
   
   .footer-logo {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: #ffffff;
   }
@@ -36,7 +36,7 @@
   }
   
   .social-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #ffffff;
     margin-right: 10px;
     transition: color 0.3s ease;
@@ -50,7 +50,7 @@
   .footer-email,
   .footer-number {
     margin: 5px 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #fafafa;
   }
   
@@ -67,7 +67,7 @@
   .footer-list li {
     margin-bottom: 10px;
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: color 0.3s ease;
     margin: 30px;

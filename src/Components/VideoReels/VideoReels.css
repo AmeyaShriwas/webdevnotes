@@ -2,8 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 100px;
-    padding: 50px;
+    gap: 50px;
+    padding: 100px;
     width: 100%;
     box-sizing: border-box;
     background-color: white;
@@ -11,8 +11,9 @@
 
 .reel {
     position: relative;
-    width: 18%; /* Default width for reels */
-    height: 570px; /* Default height */
+    width: 22%; /* Adjusted to maintain proper sizing */
+    min-width: 250px;
+    height: 55vh; /* Dynamic height based on viewport */
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -40,37 +41,42 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     text-align: center;
-    font-size: 18px;
-    padding: 12px;
+    font-size: 1.2rem;
+    padding: 10px;
     font-weight: bold;
     box-sizing: border-box;
 }
 
 /* Adjust for larger screens */
-@media (min-width: 480px) and (max-width: 1300px) {
+@media (min-width: 1024px) and (max-width: 1400px) {
     .reels-container {
-        flex-wrap: nowrap; /* Ensures all videos stay in one row */
-        gap: 30px; /* Reduce the gap between reels */
+        flex-wrap: nowrap;
+        gap: 20px; /* Reduced gap for better alignment */
     }
 
     .reel {
-        width: calc(25% - 30px); /* Four reels in one row, adjusting for gap */
-        height: auto; /* Adjust height dynamically */
+        width: calc(25% - 20px); /* Four reels in one row */
+        height: 40vh; /* Dynamic height */
     }
 }
 
-/* Default smaller screen adjustments */
+/* Tablets */
 @media (max-width: 1024px) {
     .reel {
-        width: 290px;
-        height: 520px;
+        width: 45%; /* Two reels per row */
+        height: 40vh; /* Adjust height based on viewport */
+    }
+
+    .reels-container {
+        padding: 30px;
     }
 }
 
+/* Small tablets/large phones */
 @media (max-width: 768px) {
     .reel {
-        width: 260px;
-        height: 480px;
+        width: 100%;
+        height: 50vh; /* Increased height for mobile screens */
     }
 
     .reels-container {
@@ -78,11 +84,11 @@
     }
 }
 
-/* Mobile view */
+/* Mobile */
 @media (max-width: 480px) {
     .reel {
-        width: 100%;
-        height: 450px;
+        width: 80%;
+        height: 60vh; /* Optimized for mobile */
     }
 
     .reels-container {
@@ -93,6 +99,8 @@
 
 .Pcategory-heading {
     text-align: center;
+    font-size: 2rem; /* Increased for better scaling */
+    margin-bottom: 20px;
 }
 
 .seeAll {

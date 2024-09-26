@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: calc(100vh - 80px); /* Assuming the header height is 80px */
+    height: calc(100vh - 100px); /* Assuming the header height is 80px */
     padding: 20px;
     background-color: #ffffff;
     overflow: hidden;
@@ -23,7 +23,7 @@
   
 /* Main Heading (H1) styling */
 .banner-left h1 {
-    font-size: 6rem; /* Slightly larger for emphasis */
+    font-size: 4rem; /* Slightly larger for emphasis */
     color:#3C4852; /* Blue background */
     margin-bottom: 15px;
     font-weight: 700; /* Bold for a stronger presence */
@@ -137,6 +137,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid black; */
    
    
     
@@ -180,7 +181,7 @@
       margin: 0 auto;
     }
     .banner-left h1 {
-        font-size: 3rem; /* Slightly larger for emphasis */
+        font-size: 2.4rem; /* Slightly larger for emphasis */
       
         margin-bottom: 15px;
         font-weight: 700; /* Bold for a stronger presence */
@@ -224,6 +225,6 @@
   
   
 .reelBanner{
-  width: 340px;
-  height: 630px;
+  width: 260px;
+  height: 500px;
 }

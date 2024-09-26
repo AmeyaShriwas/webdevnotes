@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
     position: fixed; /* Keep the header fixed */
     top: 0; /* Position at the top */
     width: 100%;
@@ -34,14 +34,14 @@ body {
   }
 
   .logo-icon {
-    font-size: 35px;
+    font-size: 25px;
     margin-right: 5px;
     color: #3C4852;
     text-decoration: none;
   }
 
   .logo-text {
-    font-size: 30px;
+    font-size: 20px;
     color: #3C4852;
     font-weight: 600;
     text-decoration: none;
@@ -65,7 +65,7 @@ body {
 
   .largeScreenButtons ul li a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
     background-color: #fff;
     padding: 10px 20px;

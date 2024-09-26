@@ -8,7 +8,7 @@
   }
   
   .social-icon {
-    font-size: 40px;
+    font-size: 30px;
     transition: transform 0.4s ease;
   }
   
@@ -35,6 +35,14 @@
   .social-icon.whatsapp {
     color: #25d366; /* WhatsApp original color */
   }
+
+   /* Hide icons on small screens */
+   @media screen and (max-width: 1300px) {
+    .social-container {
+      display: none;
+    }
+  }
+  
   
   /* Hide icons on small screens */
   @media screen and (max-width: 450px) {

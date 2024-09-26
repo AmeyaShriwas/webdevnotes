@@ -1,0 +1,50 @@
+    import React from 'react';
+    import './VideoReels.css';
+
+    const VideoReels = () => {
+        const videos = [
+            {
+                title: 'Nature Walk - Peaceful Journey',
+                url: 'https://www.youtube.com/embed/LSC55i2qJ3s'
+            },
+            {
+                title: 'JavaScript Tutorial for Beginners',
+                url: 'https://www.youtube.com/embed/LSC55i2qJ3s'
+            },
+            {
+                title: 'React.js Crash Course',
+                url: 'https://www.youtube.com/embed/LSC55i2qJ3s'
+            },
+            {
+                title: 'Best Coding Music for Productivity',
+                url: 'https://www.youtube.com/embed/LSC55i2qJ3s'
+            }
+        ];
+
+        return (
+            <div style={{backgroundColor:'white'}}>
+                <h1 className="Pcategory-heading">Explore Our Videos</h1>
+                <div className="reels-container">
+
+                    {videos.map((video, index) => (
+                        <div key={index} className="reel">
+                            <iframe
+                                className="video-frame"
+                                src={video.url}
+                                title={video.title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                            <div className="reel-title">{video.title}</div>
+                        </div>
+                    ))}
+                </div>
+                <div className='seeAll'>
+                    <span>See All</span>
+                </div>
+            </div>
+        );
+    }
+
+    export default VideoReels;

@@ -1,0 +1,229 @@
+/* Container to take up the full remaining height excluding the header */
+.banner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100vh - 80px); /* Assuming the header height is 80px */
+    padding: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  /* Left Section */
+  .banner-left {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    animation: fadeInLeft 1s ease-in-out;
+  }
+  
+/* Main Heading (H1) styling */
+.banner-left h1 {
+    font-size: 6rem; /* Slightly larger for emphasis */
+    color:#3C4852; /* Blue background */
+    margin-bottom: 15px;
+    font-weight: 700; /* Bold for a stronger presence */
+    line-height: 1.2; /* Tighter line spacing */
+    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    animation: fadeInSlide 1s ease-in-out;
+}
+
+/* Subheading (H2) styling */
+.banner-left h2 {
+    font-size: 1.6rem; /* Larger subheading for better readability */
+    color: #4e4a4a;
+    margin-bottom: 25px;
+    font-weight: 500;
+    line-height: 1.5;
+    animation: fadeInSlide 1.2s ease-in-out;
+}
+
+
+
+/* Small hover effect for headings (optional, for interactivity) */
+.banner-left h1:hover, .banner-left h2:hover {
+    color: #3C4852; /* Change to a soft blue on hover */
+    transition: color 0.3s ease-in-out;
+}
+
+ /* Container styling */
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* Phone Icon styling */
+.phone-icon {
+    font-size: 1.8rem;
+    color: #4CAF50;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+/* Input field styling */
+.phone-input {
+    padding: 12px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Input field focus effect */
+.phone-input:focus {
+    outline: none;
+    color:#3C4852;;
+    background-color: #ffffff;
+}
+
+/* Input container hover effect */
+.input-container:hover {
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Focus state for container */
+.input-container:focus-within {
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Hover effect for phone icon */
+.input-container:hover .phone-icon {
+    color: #007bff;
+}
+
+  
+  .banner-left p {
+    color: #4f4d4d;
+    margin-bottom: 20px;
+    animation: fadeInDown 1.4s ease-in-out;
+  }
+  
+  .join-button {
+    padding: 15px 0;
+    font-size: 1.3rem;
+    width: 100%;
+    margin-bottom: 30px;
+    background-color:#3C4852; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .join-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Right Section */
+  .banner-right {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
+    
+  }
+  
+  .banner-image {
+ 
+  }
+  
+  .banner-image:hover {
+    transform: scale(1.05);
+  }
+
+  .hidden-on-desktop{
+    display: none;
+  }
+  
+  /* For smaller screens, stack sections vertically */
+  @media (max-width: 768px) {
+    .banner-container {
+      flex-direction: column;
+      height: auto;
+      padding: 20px;
+      padding-top: 30px;
+    }
+  
+    .banner-left, .banner-right {
+      width: 100%;
+      text-align: center;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  
+    .phone-input, .join-button {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .banner-image {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .banner-left h1 {
+        font-size: 3rem; /* Slightly larger for emphasis */
+      
+        margin-bottom: 15px;
+        font-weight: 700; /* Bold for a stronger presence */
+        line-height: 1.2; /* Tighter line spacing */
+        letter-spacing: 0.5px; /* Slight letter spacing for readability */
+        animation: fadeInSlide 1s ease-in-out;
+    }
+    
+    /* Subheading (H2) styling */
+    .banner-left h2 {
+        font-size: 1.1rem; /* Larger subheading for better readability */
+       
+        margin-bottom: 25px;
+        font-weight: 500;
+        line-height: 1.5;
+        animation: fadeInSlide 1.2s ease-in-out;
+    }
+    .hidden-on-desktop{
+      display: block;
+    }
+  }
+  /* Container for responsive iframe */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+/* Responsive iframe */
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+  
+  
+  
+.reelBanner{
+  width: 340px;
+  height: 630px;
+}

@@ -1,0 +1,45 @@
+.social-container {
+    position: fixed;
+    bottom: 20px;
+    right: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .social-icon {
+    font-size: 40px;
+    transition: transform 0.4s ease;
+  }
+  
+  .social-icon:hover {
+    transform: rotate(360deg);
+  }
+  
+  .social-icon.linkedin {
+    color: #0077b5; /* LinkedIn original color */
+  }
+  
+  .social-icon.instagram {
+    color: #e1306c; /* Instagram original color */
+  }
+  
+  .social-icon.facebook {
+    color: #1877f2; /* Facebook original color */
+  }
+  
+  .social-icon.twitter {
+    color: #1da1f2; /* Twitter original color */
+  }
+  
+  .social-icon.whatsapp {
+    color: #25d366; /* WhatsApp original color */
+  }
+  
+  /* Hide icons on small screens */
+  @media screen and (max-width: 450px) {
+    .social-container {
+      display: none;
+    }
+  }
+  

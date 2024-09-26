@@ -1,0 +1,170 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 3px rgba(103, 101, 101, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed; /* Keep the header fixed */
+    top: 0; /* Position at the top */
+    width: 100%;
+    z-index: 1000; /* Ensure the header is above other content */
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+body {
+    margin: 0; /* Remove default margin */
+    padding-top: 80px; /* Add padding equal to the height of the header */
+}
+
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    
+  }
+
+  .logo-icon {
+    font-size: 35px;
+    margin-right: 5px;
+    color: #3C4852;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 30px;
+    color: #3C4852;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  a {
+    text-decoration: none; /* Ensure no underline for all links */
+  }
+  
+  a:hover {
+    text-decoration: none; /* Disable underline on hover as well */
+  }
+
+  .largeScreenButtons ul {
+    list-style: none;
+    display: flex;
+  }
+
+  .largeScreenButtons ul li {
+    margin-left: 20px;
+  }
+
+  .largeScreenButtons ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+  }
+
+  .largeScreenButtons ul li a:hover {
+    background-color: #3C4852;
+    color: #fff;
+    border: none;
+  }
+
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    color: black;
+    
+  }
+
+  @media (max-width: 768px) {
+   
+
+    .hamburger {
+      display: block;
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: 90px;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      text-align: center;
+      transform: translateY(-100%);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      transition: all 0.3s ease;
+      
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      
+    }
+
+    .mobile-menu ul li {
+      margin: 15px 0;
+    }
+
+    .mobile-menu ul li a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #333;
+      padding: 10px;
+      display: block;
+      background-color: #fff;
+      /* border: 1px solid #333; */
+      border-radius: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu ul li a:hover {
+      background-color:  #3C4852;
+      color: #fff;
+    }
+    .humanIcon{
+        width: 35px;
+        height: 35px;
+        color: #333;
+        
+    }
+
+    .logo-icon {
+        font-size: 30px;
+        margin-right: 5px;
+        color: #3C4852;
+      }
+    
+      .logo-text {
+        font-size: 15px;
+        display: none;
+        color: #3C4852;
+        font-weight: 600;
+      }
+  }
+
+  .cart-icon{
+    font-size: 1.4rem;
+  }
+  .cartNumber{
+    font-size: 1rem;
+    position: relative;
+    bottom: 10px;
+    color: blue;
+  }

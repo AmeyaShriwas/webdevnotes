@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LeftPanel from './../LeftPanel/LeftPanel';
 import RightPanel from './../RightPanel/RightPanel';
 import './Notes.css';
 import PdfViewer from '../PdfViewer/PdfViewer';
+import { useLocation } from 'react-router-dom';
 
 const Notes = () => {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when the pathname changes
+  }, [location]);
+
+  // Access the passed state (category)
+  const selectedCategory = location.state?.category;
     const notesData = {
         JavaScript: {
           pdfs: [
@@ -76,7 +86,7 @@ const Notes = () => {
         },
     };
 
-    const [selectedPart, setSelectedPart] = useState('JavaScript'); // Default selected category
+    const [selectedPart, setSelectedPart] = useState(selectedCategory); // Default selected category
     const [selectedPdf, setSelectedPdf] = useState(null); // For PDF viewing
     const [cart, setCart] = useState([]); // For managing cart items
 

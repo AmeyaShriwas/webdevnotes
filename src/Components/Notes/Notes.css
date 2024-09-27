@@ -37,7 +37,7 @@ body {
   flex: 1;
   border-left: 1px solid #ddd;
   padding: 40px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 /* Headings */
@@ -51,7 +51,8 @@ body {
 /* Tabs styling */
 .tabs-list {
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: scroll;
+  /* flex-wrap: wrap; */
   gap: 15px;
   margin-bottom: 30px;
 }
@@ -101,10 +102,13 @@ body {
 
 /* Text inside PDF box */
 .pdf-name {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pdf-download {
@@ -151,11 +155,11 @@ body {
 /* Right Panel Styles */
 .right-panel {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 .right-panel-heading {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -252,10 +256,19 @@ body {
   }
 
   .pdf-name {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .pdf-download {
     font-size: 14px;
   }
+}
+
+.pdfIconImg{
+  width: 60px;
+  height: 60px;
+}
+.pdfRightIcon{
+  width: 20px;
+  height: 20px;
 }

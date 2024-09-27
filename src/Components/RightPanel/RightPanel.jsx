@@ -1,4 +1,6 @@
 import React from 'react';
+import pdfIconImg from './../../Assets/pdf.png';
+import './RightPanel.css'; // Add your CSS styles here
 
 const RightPanel = ({ pdfs, price, handleAddCategoryToCart }) => {
   return (
@@ -7,13 +9,23 @@ const RightPanel = ({ pdfs, price, handleAddCategoryToCart }) => {
       <ul className="pdf-list">
         {pdfs.map((pdf, index) => (
           <li key={index} className="pdf-item">
-            <span className="pdf-name">{pdf.name}</span>
-            {/* No individual pricing, only category info */}
+            <span className="pdf-name">
+              <img className='pdfRightIcon' src={pdfIconImg} alt="PDF icon" />{pdf.name}
+            </span>
           </li>
         ))}
       </ul>
-      <div className="total-cost">
-        <h3>Price for Category: ₹{price}</h3> {/* Show fixed price */}
+      
+      <div className="pricing-section">
+        <div className="price-box">
+          <span className="price-label">Price for Category:</span>
+          <span className="price-amount">₹{price}</span>
+        </div>
+
+        <div className="discount-info">
+          <span>Special Offer: Flat 10% off on your first purchase!</span>
+        </div>
+
         <button className="add-to-cart-btn" onClick={handleAddCategoryToCart}>
           Add Category to Cart
         </button>

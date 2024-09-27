@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaDownload, FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
+import pdfImg from './../../Assets/pdf.png'
 
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +35,6 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
 
   return (
     <div className="left-panel">
-      <h2 className="section-heading">Notes</h2>
       <div className="tabs-list">
         {Object.keys(notesData).map((part) => (
           <button
@@ -57,8 +57,9 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
            
             <h3 className="pdf-name">{pdf.name}</h3>
             <a href={pdf.link} target="_blank" rel="noopener noreferrer" className="pdf-download">
-              <FaDownload className="download-icon" />
-              <p>Download</p>
+           <img className='pdfIconImg' src={pdfImg}/>
+
+            
             </a>
           </div>
         ))}

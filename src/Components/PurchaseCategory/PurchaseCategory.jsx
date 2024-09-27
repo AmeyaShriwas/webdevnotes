@@ -2,19 +2,52 @@ import React, { useState } from 'react';
 import './PurchaseCategory.css';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase } from 'react-icons/fa';
 import { SiMongodb, SiExpress } from 'react-icons/si';
+import { useNavigate } from 'react-router-dom';
+
+const notesData = {
+  JavaScript: {
+    pdfs: [
+      { name: 'JavaScript Basics', link: 'https://basponccollege.org/LMS/EMaterial/Science/Comp/HVP/JS%20Notes.pdf' },
+      { name: 'Advanced JavaScript', link: '#' },
+      { name: 'JavaScript ES6 Features', link: '#' },
+    ],
+    price: 300,
+  },
+  ReactJS: {
+    pdfs: [
+      { name: 'React Introduction', link: '#' },
+      { name: 'React Hooks', link: '#' },
+      { name: 'Advanced React Patterns', link: '#' },
+    ],
+    price: 300,
+  },
+  ExpressJs: {
+    pdfs: [
+      { name: 'Express Basics', link: '#' },
+      { name: 'Middleware in Express', link: '#' },
+      { name: 'Advanced Express Patterns', link: '#' },
+    ],
+    price: 300,
+  },
+  NodeJS: {
+    pdfs: [
+      { name: 'Node Introduction', link: '#' },
+      { name: 'Asynchronous NodeJS', link: '#' },
+      { name: 'Node with Express', link: '#' },
+    ],
+    price: 300,
+  },
+};
+
+const iconsMap = {
+  JavaScript: <FaJs style={{ color: '#F7DF1E' }} />,
+  ReactJS: <FaReact style={{ color: '#61DAFB' }} />,
+  ExpressJs: <SiExpress style={{ color: '#000000' }} />,
+  NodeJS: <FaNodeJs style={{ color: '#8CC84B' }} />,
+};
 
 const PurchaseCategory = () => {
-  const categories = [
-    { name: 'HTML', icon: <FaHtml5 style={{ color: '#E44D26' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `HTML PDF ${i + 1}`) },
-    { name: 'CSS', icon: <FaCss3Alt style={{ color: '#1572B6' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `CSS PDF ${i + 1}`) },
-    { name: 'JavaScript', icon: <FaJs style={{ color: '#F7DF1E' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `JavaScript PDF ${i + 1}`) },
-    { name: 'React JS', icon: <FaReact style={{ color: '#61DAFB' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `React PDF ${i + 1}`) },
-    { name: 'Node JS', icon: <FaNodeJs style={{ color: '#8CC84B' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `Node PDF ${i + 1}`) },
-    { name: 'Express JS', icon: <SiExpress style={{ color: '#000000' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `Express PDF ${i + 1}`) },
-    { name: 'MongoDB', icon: <SiMongodb style={{ color: '#47A248' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `MongoDB PDF ${i + 1}`) },
-    { name: 'MySQL', icon: <FaDatabase style={{ color: '#00758F' }} />, pdfs: Array.from({ length: 40 }, (_, i) => `MySQL PDF ${i + 1}`) }
-  ];
-
+  const navigate = useNavigate();
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const handleMouseEnter = (category) => {
@@ -25,28 +58,38 @@ const PurchaseCategory = () => {
     setHoveredCategory(null);
   };
 
+  const OnSelectCategory = (category) => {
+    console.log('selected category', category);
+    navigate('/notes', { state: { category } });
+  };
+
   return (
     <div className="Pcategory-wrapper">
       <h1 className="Pcategory-heading">Explore Our Categories</h1>
       <div className="Pcategory-container">
-        {categories.map((category, index) => (
+        {Object.keys(notesData).map((category, index) => (
           <div 
             key={index} 
             className="Pcategory-box"
             onMouseEnter={() => handleMouseEnter(category)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => OnSelectCategory(category)}
           >
-            <div className="Pcategory-icon">{category.icon}</div>
-            <p className="Pcategory-title">{category.name}</p>
-            <p>{category.pdfs.length} PDFs available</p>
-            <p className="Pcategory-price">Price: Rs 300</p>
+            <div className="Pcategory-icon">{iconsMap[category]}</div>
+            <p className="Pcategory-title">{category}</p>
+            <p>{notesData[category].pdfs.length} PDFs available</p>
+            <p className="Pcategory-price">Price: Rs {notesData[category].price}</p>
             <button className="Pbuy-button">Buy Now</button>
             {hoveredCategory === category && (
               <div className="Ppopup">
-                <h3>{category.name} Contents</h3>
+                <h3>{category} Contents</h3>
                 <ul>
-                  {category.pdfs.map((pdf, i) => (
-                    <li key={i}>{pdf}</li>
+                  {notesData[category].pdfs.map((pdf, i) => (
+                    <li key={i}>
+                      <a href={pdf.link} target="_blank" rel="noopener noreferrer">
+                        {pdf.name}
+                      </a>
+                    </li>
                   ))}
                 </ul>
                 <img src="/sample-image.jpg" alt="PDF Preview" />
@@ -57,6 +100,6 @@ const PurchaseCategory = () => {
       </div>
     </div>
   );
-}
+};
 
 export default PurchaseCategory;

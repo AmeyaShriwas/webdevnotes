@@ -22,13 +22,13 @@ const Header = () => {
       {/* Navbar for larger screens */}
       <nav className="largeScreenButtons">
         <ul>
-          <li><p href="/login"><Link to='/form'>Login</Link></p></li>
+          <li className="loginButton"><p href="/login"><Link to='/form'>Logout</Link></p></li>
           
          
           <li className="cart">
         
             <span className="cart-text">
-            <FaShoppingCart className="cart-icon" /><sup><span className="cartNumber">0</span></sup>
+            <Link to='/cart'><FaShoppingCart className="cart-icon" /><sup><span className="cartNumber">0</span></sup></Link>
             </span>
           </li>
         </ul>

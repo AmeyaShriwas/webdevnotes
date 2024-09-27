@@ -11,8 +11,8 @@
 
 .reel {
     position: relative;
-    width: 22%; /* Adjusted to maintain proper sizing */
-    min-width: 250px;
+    width: 15%; /* Adjusted to maintain proper sizing */
+    min-width: 214px;
     height: 55vh; /* Dynamic height based on viewport */
     border-radius: 15px;
     overflow: hidden;
@@ -55,8 +55,8 @@
     }
 
     .reel {
-        width: calc(25% - 20px); /* Four reels in one row */
-        height: 40vh; /* Dynamic height */
+        width: 20%;
+        height: 60vh; /* Dynamic height */
     }
 }
 
@@ -87,7 +87,7 @@
 /* Mobile */
 @media (max-width: 480px) {
     .reel {
-        width: 80%;
+        width: 70%;
         height: 60vh; /* Optimized for mobile */
     }
 

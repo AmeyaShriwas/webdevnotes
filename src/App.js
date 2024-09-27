@@ -1,12 +1,15 @@
 import React from 'react'
 
 import Navigation from './Navigation'
-import SocialMedia from './Components/SocialMedia/SocialMedia'
+import store from './redux/store'
+import { Provider } from 'react-redux';
 
 const App = () => {
   return (
     <>
+    <Provider store={store}>
    <Navigation/>
+   </Provider>
   
     </>
   )

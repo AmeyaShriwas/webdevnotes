@@ -10,9 +10,21 @@ import PurchaseCategory from '../../Components/PurchaseCategory/PurchaseCategory
 import SocialMedia from '../../Components/SocialMedia/SocialMedia'
 import VideoReels from '../../Components/VideoReels/VideoReels'
 import Blog from '../../Components/BlogsBanner/BlogsBanner'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const Landing = () => {
+
+  const { error, isAuthenticated } = useSelector((state) => state.auth);
+  const navigate = useNavigate()
+
+  useEffect(()=> {
+     if(!isAuthenticated){
+      navigate('/')
+     }
+  }, [])
 
  
 
@@ -23,7 +35,7 @@ const Landing = () => {
    
     <SocialMedia/>
      <PurchaseCategory/>
-     <VideoReels/>
+     {/* <VideoReels/> */}
      <Blog/>
     <Footer/>
     </>

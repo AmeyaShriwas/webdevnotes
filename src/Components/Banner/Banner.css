@@ -1,231 +1,150 @@
-/* Container to take up the full remaining height excluding the header */
-.banner-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: calc(100vh - 100px); /* Assuming the header height is 80px */
+.banner-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centering content vertically */
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(to right, #000000, #102b3e); /* Deep blue gradient */
+  color: white;
+  text-align: center;
+  height: 100vh; /* Full height for centering */
+}
+
+.banner-content {
+  max-width: 100%; /* Max width for content */
+}
+
+.banner-heading {
+  font-size: 3rem; /* Adjusted for readability */
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+  margin-top: 2rem;
+}
+
+.banner-subheading {
+  font-size: 1.6rem; /* Increased size for emphasis */
+  margin-bottom: 2rem;
+  font-weight: 300; /* Lighter weight for contrast */
+}
+
+.banner-features {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Gap for consistent spacing */
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.banner-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px; /* Consistent width */
+  height: 280px; /* Set height for consistency */
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for features */
+  padding: 40px;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.banner-feature:hover {
+  transform: translateY(-5px); /* Lift on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+.banner-icon {
+  font-size: 3rem; /* Icon size */
+  margin-bottom: 1rem; /* Spacing under icon */
+  color: #ffcc00; /* Gold color */
+}
+
+.banner-feature-title {
+  font-size: 1.5rem; /* Title size */
+  margin-bottom: 0.5rem;
+}
+
+.banner-join-button {
+  background-color: #e74c3c; /* Bright red */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Button padding */
+  font-size: 1.2rem; /* Font size */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.banner-join-button:hover {
+  background-color: #c0392b; /* Darker red */
+  transform: scale(1.05); /* Scale on hover */
+}
+
+/* Responsive Styles for Tablets and Smaller Devices */
+@media (max-width: 768px) {
+  .banner-section {
     padding: 20px;
-    background-color: #ffffff;
-    overflow: hidden;
-    padding-top: 80px;
+    height: auto;
   }
-  
-  /* Left Section */
-  .banner-left {
-    width: 70%;
-    display: flex;
+
+  .banner-heading {
+    font-size: 2.5rem;
+  }
+
+  .banner-subheading {
+    font-size: 1.4rem;
+  }
+
+  .banner-features {
     flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-    animation: fadeInLeft 1s ease-in-out;
-  }
-  
-/* Main Heading (H1) styling */
-.banner-left h1 {
-    font-size: 4rem; /* Slightly larger for emphasis */
-    color:#3C4852; /* Blue background */
-    margin-bottom: 15px;
-    font-weight: 700; /* Bold for a stronger presence */
-    line-height: 1.2; /* Tighter line spacing */
-    letter-spacing: 0.5px; /* Slight letter spacing for readability */
-    animation: fadeInSlide 1s ease-in-out;
-}
-
-/* Subheading (H2) styling */
-.banner-left h2 {
-    font-size: 1.6rem; /* Larger subheading for better readability */
-    color: #4e4a4a;
-    margin-bottom: 25px;
-    font-weight: 500;
-    line-height: 1.5;
-    animation: fadeInSlide 1.2s ease-in-out;
-}
-
-
-
-/* Small hover effect for headings (optional, for interactivity) */
-.banner-left h1:hover, .banner-left h2:hover {
-    color: #3C4852; /* Change to a soft blue on hover */
-    transition: color 0.3s ease-in-out;
-}
-
- /* Container styling */
-.input-container {
-    display: flex;
     align-items: center;
-    background-color: #ffffff;
-    padding: 12px 15px;
-    border-radius: 8px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    margin-bottom: 20px;
-}
+  }
 
-/* Phone Icon styling */
-.phone-icon {
-    font-size: 1.8rem;
-    color: #4CAF50;
-    margin-right: 15px;
-    transition: color 0.3s ease;
-}
-
-/* Input field styling */
-.phone-input {
-    padding: 12px;
-    font-size: 1.1rem;
-    border: none;
-    background-color: transparent;
+  .banner-feature {
     width: 100%;
-    color: #333;
-    transition: all 0.3s ease;
-}
-
-/* Input field focus effect */
-.phone-input:focus {
-    outline: none;
-    color:#3C4852;;
-    background-color: #ffffff;
-}
-
-/* Input container hover effect */
-.input-container:hover {
-    background-color: #ffffff;
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
-}
-
-/* Focus state for container */
-.input-container:focus-within {
-    background-color: #ffffff;
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
-}
-
-/* Hover effect for phone icon */
-.input-container:hover .phone-icon {
-    color: #007bff;
-}
-
+    max-width: 350px; /* Ensuring the feature boxes don't stretch too much */
+    margin-bottom: 1.5rem;
   
-  .banner-left p {
-    color: #4f4d4d;
-    margin-bottom: 20px;
-    animation: fadeInDown 1.4s ease-in-out;
   }
-  
-  .join-button {
-    padding: 15px 0;
-    font-size: 1.3rem;
+}
+
+/* Responsive Styles for Mobile Phones */
+@media (max-width: 480px) {
+  .banner-section {
+    padding: 15px;
+  }
+
+  .banner-heading {
+    font-size: 2rem; /* Smaller font size for phones */
+    margin-top: 1rem;
+  }
+
+  .banner-subheading {
+    font-size: 1.2rem; /* Smaller font size for phones */
+  }
+
+  .banner-features {
+    gap: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .banner-feature {
     width: 100%;
-    margin-bottom: 30px;
-    background-color:#3C4852; /* Blue background */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    animation: fadeInUp 1s ease-in-out;
-  }
-  
-  .join-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
-  
-  /* Right Section */
-  .banner-right {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid black; */
-   
-   
-    
-  }
-  
-  .banner-image {
- 
-  }
-  
-  .banner-image:hover {
-    transform: scale(1.05);
+    max-width: 330px; /* Adjust width for mobile */
+    padding: 15px; /* Smaller padding for mobile */
+    padding-top: 50px;
   }
 
-  .hidden-on-desktop{
-    display: none;
+  .banner-icon {
+    font-size: 2.5rem; /* Smaller icon size */
+    margin-bottom: 1rem;
   }
-  
-  /* For smaller screens, stack sections vertically */
-  @media (max-width: 768px) {
-    .banner-container {
-      flex-direction: column;
-      height: auto;
-      padding: 20px;
-      padding-top: 30px;
-    }
-  
-    .banner-left, .banner-right {
-      width: 100%;
-      text-align: center;
-      padding-left: 3%;
-      padding-right: 3%;
-    }
-  
-    .phone-input, .join-button {
-      width: 90%;
-      margin: 0 auto;
-    }
-  
-    .banner-image {
-      width: 80%;
-      margin: 0 auto;
-    }
-    .banner-left h1 {
-        font-size: 2.4rem; /* Slightly larger for emphasis */
-      
-        margin-bottom: 15px;
-        font-weight: 700; /* Bold for a stronger presence */
-        line-height: 1.2; /* Tighter line spacing */
-        letter-spacing: 0.5px; /* Slight letter spacing for readability */
-        animation: fadeInSlide 1s ease-in-out;
-    }
-    
-    /* Subheading (H2) styling */
-    .banner-left h2 {
-        font-size: 1.1rem; /* Larger subheading for better readability */
-       
-        margin-bottom: 25px;
-        font-weight: 500;
-        line-height: 1.5;
-        animation: fadeInSlide 1.2s ease-in-out;
-    }
-    .hidden-on-desktop{
-      display: block;
-    }
+
+  .banner-join-button {
+    padding: 10px 20px; /* Smaller button padding */
+    font-size: 1rem; /* Smaller font size */
   }
-  /* Container for responsive iframe */
-.iframe-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-}
-
-/* Responsive iframe */
-.iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-  
-  
-  
-.reelBanner{
-  width: 260px;
-  height: 500px;
 }

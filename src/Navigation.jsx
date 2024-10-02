@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Landing from './Pages/Landing/Landing';
 import AuthForm from './Components/Form/Form';
 import NotesPage from './Pages/NotesPage/NotesPage';
@@ -9,6 +9,8 @@ import CartPage from './Pages/CartPage/CartPage';
 
 
 const Navigation = () => {
+
+  
 
 
   return (

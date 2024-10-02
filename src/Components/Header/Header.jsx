@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import "./Header.css";
 import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slice/authSlice";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const {user} = useSelector((state)=> state)
+  const { error, isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+
   console.log('user', user)
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const LogoutFuntion = ()=> {
+    dispatch(logout())
+  }
 
   return (
     <header className="header">
@@ -25,7 +33,7 @@ const Header = () => {
       {/* Navbar for larger screens */}
       <nav className="largeScreenButtons">
         <ul>
-          <li className="loginButton"><p href="/login"><Link to='/form'>Logout</Link></p></li>
+          <li className="loginButton" onClick={LogoutFuntion}><p href="/login"><Link to='/'>{isAuthenticated? 'Logout': 'Login'}</Link></p></li>
           
          
           <li className="cart">

@@ -4,8 +4,19 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import './CartPage.css';
 import Header from '../../Components/Header/Header';
 import pdfImg from './../../Assets/pdf.png'; // Placeholder for PDF icon
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
+  const { error, isAuthenticated } = useSelector((state) => state.auth);
+  const navigate = useNavigate()
+
+  useEffect(()=> {
+     if(!isAuthenticated){
+      navigate('/')
+     }
+  }, [])
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'JavaScript Basics', category: 'JavaScript', amount: 300 },
     { id: 2, name: 'React Introduction', category: 'ReactJS', amount: 300 },

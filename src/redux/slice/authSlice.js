@@ -1,69 +1,207 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios'
+import axios from 'axios';
+import { BASE_URL } from "../../Api";
 
+// Thunk for login
 export const loginUser = createAsyncThunk(
-  'auth/loginUser',
-  async(userData, {rejectWithValue})=> {
-    console.log('userData received', userData)
-    try{
-       const response = await axios.post('https://api.example.com/login', userData)
-
-       if(!response.ok){
-        throw new Error('failed to login');
-       }
-
-       const data = await response.json()
-       return {user: data.user, token: data.token}
-    }
-    catch(error){
-        return rejectWithValue(error.message);
+  '/login',
+  async(userData, {rejectWithValue}) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/login`, userData);
+      if (response.status !== 200) {
+        throw new Error('Failed to login');
+      }
+      const data = await response.data;
+      return { message: data.user, token: data.token };
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
-)
+);
+
+// Thunk for signup
+export const signupUser = createAsyncThunk(
+  '/signup',
+  async(userData, {rejectWithValue}) => {
+    console.log('userdata', userData)
+    try {
+      const response = await axios.post(`${BASE_URL}/signup`, userData);
+      console.log('response', response)
+      if (response.status !== 201) {
+        throw new Error('Failed to register');
+      }
+      const data = await response.data;
+      return { message: response.data.message };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const verifyUser = createAsyncThunk(
+    '/verify-otp',
+    async(userData, {rejectWithValue}) => {
+      console.log('userdata', userData)
+      try {
+        const response = await axios.post(`${BASE_URL}/verify-otp`, userData);
+        console.log('response', response)
+        if (response.status !== 200) {
+          throw new Error('Failed to verify user');
+        }
+        const data = await response.data;
+        return { message: response.data.message };
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
+
+  export const forgotPassword = createAsyncThunk(
+    '/forgot-password',
+    async(userData, {rejectWithValue}) => {
+      console.log('userdata', userData)
+     
+      try {
+        const response = await axios.post(`${BASE_URL}/forgot-password`, {email: userData});
+        console.log('response', response)
+        if (response.status !== 200) {
+          throw new Error('Failed to verify user');
+        }
+        const data = await response.data;
+        return { message: response.data.message };
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
+
+
+  export const resetPasswordFun = createAsyncThunk(
+    '/reset-password',
+    async(userData, {rejectWithValue}) => {
+      console.log('userdata', userData)
+     
+      try {
+        const response = await axios.post(`${BASE_URL}/reset-password`, userData);
+        console.log('response', response)
+        if (response.status !== 200) {
+          throw new Error('Failed to verify user');
+        }
+        const data = await response.data;
+        return { message: response.data.message };
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
 
 const initialState = {
-    isAuthenticated: false,
-    user: null,
-    token: null,
-    loading: false,
-    error: null,
-
-}
+  isAuthenticated: false,
+  user: null,
+  token: null,
+  loading: false,
+  error: null,
+  message: null,  // For signup success message
+};
 
 const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
-        loginSuccess: (state, action)=> {
-            state.isAuthenticated = true
-            state.user = action.payload.user
-            state.token = action.payload.token
-        },
-
-        logout: (state)=> {
-            state.isAuthenticated = false
-            state.user = null
-            state.token = null
-        }
+  name: 'auth',
+  initialState,
+  reducers: {
+    loginSuccess: (state, action) => {
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
     },
-    extraReducers: (builder)=> {
-     builder
-     .addCase(loginUser.pending, (state)=> {
-        state.loading = true
-        state.error = null
-     })
-     .addCase(loginUser.fulfilled, (state, action)=> {
+    logout: (state) => {
+      state.isAuthenticated = false;
+      state.user = null;
+      state.token = null;
+    },
+  },
+  extraReducers: (builder) => {
+    // Handle login
+    builder
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
-     })
-     .addCase(loginUser.rejected, (state, action)=> {
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload; // Handle the error
-     })
-    } 
-})
+        state.error = action.payload;
+      });
 
-export const {logout} = authSlice.actions
-export default authSlice.reducer
+    // Handle signup
+    builder
+      .addCase(signupUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = null;
+      })
+      .addCase(signupUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;  // Set signup success message
+      })
+      .addCase(signupUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+      builder
+      .addCase(verifyUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = null;
+      })
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;  // Success message for OTP verification
+        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+      })
+      .addCase(verifyUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+      builder
+      .addCase(forgotPassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = null;
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;  // Success message for OTP verification
+        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+      builder
+      .addCase(resetPasswordFun.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = null;
+      })
+      .addCase(resetPasswordFun.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;  // Success message for OTP verification
+        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+      })
+      .addCase(resetPasswordFun.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
+});
+
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

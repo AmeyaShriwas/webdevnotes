@@ -4,6 +4,7 @@ import Navigation from './Navigation'
 import store from './redux/store'
 import { Provider } from 'react-redux';
 
+
 const App = () => {
   return (
     <>

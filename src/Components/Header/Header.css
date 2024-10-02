@@ -20,10 +20,7 @@
     padding-right: 10%;
 }
 
-body {
-    margin: 0; /* Remove default margin */
-    padding-top: 80px; /* Add padding equal to the height of the header */
-}
+
 
 
   .logo {

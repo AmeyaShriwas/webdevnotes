@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import "./Header.css";
 import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {user} = useSelector((state)=> state)
+  console.log('user', user)
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

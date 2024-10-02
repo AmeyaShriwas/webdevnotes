@@ -14,8 +14,8 @@ const Navigation = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/form" element={<AuthForm />} />
+        <Route path="/" element={<AuthForm />} />
+        <Route path="/landing" element={<Landing />} />
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/cart" element={<CartPage />} />
       </Routes>

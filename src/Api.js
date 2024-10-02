@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://localhost:3400'
+export const BASE_URL = 'https://notesapi.ameyashriwas.in'

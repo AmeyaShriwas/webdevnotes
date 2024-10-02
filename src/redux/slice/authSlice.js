@@ -26,7 +26,7 @@ export const signupUser = createAsyncThunk(
     console.log('userdata', userData)
     try {
       const response = await axios.post(`${BASE_URL}/signup`, userData);
-      console.log('response', response)
+      console.log('response api get', response)
       if (response.status !== 201) {
         throw new Error('Failed to register');
       }

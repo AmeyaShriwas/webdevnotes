@@ -1,49 +1,50 @@
 import React, { useState } from 'react';
 import './PurchaseCategory.css';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase } from 'react-icons/fa';
-import { SiMongodb, SiExpress } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
+import js from './../../Assets/js.png'; // Importing the JavaScript image
 
+// Unified notesData structure
 const notesData = {
   JavaScript: {
-    pdfs: [
-      { name: 'JavaScript Basics', link: 'https://basponccollege.org/LMS/EMaterial/Science/Comp/HVP/JS%20Notes.pdf' },
-      { name: 'Advanced JavaScript', link: '#' },
-      { name: 'JavaScript ES6 Features', link: '#' },
-    ],
+    name: 'JavaScript Basics',
     price: 300,
+    img: js,
+    pdfs: [
+      'JavaScript Basics',
+      'Advanced JavaScript',
+      'JavaScript ES6 Features',
+    ]
   },
   ReactJS: {
-    pdfs: [
-      { name: 'React Introduction', link: '#' },
-      { name: 'React Hooks', link: '#' },
-      { name: 'Advanced React Patterns', link: '#' },
-    ],
+    name: 'React Introduction',
     price: 300,
+    img: js,
+    pdfs: [
+      'React Introduction',
+      'React Hooks',
+      'Advanced React Patterns',
+    ]
   },
   ExpressJs: {
-    pdfs: [
-      { name: 'Express Basics', link: '#' },
-      { name: 'Middleware in Express', link: '#' },
-      { name: 'Advanced Express Patterns', link: '#' },
-    ],
+    name: 'Express Basics',
     price: 300,
+    img: js,
+    pdfs: [
+      'Express Basics',
+      'Middleware in Express',
+      'Advanced Express Patterns',
+    ]
   },
   NodeJS: {
-    pdfs: [
-      { name: 'Node Introduction', link: '#' },
-      { name: 'Asynchronous NodeJS', link: '#' },
-      { name: 'Node with Express', link: '#' },
-    ],
+    name: 'Node Introduction',
     price: 300,
-  },
-};
-
-const iconsMap = {
-  JavaScript: <FaJs style={{ color: '#F7DF1E' }} />,
-  ReactJS: <FaReact style={{ color: '#61DAFB' }} />,
-  ExpressJs: <SiExpress style={{ color: '#000000' }} />,
-  NodeJS: <FaNodeJs style={{ color: '#8CC84B' }} />,
+    img: js,
+    pdfs: [
+      'Node Introduction',
+      'Asynchronous NodeJS',
+      'Node with Express',
+    ]
+  }
 };
 
 const PurchaseCategory = () => {
@@ -63,6 +64,10 @@ const PurchaseCategory = () => {
     navigate('/notes', { state: { category } });
   };
 
+  const handleSeeAll = () => {
+    navigate('/all-categories'); // Navigate to a page where all categories can be explored
+  };
+
   return (
     <div className="Pcategory-wrapper">
       <h1 className="Pcategory-heading">Explore Our Categories</h1>
@@ -75,28 +80,28 @@ const PurchaseCategory = () => {
             onMouseLeave={handleMouseLeave}
             onClick={() => OnSelectCategory(category)}
           >
-            <div className="Pcategory-icon">{iconsMap[category]}</div>
+            <div className="Pcategory-image">
+              <img src={notesData[category].img} alt={`${category} Image`} className="Pcategory-img" />
+            </div>
             <p className="Pcategory-title">{category}</p>
-            <p>{notesData[category].pdfs.length} PDFs available</p>
+
             <p className="Pcategory-price">Price: Rs {notesData[category].price}</p>
             <button className="Pbuy-button">Buy Now</button>
             {hoveredCategory === category && (
               <div className="Ppopup">
-                <h3>{category} Contents</h3>
-                <ul>
-                  {notesData[category].pdfs.map((pdf, i) => (
-                    <li key={i}>
-                      <a href={pdf.link} target="_blank" rel="noopener noreferrer">
-                        {pdf.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <img src="/sample-image.jpg" alt="PDF Preview" />
+                <h3>{category} Content</h3>
+                <p>{notesData[category].name}</p>
+                <img src={notesData[category].img} alt="Category Preview" className="Ppopup-img" />
               </div>
             )}
           </div>
         ))}
+      </div>
+
+      <div className="Psee-all-button-wrapper">
+        <button className="Psee-all-button" onClick={handleSeeAll}>
+          See All
+        </button>
       </div>
     </div>
   );

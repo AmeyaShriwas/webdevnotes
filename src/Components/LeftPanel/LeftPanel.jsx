@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { FaDownload, FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
-import pdfImg from './../../Assets/pdf.png'
+import { FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
+import pdfImg from './../../Assets/pdf.png';
 
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
 
   // Calculate total pages
   const totalItems = notesData[selectedPart].pdfs.length;
@@ -16,21 +16,6 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  // Function to render the correct icon based on the file type
-  const renderFileIcon = (fileName) => {
-    if (fileName.toLowerCase().includes('html')) {
-      return <FaHtml5 className="file-icon" />;
-    } else if (fileName.toLowerCase().includes('javascript')) {
-      return <FaJs className="file-icon" />;
-    } else if (fileName.toLowerCase().includes('react')) {
-      return <FaReact className="file-icon" />;
-    } else if (fileName.toLowerCase().includes('pdf')) {
-      return <FaFilePdf className="file-icon" />;
-    } else {
-      return <FaFileAlt className="file-icon" />;
-    }
   };
 
   return (
@@ -53,13 +38,9 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
       <div className="pdf-grid">
         {currentItems.map((pdf, index) => (
           <div key={index} className="pdf-box">
-            {/* Render file type icon based on the file name */}
-           
-            <h3 className="pdf-name">{pdf.name}</h3>
-            <a href={pdf.link} target="_blank" rel="noopener noreferrer" className="pdf-download">
-           <img className='pdfIconImg' src={pdfImg}/>
-
-            
+            <h3 className="pdf-name">{pdf}</h3> {/* Directly render the pdf name */}
+            <a href="#" className="pdf-download" onClick={() => alert('Download functionality coming soon!')}>
+              <img className='pdfIconImg' src={pdfImg} alt="PDF icon" />
             </a>
           </div>
         ))}

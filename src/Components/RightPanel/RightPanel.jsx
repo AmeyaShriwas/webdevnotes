@@ -10,24 +10,21 @@ const RightPanel = ({ pdfs, price, handleAddCategoryToCart }) => {
         {pdfs.map((pdf, index) => (
           <li key={index} className="pdf-item">
             <span className="pdf-name">
-              <img className='pdfRightIcon' src={pdfIconImg} alt="PDF icon" />{pdf.name}
+              <img className='pdfRightIcon' src={pdfIconImg} alt="PDF icon" />
+              {pdf}
             </span>
           </li>
         ))}
       </ul>
-      
+
       <div className="pricing-section">
         <div className="price-box">
           <span className="price-label">Price for Category:</span>
           <span className="price-amount">₹{price}</span>
         </div>
 
-        <div className="discount-info">
-          <span>Special Offer: Flat 10% off on your first purchase!</span>
-        </div>
-
         <button className="add-to-cart-btn" onClick={handleAddCategoryToCart}>
-          Add Category to Cart
+          Add to Cart
         </button>
       </div>
     </div>

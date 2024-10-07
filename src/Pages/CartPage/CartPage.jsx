@@ -56,7 +56,7 @@ const CartPage = () => {
                 <thead>
                   <tr>
                     <th>PDF Name</th>
-                    <th>Category</th>
+                  
                     <th>Amount</th>
                     <th>Action</th>
                   </tr>
@@ -68,7 +68,7 @@ const CartPage = () => {
                         <img src={pdfImg} alt="PDF icon" className="pdf-icon" />
                         {item.name}
                       </td>
-                      <td>{item.category}</td>
+                    
                       <td>Rs {item.amount.toFixed(2)}</td>
                       <td>
                         <button

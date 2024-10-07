@@ -1,0 +1,51 @@
+body {
+    margin: 0; /* Remove default margin */
+    font-family: 'Arial', sans-serif; /* Set a clean font */
+}
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef); /* Gradient background */
+    color: #343a40; /* Dark text color */
+    text-align: center;
+    padding: 20px; /* Add padding */
+  
+    border-radius: 10px; /* Rounded corners */
+}
+
+.not-found-icon {
+    margin-bottom: 20px; /* Space between icon and title */
+}
+
+.not-found-title {
+    font-size: 6rem; /* Large font size for the title */
+    margin: 0;
+    color: #dc3545; /* Red color for the title */
+}
+
+.not-found-message {
+    font-size: 1.5rem; /* Medium font size for the message */
+    margin: 20px 0;
+    color: #6c757d; /* Grey color for the message */
+}
+
+.not-found-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue background for the button */
+    color: white; /* White text color */
+    text-decoration: none; /* No underline for the link */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition effects */
+}
+
+.not-found-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}

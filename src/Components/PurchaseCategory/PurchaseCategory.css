@@ -5,6 +5,9 @@
   background: linear-gradient(135deg, #ffffff, #f0f0f0);
   min-height: auto;
   min-height: 500px;
+  background-color: white;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .Pcategory-heading {
@@ -36,7 +39,7 @@
 }
 
 .Pcategory-box:hover {
-  transform: translateY(-8px);
+  transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -160,4 +163,17 @@
     font-size: 18px;
     margin-bottom: 20px;
   }
+}
+.Pcategory-img{
+  width: 140px;
+  height: 140px;
+}
+.Psee-all-button{
+  background-color: rgb(107, 107, 85);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 2rem;
+  color: white;
+  font-size: 1rem;
 }

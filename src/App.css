@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+/* Hide scrollbar for Chrome, Safari, and Edge */
+html, body {
+  -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling on touch devices */
+  overflow: hidden;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+html {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+html::-webkit-scrollbar {
+  display: none;
+}

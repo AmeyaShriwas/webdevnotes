@@ -25,8 +25,31 @@ body {
 .right-panel {
   padding: 60px;
   background-color: #ffffff;
-  overflow-y: auto;
+  overflow-y: auto; /* Allow vertical scrolling */
 }
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.left-panel::-webkit-scrollbar,
+.right-panel::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Hide scrollbar for Firefox */
+.left-panel {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for IE and Edge */
+.left-panel,
+.right-panel {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Firefox */
+.right-panel {
+  scrollbar-width: none; /* Firefox */
+}
+
 
 .left-panel {
   flex: 3;
@@ -52,18 +75,38 @@ body {
 .tabs-list {
   display: flex;
   overflow-x: scroll;
-  /* flex-wrap: wrap; */
   gap: 15px;
   margin-bottom: 30px;
+
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Optional: Style the tabs to prevent overflow from affecting layout */
+.tabs-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+/* For other elements to be scrollable */
+.tabs-list::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 
 .tabs-list button {
-  padding: 12px 20px;
+  padding: 10px 10px;
   background-color: #9b9fa3;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 20px;
   white-space: nowrap;
   transition: background-color 0.3s ease;
@@ -72,6 +115,7 @@ body {
 .tabs-list button:hover,
 .tabs-list button.active {
   background-color: #0056b3;
+  
 }
 
 /* PDF grid layout */
@@ -167,7 +211,7 @@ body {
 .pdf-list {
   list-style-type: none;
   padding: 0;
-  height: 60vh;
+  height: 55vh;
   overflow-y: scroll;
 }
 

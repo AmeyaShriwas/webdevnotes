@@ -83,7 +83,7 @@
 }
 
 /* Responsive Styles for Tablets and Smaller Devices */
-@media (max-width: 768px) {
+@media (max-width: 1258px) {
   .banner-section {
     padding: 20px;
     height: auto;

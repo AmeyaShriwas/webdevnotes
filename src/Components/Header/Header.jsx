@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link to='/'>
+      <Link to='/landing'>
         <div className="logo">
           <span className="logo-icon">{`</>`}</span>
           <span className="logo-text">webDevNotes</span>

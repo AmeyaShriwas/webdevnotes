@@ -6,6 +6,7 @@ import NotesPage from './Pages/NotesPage/NotesPage';
 import CartPage from './Pages/CartPage/CartPage';
 import NotFoundPage from './Pages/PageNotFound/PageNotFound';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
+import Contact from './Pages/Contact/Contact';
 
 const Navigation = () => {
   return (
@@ -16,6 +17,7 @@ const Navigation = () => {
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

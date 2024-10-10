@@ -1,14 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const BASE_URL = process.env.BASE_URL
+const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
+console.log('process', process.env)
 
 // Thunk for login
 export const loginUser = createAsyncThunk(
   '/login',
   async(userData, {rejectWithValue}) => {
+    console.log('process', process.env)
+    
     try {
-      const response = await axios.post(`${BASE_URL}/login`, userData);
+      console.log('api url', ApiUrl)
+      const response = await axios.post(`${ApiUrl}/login`, userData);
       if (response.status !== 200) {
         throw new Error('Failed to login');
       }
@@ -26,7 +30,7 @@ export const signupUser = createAsyncThunk(
   async(userData, {rejectWithValue}) => {
     console.log('userdata', userData)
     try {
-      const response = await axios.post(`${BASE_URL}/signup`, userData);
+      const response = await axios.post(`${ApiUrl}/signup`, userData);
       console.log('response api get', response)
       if (response.status !== 201) {
         throw new Error('Failed to register');
@@ -44,7 +48,7 @@ export const verifyUser = createAsyncThunk(
     async(userData, {rejectWithValue}) => {
       console.log('userdata', userData)
       try {
-        const response = await axios.post(`${BASE_URL}/verify-otp`, userData);
+        const response = await axios.post(`${ApiUrl}/verify-otp`, userData);
         console.log('response', response)
         if (response.status !== 200) {
           throw new Error('Failed to verify user');
@@ -63,7 +67,7 @@ export const verifyUser = createAsyncThunk(
       console.log('userdata', userData)
      
       try {
-        const response = await axios.post(`${BASE_URL}/forgot-password`, {email: userData});
+        const response = await axios.post(`${ApiUrl}/forgot-password`, {email: userData});
         console.log('response', response)
         if (response.status !== 200) {
           throw new Error('Failed to verify user');
@@ -83,7 +87,7 @@ export const verifyUser = createAsyncThunk(
       console.log('userdata', userData)
      
       try {
-        const response = await axios.post(`${BASE_URL}/reset-password`, userData);
+        const response = await axios.post(`${ApiUrl}/reset-password`, userData);
         console.log('response', response)
         if (response.status !== 200) {
           throw new Error('Failed to verify user');

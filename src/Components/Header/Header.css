@@ -83,7 +83,9 @@
   }
 
   @media (max-width: 768px) {
-   
+   .contactPage{
+    display: none;
+   }
 
     .hamburger {
       display: block;

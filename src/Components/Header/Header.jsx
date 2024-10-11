@@ -33,6 +33,7 @@ const Header = () => {
       {/* Navbar for larger screens */}
       <nav className="largeScreenButtons">
         <ul>
+          <li className="contactPage"><Link to='/contact'>{isAuthenticated? 'contact': ''}</Link></li>
           <li className="loginButton" onClick={LogoutFuntion}><p href="/login"><Link to='/'>{isAuthenticated? 'Logout': 'Login'}</Link></p></li>
           
          

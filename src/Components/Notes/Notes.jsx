@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import LeftPanel from './../LeftPanel/LeftPanel';
 import RightPanel from './../RightPanel/RightPanel';
 import './Notes.css';
-import PdfViewer from '../PdfViewer/PdfViewer';
 import { useLocation } from 'react-router-dom';
 import js from './../../Assets/js.png'; // Importing the JavaScript image
 
@@ -109,6 +108,7 @@ const Notes = () => {
   const handleAddCategoryToCart = (e) => {
   
     console.log('cart', e);
+    
   };
 
   return (
@@ -120,11 +120,11 @@ const Notes = () => {
         handlePdfClick={handlePdfClick} // Pass down the click handler
       />
       <RightPanel 
-        pdfs={notesData[selectedPart].pdfs}
+        pdfs={notesData[selectedPart]}
         price={notesData[selectedPart].price} // Show fixed category price
-        handleAddCategoryToCart={handleAddCategoryToCart(selectedPart)}
+        handleAddCategoryToCart={handleAddCategoryToCart}
       />
-      {selectedPdf && <PdfViewer pdfUrl={selectedPdf} />} {/* Render PDF viewer if a PDF is selected */}
+      
     </div>
   );
 };

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './PurchaseCategory.css';
 import { useNavigate } from 'react-router-dom';
-import js from './../../Assets/js.png'; // Importing the JavaScript image
+import reactIcon from './../../Assets/reactIcon.png'; // Importing the JavaScript image
+import jsIcon from './../../Assets/jsIcon.png'; // Importing the JavaScript image
+import nodeIcon from './../../Assets/nodeIcon.png'; // Importing the JavaScript image
+import expressIcon from './../../Assets/expressIcon.png'; // Importing the JavaScript image
 
 // Unified notesData structure
 const notesData = {
   JavaScript: {
     name: 'JavaScript Basics',
     price: 300,
-    img: js,
+    img: jsIcon,
     pdfs: [
       'JavaScript Basics',
       'Advanced JavaScript',
@@ -18,7 +21,7 @@ const notesData = {
   ReactJS: {
     name: 'React Introduction',
     price: 300,
-    img: js,
+    img: reactIcon,
     pdfs: [
       'React Introduction',
       'React Hooks',
@@ -28,7 +31,7 @@ const notesData = {
   ExpressJs: {
     name: 'Express Basics',
     price: 300,
-    img: js,
+    img: expressIcon,
     pdfs: [
       'Express Basics',
       'Middleware in Express',
@@ -38,7 +41,7 @@ const notesData = {
   NodeJS: {
     name: 'Node Introduction',
     price: 300,
-    img: js,
+    img: nodeIcon,
     pdfs: [
       'Node Introduction',
       'Asynchronous NodeJS',

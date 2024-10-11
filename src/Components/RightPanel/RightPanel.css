@@ -3,6 +3,9 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
     
   }
   
@@ -13,10 +16,11 @@
     color: #333;
   }
   
-  .pdf-list {
-    list-style: none;
-    padding: 0;
-    height: 500px;
+  .pdf-viewer-container {
+    height: 350px;
+    overflow: scroll;
+   
+   
    
   }
   
@@ -92,3 +96,7 @@
     background-color: #218838;
   }
   
+  .rightPanelPdfHeading{
+    margin: 1rem;
+  }
+

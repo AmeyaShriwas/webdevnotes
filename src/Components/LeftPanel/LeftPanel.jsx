@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
 import pdfImg from './../../Assets/pdf.png';
-import PdfModel from './../../Components/PdfViewer/PdfViewer'
 
 
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {

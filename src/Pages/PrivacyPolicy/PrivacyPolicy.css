@@ -1,0 +1,91 @@
+/* CSS for Privacy Policy Page */
+.pageContainer {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 90vh;
+    background-color: white;
+  }
+  
+  .pageLeft {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+    padding: 20px;
+    width: 50%;
+    height: 90vh;
+  }
+  
+  .pageLeft h1 {
+    font-size: 3rem;
+    color: #2980b9;
+    text-align: center;
+  }
+  
+  .pageRight {
+ 
+    padding: 20px;
+    width: 50%;
+    height: 90vh;
+    overflow-y: scroll;
+   
+  }
+  
+  .pageRight p,
+  .pageRight ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+  }
+  
+  .pageRight h2 {
+    font-size: 1.5rem;
+    color: #2980b9;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pageRight ul {
+    padding-left: 20px;
+  }
+  
+  .pageRight ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Design for Phones */
+  @media screen and (max-width: 768px) {
+    .pageContainer {
+      flex-direction: column;
+    }
+  
+    .pageLeft h1 {
+      font-size: 2.5rem;
+    }
+    
+    .pageRight h2 {
+      font-size: 1.3rem;
+    }
+    
+    .pageRight p, .pageRight ul {
+      font-size: 0.9rem;
+    }
+    .pageRight, .pageRight {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .pageLeft{
+        width: 100%;
+      }
+  }
+  

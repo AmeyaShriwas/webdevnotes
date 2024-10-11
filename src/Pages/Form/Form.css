@@ -1,0 +1,53 @@
+.pageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  
+  .pageLeft {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .pageLeft h1 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .pageRight {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .pageRight p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  /* Responsive Design for Phones */
+  @media screen and (max-width: 768px) {
+    .pageContainer {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .pageLeft, .pageRight {
+      flex: 1;
+      padding: 10px;
+    }
+  
+    .pageLeft h1 {
+      font-size: 2rem;
+    }
+  }
+  

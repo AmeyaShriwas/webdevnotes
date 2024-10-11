@@ -1,0 +1,72 @@
+/* CSS for Digital Download Policy Page */
+.pageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 90vh;
+    background-color: white;
+  }
+  
+  .pageLeft {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .pageLeft h1 {
+    font-size: 3rem;
+    color: #d35400;
+    text-align: center;
+  }
+  
+  .pageRight {
+    flex: 2;
+    padding: 20px;
+  }
+
+  .pageRight section {
+    margin-bottom: 20px;
+  }
+  
+  .pageRight h2 {
+    font-size: 1.5rem;
+    color: #d35400;
+    margin-bottom: 10px;
+  }
+  
+  .pageRight p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+  }
+
+  .pageRight a {
+    color: #d35400;
+    text-decoration: none;
+  }
+
+  /* Responsive Design for Phones */
+  @media screen and (max-width: 768px) {
+    .pageContainer {
+      flex-direction: column;
+    }
+  
+    .pageLeft h1 {
+      font-size: 2.5rem;
+    }
+
+    .pageRight h2 {
+      font-size: 1.3rem;
+    }
+
+    .pageRight p {
+      font-size: 0.95rem;
+    }
+  }

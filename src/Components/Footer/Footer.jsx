@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -36,7 +37,7 @@ const Footer = () => {
       </div>
 
       {/* Part 3: Categories */}
-      <div className="footer-part">
+      {/* <div className="footer-part">
         <h3>More Categories</h3>
         <ul className="footer-list">
           <li>Node JS</li>
@@ -44,16 +45,16 @@ const Footer = () => {
           <li>MongoDB</li>
           <li>MySQL</li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Part 4: Categories */}
       <div className="footer-part">
         <h3>Resources</h3>
         <ul className="footer-list">
-          <li>Documentation</li>
-          <li>Tutorials</li>
-          <li>Blog</li>
-          <li>Support</li>
+        <Link to='/terms'> <li>Terms & Conditions</li></Link>
+        <Link to='/privacy-policy'><li>Privacy Policy</li></Link>
+        <Link to='/refund-policy'><li>Refund & Cancellation Policy</li></Link>
+        <Link to='/shipping-policy'><li>Digital Download Policy</li></Link>
         </ul>
       </div>
     </footer>

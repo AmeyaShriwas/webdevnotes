@@ -99,6 +99,8 @@ const Notes = () => {
   const [selectedPart, setSelectedPart] = useState(selectedCategory); // For PDF viewing
   const [cart, setCart] = useState([]); // For managing cart items
 
+  console.log('selected pdf', selectedPdf)
+  console.log('selectedCategory', selectedCategory)
   const handlePdfClick = (pdfName) => {
     const pdfLink = `https://example.com/${pdfName.replace(/\s+/g, '-').toLowerCase()}.pdf`; // Placeholder link
     setSelectedPdf(pdfLink); // Set the selected PDF link for viewing
@@ -113,14 +115,14 @@ const Notes = () => {
     <div className="notes-container">
       <LeftPanel
         notesData={notesData}
-        selectedPart={selectedCategory}
+        selectedPart={selectedPart}
         setSelectedPart={setSelectedPart}
         handlePdfClick={handlePdfClick} // Pass down the click handler
       />
       <RightPanel 
-        pdfs={notesData[selectedCategory].pdfs}
-        price={notesData[selectedCategory].price} // Show fixed category price
-        handleAddCategoryToCart={handleAddCategoryToCart(selectedCategory)}
+        pdfs={notesData[selectedPart].pdfs}
+        price={notesData[selectedPart].price} // Show fixed category price
+        handleAddCategoryToCart={handleAddCategoryToCart(selectedPart)}
       />
       {selectedPdf && <PdfViewer pdfUrl={selectedPdf} />} {/* Render PDF viewer if a PDF is selected */}
     </div>

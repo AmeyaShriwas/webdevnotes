@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
 import pdfImg from './../../Assets/pdf.png';
+import PdfModalViewer from '../PdfViewer/PdfViewer';
 
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,6 +11,8 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const totalItems = notesData[selectedPart].pdfs.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  console.log('here selected part', selectedPart)
+
   // Calculate the items to display on the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = notesData[selectedPart].pdfs.slice(startIndex, startIndex + itemsPerPage);
@@ -17,6 +20,9 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+
+  const pdfUrl = 'https://drive.google.com/uc?id=1pFer19sAGAm9J-7Rc7Pp5TaVwCtKPzTP';
 
   return (
     <div className="left-panel">
@@ -45,6 +51,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
           </div>
         ))}
       </div>
+      <PdfModalViewer  pdfUrl={pdfUrl}/>
 
       {/* Pagination */}
       <div className="pagination">

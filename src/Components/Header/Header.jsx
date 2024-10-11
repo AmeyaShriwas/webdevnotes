@@ -33,7 +33,16 @@ const Header = () => {
       {/* Navbar for larger screens */}
       <nav className="largeScreenButtons">
         <ul>
-          <li className="contactPage"><Link to='/contact'>{isAuthenticated? 'contact': ''}</Link></li>
+          <li className="contactPage"><Link to='/contact'>{isAuthenticated? 'All Pages': ''}</Link>
+          <div className="allPagesBox">
+  <p><Link to='/terms'>Terms & Conditions</Link></p>
+  <p><Link to='/privacy-policy'>Privacy Policy</Link></p>
+  <p><Link to='/refund-policy'>Refund & Cancellation Policy</Link></p>
+  <p><Link to='/shipping-policy'>Digital Download Policy</Link></p>
+  <p><Link to='/contact'>Contact</Link></p>
+</div>
+
+          </li>
           <li className="loginButton" onClick={LogoutFuntion}><p href="/login"><Link to='/'>{isAuthenticated? 'Logout': 'Login'}</Link></p></li>
           
          
@@ -45,6 +54,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+    
     </header>
   );
 };

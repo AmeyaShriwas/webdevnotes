@@ -44,6 +44,13 @@
     flex-grow: 1;
     padding: 20px;
   }
+
+  .empty-cart h1{
+    font-size: 2rem;
+  }
+  .emptyCartImg{
+    width: 400px;
+  }
   
   .empty-cart p {
     font-size: 1.5em;
@@ -205,5 +212,20 @@
         padding: 20px;
         margin: 0px;
     }
+    .emptyCartImg{
+      width: 320px;
+    }
   }
  
+  .clearCartButton{
+    text-align: end;
+    margin: 2rem;
+    cursor: pointer;
+  
+  }
+
+   
+  .clearCartButton h3{
+    color: #2c3e50;
+
+  }

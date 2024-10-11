@@ -4,13 +4,18 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import './CartPage.css';
 import Header from '../../Components/Header/Header';
 import pdfImg from './../../Assets/pdf.png'; // Placeholder for PDF icon
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { clearCart, removeItem } from '../../redux/slice/CartSlice';
+import EmptyCart from './../../Assets/empty.png'
 
 const CartPage = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const ItemsCart = useSelector((state)=> state.cart.value);
+  const dispatch = useDispatch()
+
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -107,16 +112,18 @@ const CartPage = () => {
       <Header />
       <div className="cart-main">
         <div className="cart-header">
-          <h2 className="cart-title">
+          {/* <h2 className="cart-title">
             Your Shopping Cart <AiOutlineShoppingCart />
-          </h2>
+          </h2> */}
         </div>
+     
 
         <div className="cart-content">
-          {cartItems.length === 0 ? (
+          {ItemsCart?.length === 0 ? (
             <div className="empty-cart">
-              <p>Your cart is empty.</p>
-              <AiOutlineShoppingCart size={50} />
+              <h1>Your cart is empty.</h1>
+              <img className='emptyCartImg' src={EmptyCart}/>
+             
             </div>
           ) : (
             <div className="cart-items">
@@ -129,17 +136,17 @@ const CartPage = () => {
                   </tr>
                 </thead>
                 <tbody className='cartEachItem'>
-                  {cartItems.map(item => (
-                    <tr key={item.id}>
+                  {ItemsCart?.map((item, index) => (
+                    <tr key={index}>
                       <td className="pdf-icon-name">
                         <img src={pdfImg} alt="PDF icon" className="pdf-icon" />
-                        {item.name}
+                        {item}
                       </td>
-                      <td>Rs {item.amount.toFixed(2)}</td>
+                      <td>Rs 300</td>
                       <td>
                         <button
                           className="delete-btn"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => dispatch(removeItem(index))}
                         >
                           <FiTrash2 />
                         </button>
@@ -148,9 +155,14 @@ const CartPage = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
-          )}
+              <div className='clearCartButton' onClick={()=>dispatch(clearCart())}>
+          <h3>Clear Cart</h3>
+        </div>
 
+            </div>
+            
+          )}
+         
           <div className="cart-summary">
             <h3>Total Amount: <span className="total-amount">Rs {totalAmount}</span></h3>
             <button className="checkout-btn" onClick={handlePayment}>Proceed to Checkout</button>

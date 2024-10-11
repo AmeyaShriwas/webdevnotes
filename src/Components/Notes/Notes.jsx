@@ -4,6 +4,9 @@ import RightPanel from './../RightPanel/RightPanel';
 import './Notes.css';
 import { useLocation } from 'react-router-dom';
 import js from './../../Assets/js.png'; // Importing the JavaScript image
+import { addItems } from '../../redux/slice/CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 // Unified notesData structure (same as in PurchaseCategory)
 const notesData = {
@@ -98,6 +101,10 @@ const Notes = () => {
   const [selectedPart, setSelectedPart] = useState(selectedCategory); // For PDF viewing
   const [cart, setCart] = useState([]); // For managing cart items
 
+  const dispatch = useDispatch()
+  const ItemsCart = useSelector((state)=> state.cart.value || []);
+  console.log('itemcart', ItemsCart)
+
   console.log('selected pdf', selectedPdf)
   console.log('selectedCategory', selectedCategory)
   const handlePdfClick = (pdfName) => {
@@ -106,9 +113,20 @@ const Notes = () => {
   };
 
   const handleAddCategoryToCart = (e) => {
-  
-    console.log('cart', e);
-    
+    console.log('e', e)
+    console.log('itemcart', ItemsCart)
+    console.log('typeOF', typeof(ItemsCart))
+    const findExisting = ItemsCart?.find((item)=> item===e)
+    if(findExisting){
+      console.log('true')
+    }
+    else{
+      dispatch(addItems(e))
+      console.log('false')
+    }
+   
+   
+
   };
 
   return (

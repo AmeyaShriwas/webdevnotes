@@ -10,6 +10,8 @@ const Header = () => {
   const {user} = useSelector((state)=> state)
   const { error, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
+  const ItemsCart = useSelector((state)=> state.cart.value);
+
 
   console.log('user', user)
 
@@ -49,7 +51,7 @@ const Header = () => {
           <li className="cart">
         
             <span className="cart-text">
-            <Link to='/cart'><FaShoppingCart className="cart-icon" /><sup><span className="cartNumber">0</span></sup></Link>
+            <Link to='/cart'><FaShoppingCart className="cart-icon" /><sup><span className="cartNumber">{ItemsCart?.length}</span></sup></Link>
             </span>
           </li>
         </ul>

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { FaHtml5, FaJs, FaReact, FaFilePdf, FaFileAlt } from 'react-icons/fa';
 import pdfImg from './../../Assets/pdf.png';
+import { addItems } from '../../redux/slice/CartSlice';
+import { useDispatch } from 'react-redux';
 
 
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+  const dispatch = useDispatch()
 
   // Calculate total pages
   const totalItems = notesData[selectedPart].pdfs.length;

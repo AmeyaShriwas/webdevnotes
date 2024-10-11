@@ -5,8 +5,10 @@ import '@react-pdf-viewer/core/lib/styles/index.css'; // Import required styles 
 import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
 
+
 const RightPanel = ({ pdfs, price, handleAddCategoryToCart }) => {
   console.log('pdfs name', pdfs.name);
+
 
   return (
     <div className="right-panel">

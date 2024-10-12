@@ -76,7 +76,7 @@ body {
   display: flex;
   overflow-x: scroll;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   /* Hide scrollbar for Chrome, Safari, and Opera */
   &::-webkit-scrollbar {
@@ -315,4 +315,30 @@ body {
 .pdfRightIcon{
   width: 20px;
   height: 20px;
+}
+.dragText{
+  color: blue;
+  margin: 10px;
+ }
+
+ 
+ .dragText {
+  display: inline-block;
+  animation: fadeSlide 2s ease-in-out infinite;
+  font-size: 16px;
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }

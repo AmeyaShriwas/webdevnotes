@@ -6,18 +6,19 @@ import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
 
 
-const RightPanel = ({ pdfs, price, handleAddCategoryToCart }) => {
-  console.log('pdfs name', pdfs.name);
+const RightPanel = ({ pdfs, price, handleAddCategoryToCart, droppedPdf }) => {
+  console.log('pdfs name', droppedPdf);
 
+  
 
   return (
     <div className="right-panel">
    
-     <h1 className='rightPanelPdfHeading'>{pdfs.name}</h1>
+     <h1 className='rightPanelPdfHeading'>{droppedPdf?droppedPdf.pdfName : 'Just drag any pdf'}</h1>
       {/* PDF Viewer displayed directly in the RightPanel */}
       <div className="pdf-viewer-container">
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-          <Viewer fileUrl={pdfReact} />
+          <Viewer fileUrl={droppedPdf? droppedPdf.pdfLink:pdfReact } />
         </Worker>
       </div>
 

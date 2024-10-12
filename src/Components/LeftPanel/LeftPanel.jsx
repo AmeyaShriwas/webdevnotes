@@ -5,7 +5,8 @@ import { addItems } from '../../redux/slice/CartSlice';
 import { useDispatch } from 'react-redux';
 
 
-const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
+
+const LeftPanel = ({ notesData, selectedPart, setSelectedPart, setDroppedPdf }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
   const dispatch = useDispatch()
@@ -25,6 +26,11 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
   };
 
 
+    // Drag and Drop handlers
+    const handleDragStart = (pdf, index) => {
+      console.log('pdf dragged', pdf)
+      setDroppedPdf(pdf); // Store the PDF name in the transfer data
+    };
 
   return (
     <div className="left-panel">
@@ -42,11 +48,12 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart }) => {
           </button>
         ))}
       </div>
-
+      <p className='dragText'>Just drag a little to see pdf</p>
       <div className="pdf-grid">
         {currentItems.map((pdf, index) => (
-          <div key={index} className="pdf-box">
-            <h3 className="pdf-name">{pdf}</h3> {/* Directly render the pdf name */}
+          <div key={index}   draggable // Enable dragging
+          onDragStart={(e) => handleDragStart(pdf, index)} className="pdf-box">
+            <h3 className="pdf-name">{pdf.pdfName}</h3> {/* Directly render the pdf name */}
             <a href="#" className="pdf-download" onClick={() => alert('Download functionality coming soon!')}>
               <img className='pdfIconImg' src={pdfImg} alt="PDF icon" />
             </a>

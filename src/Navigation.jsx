@@ -12,6 +12,7 @@ import RefundPolicy from './Pages/RefundPolicy/RefundPolicy';
 import ShippingPolicy from './Pages/ShippingPolicy/ShippingPolicy';
 import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
 
 const Navigation = () => {
   return (
@@ -28,6 +29,7 @@ const Navigation = () => {
         <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -93,6 +93,9 @@
     top: 60px;
     padding: 1rem;
 }
+.profileIconheader img{
+   width: 30px;
+}
 
 .allPagesBox p {
     font-size: 12px; /* Slightly larger text */

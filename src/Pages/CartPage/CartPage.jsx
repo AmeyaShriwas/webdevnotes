@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { clearCart, removeItem } from '../../redux/slice/CartSlice';
 import EmptyCart from './../../Assets/empty.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -33,8 +35,9 @@ const CartPage = () => {
   ]);
 
   // Remove item from cart
-  const removeFromCart = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+  const removeItemCart = (id) => {
+   dispatch(removeItem(id))
+   toast.error('Item remove from cart')
   };
 
   // Calculate total amount
@@ -146,7 +149,8 @@ const CartPage = () => {
                       <td>
                         <button
                           className="delete-btn"
-                          onClick={() => dispatch(removeItem(index))}
+                          onClick={()=>removeItemCart(index)}
+                          
                         >
                           <FiTrash2 />
                         </button>
@@ -169,6 +173,7 @@ const CartPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

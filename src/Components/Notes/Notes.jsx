@@ -6,6 +6,12 @@ import { useLocation } from 'react-router-dom';
 import js from './../../Assets/js.png'; // Importing the JavaScript image
 import { addItems } from '../../redux/slice/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import pdf1 from './../../Assets/reactjs.pdf'
+import pdf2 from './../../Assets/mysql.pdf'
+
+
 
 
 // Unified notesData structure (same as in PurchaseCategory)
@@ -15,18 +21,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
+      { pdfName: 'JavaScript Basics', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'Advanced JavaScript', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
     ]
   },
   ReactJS: {
@@ -34,18 +40,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      'React Introduction',
-      'React Hooks',
-      'Advanced React Patterns',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
+      { pdfName: 'React Introduction', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'React Hooks', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'Advanced React Patterns', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
     ]
   },
   ExpressJs: {
@@ -53,18 +59,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      'Express Basics',
-      'Middleware in Express',
-      'Advanced Express Patterns',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
+      { pdfName: 'Express Basics', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'Middleware in Express', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'Advanced Express Patterns', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
     ]
   },
   NodeJS: {
@@ -72,21 +78,22 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      'Node Introduction',
-      'Asynchronous NodeJS',
-      'Node with Express',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
-      'JavaScript Basics',
-      'Advanced JavaScript',
-      'JavaScript ES6 Features',
+      { pdfName: 'Node Introduction', pdfLink: pdf1 },
+      { pdfName: 'Asynchronous NodeJS', pdfLink: pdf2 },
+      { pdfName: 'Node with Express', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
     ]
   }
 };
+
 
 const Notes = () => {
   const location = useLocation();
@@ -100,28 +107,30 @@ const Notes = () => {
   const [selectedPdf, setSelectedPdf] = useState(null); // For PDF viewing
   const [selectedPart, setSelectedPart] = useState(selectedCategory); // For PDF viewing
   const [cart, setCart] = useState([]); // For managing cart items
+  const [droppedPdf, setDroppedPdf] = useState(null);
 
   const dispatch = useDispatch()
-  const ItemsCart = useSelector((state)=> state.cart.value || []);
+  const ItemsCart = useSelector((state)=> state?.cart?.value || []);
   console.log('itemcart', ItemsCart)
 
   console.log('selected pdf', selectedPdf)
   console.log('selectedCategory', selectedCategory)
-  const handlePdfClick = (pdfName) => {
-    const pdfLink = `https://example.com/${pdfName.replace(/\s+/g, '-').toLowerCase()}.pdf`; // Placeholder link
-    setSelectedPdf(pdfLink); // Set the selected PDF link for viewing
-  };
+  // const handlePdfClick = (pdfName) => {
+  //   const pdfLink = `https://example.com/${pdfName.replace(/\s+/g, '-').toLowerCase()}.pdf`; // Placeholder link
+  //   setSelectedPdf(pdfLink); // Set the selected PDF link for viewing
+  // };
 
   const handleAddCategoryToCart = (e) => {
-    console.log('e', e)
-    console.log('itemcart', ItemsCart)
-    console.log('typeOF', typeof(ItemsCart))
+  
     const findExisting = ItemsCart?.find((item)=> item===e)
     if(findExisting){
       console.log('true')
+      toast.error(`Already added in cart`);
     }
     else{
+      console.log('e knwo ', e)
       dispatch(addItems(e))
+      toast.success(`Item added to cart: ${e}`);
       console.log('false')
     }
    
@@ -135,13 +144,16 @@ const Notes = () => {
         notesData={notesData}
         selectedPart={selectedPart}
         setSelectedPart={setSelectedPart}
-        handlePdfClick={handlePdfClick} // Pass down the click handler
+        // handlePdfClick={handlePdfClick} // Pass down the click handler
+        setDroppedPdf={setDroppedPdf}
       />
       <RightPanel 
         pdfs={notesData[selectedPart]}
         price={notesData[selectedPart].price} // Show fixed category price
         handleAddCategoryToCart={handleAddCategoryToCart}
+        droppedPdf={droppedPdf}
       />
+      <ToastContainer/>
       
     </div>
   );

@@ -95,7 +95,7 @@ const AuthForm = () => {
       dispatch(loginUser(loginData))
       .then((response)=> {
         setLoading((prev) => ({ ...prev, login: false }));
-        console.log('response in here', response.payload)
+        console.log('response in here', response)
         if(response.payload.token){
           toast.success("Logged in successfully!");
           setTimeout(()=> {

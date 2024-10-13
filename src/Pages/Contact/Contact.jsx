@@ -7,8 +7,7 @@ import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
-
+const ApiUrl = process.env.REACT_APP_BASE_URL;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,46 +16,41 @@ const Contact = () => {
     message: '',
   });
 
-  const token = useSelector((state)=> state?.auth?.token)
-  console.log('f', token)
+  const token = useSelector((state) => state?.auth?.token);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-
-  
-    // Ensure that formData and token are defined
-    if (!formData || !token) {
-      console.error('Form data or token is missing.');
-      return; // Exit the function if formData or token is not available
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Please fill out all fields.');
+      return;
     }
-  
+
+    if (!token) {
+      toast.error('Authentication token is missing.');
+      return;
+    }
+
     try {
-      // Handle form submission logic here (e.g., API call)
-      console.log('Form submitted:', formData);
-  
       const response = await axios.post(
-        `https://notesapi.ameyashriwas.in/contactUs`, 
-        formData, // Pass formData as the second argument
+        `${ApiUrl}/contactUs`,
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-     toast.success('Message successfully send')
-      console.log('Response from contact us:', response.data);
+      toast.success('Message sent successfully.');
+      console.log('Response:', response.data);
     } catch (error) {
-      toast.error('Error submitting contact form')
-      console.error('Error submitting contact form:', error);
+      toast.error('Error submitting the contact form.');
+      console.error('Submission error:', error);
     }
   };
-  
-  
-  
 
   return (
     <>
@@ -66,11 +60,10 @@ const Contact = () => {
           <h1>Contact Us</h1>
         </div>
         <div className="pageRight">
-        <h1>Welcome to our Contact Page! We specialize in providing high-quality notes in PDF format tailored for web development.</h1>
-          <p>Whether you are a student, a professional, or someone looking to expand your knowledge in web development, we are here to assist you. If you have any questions, suggestions, or need support regarding our products, please feel free to reach out.</p>
-          <p>Your feedback is important to us as we strive to improve our offerings and provide you with the best learning resources.</p>
+          <h1>Welcome to our Contact Page! We specialize in providing high-quality notes in PDF format tailored for web development.</h1>
+          <p>If you have any questions, suggestions, or need support regarding our products, feel free to reach out to us. Your feedback helps us improve our offerings.</p>
 
-          <div  className="contactForm">
+          <div className="contactForm">
             <div className="formGroup">
               <label htmlFor="name">Name</label>
               <input
@@ -79,6 +72,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                placeholder="Enter your name"
                 required
               />
             </div>
@@ -90,6 +84,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -100,15 +95,16 @@ const Contact = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                placeholder="Enter your message"
                 required
               />
             </div>
-            <button onClick={handleSubmit} type="submit" className="submitButton">Send Message</button>
+            <button onClick={handleSubmit} className="submitButton">Send Message</button>
           </div>
         </div>
       </div>
-      <ToastContainer/>
-      <Footer/>
+      <ToastContainer />
+      <Footer />
     </>
   );
 };

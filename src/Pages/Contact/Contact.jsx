@@ -20,13 +20,15 @@ const Contact = () => {
   });
 
   useEffect(() => {
-    // Update the formData when user or email changes in the Redux state
+    console.log('User:', user);
+    console.log('Email:', email);
     setFormData((prev) => ({
       ...prev,
       name: user,
       email: email,
     }));
   }, [user, email]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,22 +36,16 @@ const Contact = () => {
   };
 
   const handleSubmit = async () => {
+    console.log('Form Data:', formData); // Check if data is populated correctly
     if (!formData.message) {
       toast.error('Please fill out the message field.');
       return;
     }
-
-    if (!token) {
-      toast.error('Authentication token is missing.');
-      return;
-    }
-
     
-
     try {
-      const response = await axios.post(`
-        ${ApiUrl}/contactUs`,
-        { ...formData }, // Send the form data (name, email, message)
+      const response = await axios.post(
+        `${ApiUrl}/contactUs`,
+        { ...formData },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -58,13 +54,13 @@ const Contact = () => {
       );
       toast.success('Message sent successfully.');
       console.log('Response:', response.data);
-      setFormData((prev) => ({ ...prev, message: '' })); // Clear the message field
+      setFormData((prev) => ({ ...prev, message: '' }));
     } catch (error) {
       toast.error('Error submitting the contact form.');
       console.error('Submission error:', error);
     }
   };
-
+  
   return (
     <>
       <Header />

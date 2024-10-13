@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
@@ -6,27 +6,20 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 const ApiUrl = process.env.REACT_APP_BASE_URL;
 
 const Contact = () => {
-  const { user, email } = useSelector((state) => state.auth); // Get user and email from Redux
-  const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
-
   const [formData, setFormData] = useState({
-    name: user || '',  // Prepopulate name
-    email: email || '', // Prepopulate email
+    name: '',
+    email: '',
     message: '',
   });
+    const { error, isAuthenticated, user, email, number } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    // Update the formData when user or email changes in the Redux state
-    setFormData((prev) => ({
-      ...prev,
-      name: user,
-      email: email,
-    }));
-  }, [user, email]);
+
+  const token = useSelector((state) => state?.auth?.token);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,8 +27,8 @@ const Contact = () => {
   };
 
   const handleSubmit = async () => {
-    if (!formData.message) {
-      toast.error('Please fill out the message field.');
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Please fill out all fields.');
       return;
     }
 
@@ -47,7 +40,7 @@ const Contact = () => {
     try {
       const response = await axios.post(
         `${ApiUrl}/contactUs`,
-        { ...formData }, // Send the form data (name, email, message)
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +49,6 @@ const Contact = () => {
       );
       toast.success('Message sent successfully.');
       console.log('Response:', response.data);
-      setFormData((prev) => ({ ...prev, message: '' })); // Clear the message field
     } catch (error) {
       toast.error('Error submitting the contact form.');
       console.error('Submission error:', error);
@@ -83,7 +75,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                readOnly // Make the input read-only
+                placeholder="Enter your name"
                 required
               />
             </div>
@@ -95,7 +87,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                readOnly // Make the input read-only
+                placeholder="Enter your email"
                 required
               />
             </div>

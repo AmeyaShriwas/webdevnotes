@@ -15,6 +15,9 @@ const ProfilePage = () => {
     profileImage: ProfileIcon
   });
 
+  const { error, isAuthenticated, user, email } = useSelector((state) => state.auth);
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfileData({ ...profileData, [name]: value });
@@ -62,7 +65,7 @@ const ProfilePage = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={profileData.name}
+                  value={user}
                   onChange={handleInputChange}
                   className="form-input"
                 />
@@ -73,7 +76,7 @@ const ProfilePage = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={profileData.email}
+                  value={email}
                   onChange={handleInputChange}
                   className="form-input"
                 />

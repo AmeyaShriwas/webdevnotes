@@ -140,6 +140,7 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.email = action.payload.email
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -171,7 +172,7 @@ const authSlice = createSlice({
       .addCase(verifyUser.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;  // Success message for OTP verification
-        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
       })
       .addCase(verifyUser.rejected, (state, action) => {
         state.loading = false;
@@ -187,7 +188,7 @@ const authSlice = createSlice({
       .addCase(forgotPassword.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;  // Success message for OTP verification
-        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
       })
       .addCase(forgotPassword.rejected, (state, action) => {
         state.loading = false;
@@ -203,7 +204,7 @@ const authSlice = createSlice({
       .addCase(resetPasswordFun.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload.message;  // Success message for OTP verification
-        state.isAuthenticated = true; // Set isAuthenticated to true after verification
+        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
       })
       .addCase(resetPasswordFun.rejected, (state, action) => {
         state.loading = false;

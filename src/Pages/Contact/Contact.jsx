@@ -4,6 +4,8 @@ import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
 
@@ -24,7 +26,7 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+
   
     // Ensure that formData and token are defined
     if (!formData || !token) {
@@ -37,7 +39,7 @@ const Contact = () => {
       console.log('Form submitted:', formData);
   
       const response = await axios.post(
-        `${ApiUrl}/contactUs`, 
+        `https://notesapi.ameyashriwas.in/contactUs`, 
         formData, // Pass formData as the second argument
         {
           headers: {
@@ -45,9 +47,10 @@ const Contact = () => {
           },
         }
       );
-  
+     toast.success('Message successfully send')
       console.log('Response from contact us:', response.data);
     } catch (error) {
+      toast.error('Error submitting contact form')
       console.error('Error submitting contact form:', error);
     }
   };
@@ -67,7 +70,7 @@ const Contact = () => {
           <p>Whether you are a student, a professional, or someone looking to expand your knowledge in web development, we are here to assist you. If you have any questions, suggestions, or need support regarding our products, please feel free to reach out.</p>
           <p>Your feedback is important to us as we strive to improve our offerings and provide you with the best learning resources.</p>
 
-          <form onSubmit={handleSubmit} className="contactForm">
+          <div  className="contactForm">
             <div className="formGroup">
               <label htmlFor="name">Name</label>
               <input
@@ -100,10 +103,11 @@ const Contact = () => {
                 required
               />
             </div>
-            <button type="submit" className="submitButton">Send Message</button>
-          </form>
+            <button onClick={handleSubmit} type="submit" className="submitButton">Send Message</button>
+          </div>
         </div>
       </div>
+      <ToastContainer/>
       <Footer/>
     </>
   );

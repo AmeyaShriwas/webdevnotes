@@ -36,7 +36,7 @@ const ShippingPolicy = () => {
               <section>
                 <h2>4. Issues with Download</h2>
                 <p>
-                  If you encounter any issues with downloading your product, such as corrupted files or broken links, please contact our support team at <a href="mailto:support@webdevnotes.com">support@webdevnotes.com</a>. We will assist you in resolving the issue and ensure you receive the correct files.
+                  If you encounter any issues with downloading your product, such as corrupted files or broken links, please contact our support team at <a href="mailto:ameya0015@gmail.com">ameya0015@gmail.com</a>. We will assist you in resolving the issue and ensure you receive the correct files.
                 </p>
               </section>
     
@@ -57,7 +57,7 @@ const ShippingPolicy = () => {
               <section>
                 <h2>7. Contact Us</h2>
                 <p>
-                  If you have any further questions or concerns regarding the Digital Download Policy, feel free to reach out to us at <a href="mailto:support@webdevnotes.com">support@webdevnotes.com</a>.
+                  If you have any further questions or concerns regarding the Digital Download Policy, feel free to reach out to us at <a href="mailto:ameya0015@gmail.com">ameya0015@gmail.com</a>.
                 </p>
               </section>
             </div>

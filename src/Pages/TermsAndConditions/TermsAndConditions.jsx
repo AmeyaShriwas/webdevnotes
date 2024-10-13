@@ -57,7 +57,7 @@ const TermsAndConditions = () => {
           <section>
             <h2>7. Contact Us</h2>
             <p>
-              If you have any questions about these terms and conditions, please contact us at support@webdevnotes.com.
+              If you have any questions about these terms and conditions, please contact us at ameya0015@gmail.com.
             </p>
           </section>
         </div>

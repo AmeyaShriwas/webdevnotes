@@ -29,7 +29,7 @@ const RefundPolicy = () => {
           <section>
             <h2>3. Exceptions to the No Refund Policy</h2>
             <p>
-              In exceptional cases, such as if a product is not delivered as described, you may contact our support team for assistance. Refunds will only be issued at our discretion after an investigation. Please contact us at <a href="mailto:support@webdevnotes.com">support@webdevnotes.com</a> within 7 days of purchase.
+              In exceptional cases, such as if a product is not delivered as described, you may contact our support team for assistance. Refunds will only be issued at our discretion after an investigation. Please contact us at <a href="mailto:ameya0015@gmail.com">ameya0015@gmail.com</a> within 7 days of purchase.
             </p>
           </section>
 
@@ -50,7 +50,7 @@ const RefundPolicy = () => {
           <section>
             <h2>6. Contact Us</h2>
             <p>
-              For any further questions regarding our Refund & Cancellation Policy, please contact our support team at <a href="mailto:support@webdevnotes.com">support@webdevnotes.com</a>.
+              For any further questions regarding our Refund & Cancellation Policy, please contact our support team at <a href="mailto:ameya0015@gmail.com">ameya0015@gmail.com</a>.
             </p>
           </section>
         </div>

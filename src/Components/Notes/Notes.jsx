@@ -14,25 +14,24 @@ import pdf2 from './../../Assets/mysql.pdf'
 
 
 
-// Unified notesData structure (same as in PurchaseCategory)
 const notesData = {
   JavaScript: {
     name: 'JavaScript Basics',
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'JavaScript Basics', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'Advanced JavaScript', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'JavaScript Introduction', pdfLink: '' },
+      { pdfName: 'Variables and Data Types', pdfLink: '' },
+      { pdfName: 'Functions and Scope', pdfLink: '' },
+      { pdfName: 'Objects and Arrays', pdfLink: '' },
+      { pdfName: 'Asynchronous JavaScript', pdfLink: '' },
       { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Closures and Higher-Order Functions', pdfLink: '' },
+      { pdfName: 'Promises and Async/Await', pdfLink: '' },
+      { pdfName: 'JavaScript Modules', pdfLink: '' },
+      { pdfName: 'Error Handling in JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript Design Patterns', pdfLink: '' },
+      { pdfName: 'Event Loop and Concurrency', pdfLink: '' }
     ]
   },
   ReactJS: {
@@ -40,18 +39,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'React Introduction', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'React Hooks', pdfLink: 'http://localhost:3001/pdf/2' },
-      { pdfName: 'Advanced React Patterns', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to React', pdfLink: '' },
+      { pdfName: 'React Component Lifecycle', pdfLink: '' },
+      { pdfName: 'React State and Props', pdfLink: '' },
+      { pdfName: 'Handling Events in React', pdfLink: '' },
+      { pdfName: 'React Hooks (useState, useEffect)', pdfLink: '' },
+      { pdfName: 'Context API and useContext', pdfLink: '' },
+      { pdfName: 'React Router Basics', pdfLink: '' },
+      { pdfName: 'State Management with Redux', pdfLink: '' },
+      { pdfName: 'React Performance Optimization', pdfLink: '' },
+      { pdfName: 'React Suspense and Lazy Loading', pdfLink: '' },
+      { pdfName: 'Testing React Components', pdfLink: '' },
+      { pdfName: 'Advanced React Patterns', pdfLink: '' }
     ]
   },
   ExpressJs: {
@@ -59,18 +58,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'Express Basics', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'Middleware in Express', pdfLink: 'http://localhost:3001/pdf/2' },
-      { pdfName: 'Advanced Express Patterns', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to Express', pdfLink: '' },
+      { pdfName: 'Routing in Express', pdfLink: '' },
+      { pdfName: 'Middleware Functions', pdfLink: '' },
+      { pdfName: 'Error Handling in Express', pdfLink: '' },
+      { pdfName: 'Building REST APIs', pdfLink: '' },
+      { pdfName: 'Express with MongoDB (Mongoose)', pdfLink: '' },
+      { pdfName: 'Authentication with JWT in Express', pdfLink: '' },
+      { pdfName: 'Express and Sessions', pdfLink: '' },
+      { pdfName: 'File Uploads in Express', pdfLink: '' },
+      { pdfName: 'Real-time Applications with Socket.IO', pdfLink: '' },
+      { pdfName: 'Deploying Express Apps', pdfLink: '' },
+      { pdfName: 'Scaling Express Applications', pdfLink: '' }
     ]
   },
   NodeJS: {
@@ -78,18 +77,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'Node Introduction', pdfLink: pdf1 },
-      { pdfName: 'Asynchronous NodeJS', pdfLink: pdf2 },
-      { pdfName: 'Node with Express', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to Node.js', pdfLink: '' },
+      { pdfName: 'Node.js Event Loop', pdfLink: '' },
+      { pdfName: 'Working with File System in Node.js', pdfLink: '' },
+      { pdfName: 'Modules in Node.js', pdfLink: '' },
+      { pdfName: 'Streams and Buffers in Node.js', pdfLink: '' },
+      { pdfName: 'Node.js HTTP Module', pdfLink: '' },
+      { pdfName: 'Building APIs with Node.js', pdfLink: '' },
+      { pdfName: 'Asynchronous Programming in Node.js', pdfLink: '' },
+      { pdfName: 'Using npm and Creating Packages', pdfLink: '' },
+      { pdfName: 'Node.js with Databases', pdfLink: '' },
+      { pdfName: 'Debugging and Testing in Node.js', pdfLink: '' },
+      { pdfName: 'Deploying Node.js Applications', pdfLink: '' }
     ]
   },
   NextJs: {
@@ -97,18 +96,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'JavaScript Basics', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'Advanced JavaScript', pdfLink: 'http://localhost:3001/pdf/2' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to Next.js', pdfLink: '' },
+      { pdfName: 'Next.js File-based Routing', pdfLink: '' },
+      { pdfName: 'Server-side Rendering in Next.js', pdfLink: '' },
+      { pdfName: 'Static Site Generation', pdfLink: '' },
+      { pdfName: 'API Routes in Next.js', pdfLink: '' },
+      { pdfName: 'Dynamic Routing in Next.js', pdfLink: '' },
+      { pdfName: 'Deploying Next.js Applications', pdfLink: '' },
+      { pdfName: 'Next.js with CSS and Sass', pdfLink: '' },
+      { pdfName: 'Next.js with Redux', pdfLink: '' },
+      { pdfName: 'Optimizing Performance in Next.js', pdfLink: '' },
+      { pdfName: 'Next.js Authentication', pdfLink: '' },
+      { pdfName: 'Advanced Next.js Features', pdfLink: '' }
     ]
   },
   ReactNative: {
@@ -116,37 +115,37 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'React Introduction', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'React Hooks', pdfLink: 'http://localhost:3001/pdf/2' },
-      { pdfName: 'Advanced React Patterns', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Getting Started with React Native', pdfLink: '' },
+      { pdfName: 'React Native Components and APIs', pdfLink: '' },
+      { pdfName: 'Handling Navigation in React Native', pdfLink: '' },
+      { pdfName: 'Managing State in React Native', pdfLink: '' },
+      { pdfName: 'Working with React Native CLI', pdfLink: '' },
+      { pdfName: 'Using Expo for React Native', pdfLink: '' },
+      { pdfName: 'Animations in React Native', pdfLink: '' },
+      { pdfName: 'React Native with Redux', pdfLink: '' },
+      { pdfName: 'React Native Forms and Validation', pdfLink: '' },
+      { pdfName: 'Accessing Native Features with React Native', pdfLink: '' },
+      { pdfName: 'Debugging React Native Apps', pdfLink: '' },
+      { pdfName: 'Publishing React Native Apps', pdfLink: '' }
     ]
   },
   TailwindCss: {
-    name: 'Tailwind css',
+    name: 'Tailwind CSS',
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'Express Basics', pdfLink: 'http://localhost:3001/pdf/1' },
-      { pdfName: 'Middleware in Express', pdfLink: 'http://localhost:3001/pdf/2' },
-      { pdfName: 'Advanced Express Patterns', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to Tailwind CSS', pdfLink: '' },
+      { pdfName: 'Utility-first CSS with Tailwind', pdfLink: '' },
+      { pdfName: 'Responsive Design with Tailwind CSS', pdfLink: '' },
+      { pdfName: 'Tailwind CSS Customization', pdfLink: '' },
+      { pdfName: 'Working with Tailwind Plugins', pdfLink: '' },
+      { pdfName: 'Tailwind CSS with Flexbox and Grid', pdfLink: '' },
+      { pdfName: 'Dark Mode in Tailwind CSS', pdfLink: '' },
+      { pdfName: 'Animating with Tailwind CSS', pdfLink: '' },
+      { pdfName: 'Optimizing Tailwind CSS for Production', pdfLink: '' },
+      { pdfName: 'Tailwind with React', pdfLink: '' },
+      { pdfName: 'Tailwind with Next.js', pdfLink: '' },
+      { pdfName: 'Advanced Tailwind CSS Techniques', pdfLink: '' }
     ]
   },
   Angular: {
@@ -154,18 +153,18 @@ const notesData = {
     price: 300,
     img: js,
     pdfs: [
-      { pdfName: 'Node Introduction', pdfLink: pdf1 },
-      { pdfName: 'Asynchronous NodeJS', pdfLink: pdf2 },
-      { pdfName: 'Node with Express', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
-      { pdfName: 'JavaScript Basics', pdfLink: '' },
-      { pdfName: 'Advanced JavaScript', pdfLink: '' },
-      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+      { pdfName: 'Introduction to Angular', pdfLink: '' },
+      { pdfName: 'Angular Components and Modules', pdfLink: '' },
+      { pdfName: 'Angular Services and Dependency Injection', pdfLink: '' },
+      { pdfName: 'Routing in Angular', pdfLink: '' },
+      { pdfName: 'Forms and Validation in Angular', pdfLink: '' },
+      { pdfName: 'Reactive Programming with RxJS', pdfLink: '' },
+      { pdfName: 'State Management with NgRx', pdfLink: '' },
+      { pdfName: 'Testing Angular Applications', pdfLink: '' },
+      { pdfName: 'Optimizing Angular Applications', pdfLink: '' },
+      { pdfName: 'Angular with REST APIs', pdfLink: '' },
+      { pdfName: 'Building Progressive Web Apps with Angular', pdfLink: '' },
+      { pdfName: 'Advanced Angular Concepts', pdfLink: '' }
     ]
   }
 };

@@ -15,8 +15,10 @@ const AuthForm = () => {
   const [otpVerified, setOtpVerified] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { error, isAuthenticated } = useSelector((state) => state.auth);
+  const { error, isAuthenticated, user, email } = useSelector((state) => state.auth);
   console.log('isAuth', isAuthenticated)
+  console.log('user', user)
+  console.log('email', email)
 
   const [loading, setLoading] = useState({ login: false, signup: false, sendOtp: false, verifyOtp: false, resetPassword: false });
 

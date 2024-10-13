@@ -3,6 +3,7 @@ import './ProfilePage.css';
 import Header from '../../Components/Header/Header';
 import ProfileIcon from './../../Assets/profileIcon.png';
 import { FaUser, FaRegHeart, FaShoppingCart, FaCog, FaBoxOpen, FaBell, FaUserCircle } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 
 const ProfilePage = () => {

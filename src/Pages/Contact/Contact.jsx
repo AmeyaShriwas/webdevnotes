@@ -47,12 +47,12 @@ const Contact = () => {
     
 
     try {
-      const response = await axios.post(
-        ${ApiUrl}/contactUs,
+      const response = await axios.post(`
+        ${ApiUrl}/contactUs`,
         { ...formData }, // Send the form data (name, email, message)
         {
           headers: {
-            Authorization: Bearer ${token},
+            Authorization: `Bearer ${token}`,
           },
         }
       );

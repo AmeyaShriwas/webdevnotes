@@ -16,7 +16,7 @@ const ProfilePage = () => {
     profileImage: ProfileIcon
   });
 
-  const { error, isAuthenticated, user, email } = useSelector((state) => state.auth);
+  const { error, isAuthenticated, user, email, number } = useSelector((state) => state.auth);
 
 
   const handleInputChange = (e) => {
@@ -48,18 +48,7 @@ const ProfilePage = () => {
             <div className="image-wrapper">
                   <img src={profileData.profileImage} alt="Profile" className="profile-image" />
                 </div>
-              <div className="form-group profile-image-group">
-                {/* <div className="image-wrapper">
-                  <img src={profileData.profileImage} alt="Profile" className="profile-image" />
-                </div> */}
-                <input
-                  type="file"
-                  id="profileImage"
-                  name="profileImage"
-                  className="upload-input"
-                  onChange={handleImageUpload}
-                />
-              </div>
+              
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <input
@@ -88,7 +77,8 @@ const ProfilePage = () => {
                   type="text"
                   id="phoneNumber"
                   name="phoneNumber"
-                  value={profileData.phoneNumber}
+                  
+                  value={number}
                   onChange={handleInputChange}
                   className="form-input"
                 />

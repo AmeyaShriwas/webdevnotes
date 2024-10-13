@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Contact.css';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
@@ -10,13 +10,23 @@ import 'react-toastify/dist/ReactToastify.css';
 const ApiUrl = process.env.REACT_APP_BASE_URL;
 
 const Contact = () => {
+  const { user, email } = useSelector((state) => state.auth); // Get user and email from Redux
+  const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: user || '',  // Prepopulate name
+    email: email || '', // Prepopulate email
     message: '',
   });
 
-  const token = useSelector((state) => state?.auth?.token);
+  useEffect(() => {
+    // Update the formData when user or email changes in the Redux state
+    setFormData((prev) => ({
+      ...prev,
+      name: user,
+      email: email,
+    }));
+  }, [user, email]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,8 +34,8 @@ const Contact = () => {
   };
 
   const handleSubmit = async () => {
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error('Please fill out all fields.');
+    if (!formData.message) {
+      toast.error('Please fill out the message field.');
       return;
     }
 
@@ -37,7 +47,7 @@ const Contact = () => {
     try {
       const response = await axios.post(
         `${ApiUrl}/contactUs`,
-        formData,
+        { ...formData }, // Send the form data (name, email, message)
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,6 +56,7 @@ const Contact = () => {
       );
       toast.success('Message sent successfully.');
       console.log('Response:', response.data);
+      setFormData((prev) => ({ ...prev, message: '' })); // Clear the message field
     } catch (error) {
       toast.error('Error submitting the contact form.');
       console.error('Submission error:', error);
@@ -72,7 +83,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                readOnly // Make the input read-only
                 required
               />
             </div>
@@ -84,7 +95,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Enter your email"
+                readOnly // Make the input read-only
                 required
               />
             </div>

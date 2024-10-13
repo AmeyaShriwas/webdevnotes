@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk(
       }
       const data = await response.data;
       console.log('login data', response.data)
-      return { message: data.message, token: data.token, user: data.user, email: data.email };
+      return { message: data.message, token: data.token, user: data.user, email: data.email, number: data.number };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -105,6 +105,7 @@ const initialState = {
   isAuthenticated: false,
   user: null,
   email: null,
+  number: null,
   token: null,
   loading: false,
   error: null,
@@ -119,13 +120,15 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.email= action.payload.email
+      state.email= action.payload.email;
+      state.number = action.payload.number
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
       state.token = null;
-      state.email = null
+      state.email = null;
+      state.number = null
     },
   },
   extraReducers: (builder) => {
@@ -140,7 +143,8 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.email = action.payload.email
+        state.email = action.payload.email;
+        state.number  = action.payload.number
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

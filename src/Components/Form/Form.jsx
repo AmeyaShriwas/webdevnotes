@@ -142,33 +142,39 @@ const AuthForm = () => {
     }
   };
 
-  // Forgot password function with toast notification
-  const sendOtpFunction = () => {
-    setLoading((prev) => ({ ...prev, sendOtp: true }));
-    console.log('Forgot password email:', forgotPasswordData.email);
-    if (forgotPasswordData.email) {
-      dispatch(forgotPassword(forgotPasswordData.email)).then((response)=> {
-        setLoading((prev) => ({ ...prev, sendOtp: false }));
-        console.log('r', response)
-        if(response.payload.message){
-          toast.info("OTP sent to your email.");
-          setTimeout(()=> {
-            setFormType('otp');
-          })
-        }
-        else{
+  // Forgot password function with toast notifications
+const sendOtpFunction = () => {
+  setLoading((prev) => ({ ...prev, sendOtp: true }));
+  console.log('Forgot password email:', forgotPasswordData.email);
 
-          toast.error("Please enter your email.");
+  if (forgotPasswordData.email) {
+    dispatch(forgotPassword(forgotPasswordData.email))
+      .then((response) => {
+        setLoading((prev) => ({ ...prev, sendOtp: false }));
+        console.log('Response:', response);
+
+        if (response.payload?.message) {
+          toast.info("OTP sent to your email.");
+          
+          // Wait for a moment before showing the OTP form
+          setTimeout(() => {
+            setFormType('otp');
+          }, 1000);
+        } else {
+          toast.error("Error: " + (response.payload?.error || "Failed to send OTP."));
         }
       })
-      // Add send OTP logic here
-     
-      
-    } else {
-      setLoading((prev) => ({ ...prev, sendOtp: false }));
-      toast.error("Please enter your email.");
-    }
-  };
+      .catch((error) => {
+        setLoading((prev) => ({ ...prev, sendOtp: false }));
+        toast.error("Failed to send OTP. Please try again later.");
+        console.error('OTP sending error:', error);
+      });
+  } else {
+    setLoading((prev) => ({ ...prev, sendOtp: false }));
+    toast.error("Please enter your email.");
+  }
+};
+
 
  // OTP verification function with toast notification
 const verifyOtpFunction = () => {

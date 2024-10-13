@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk(
       }
       const data = await response.data;
       console.log('login data', response.data)
-      return { message: data.user, token: data.token };
+      return { message: data.message, token: data.token, user: data.user, email: data.email };
     } catch (error) {
       return rejectWithValue(error.message);
     }

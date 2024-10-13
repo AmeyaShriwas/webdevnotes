@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import './Contact.css';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+
+const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,16 +15,45 @@ const Contact = () => {
     message: '',
   });
 
+  const token = useSelector((state)=> state?.auth?.token)
+  console.log('f', token)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., API call)
-    console.log('Form submitted:', formData);
+  
+    // Ensure that formData and token are defined
+    if (!formData || !token) {
+      console.error('Form data or token is missing.');
+      return; // Exit the function if formData or token is not available
+    }
+  
+    try {
+      // Handle form submission logic here (e.g., API call)
+      console.log('Form submitted:', formData);
+  
+      const response = await axios.post(
+        `${ApiUrl}/contactUs`, 
+        formData, // Pass formData as the second argument
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the token to the header
+          },
+        }
+      );
+  
+      console.log('Response from contact us:', response.data);
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+    }
   };
+  
+  
+  
 
   return (
     <>

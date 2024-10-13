@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './ProfilePage.css';
 import Header from '../../Components/Header/Header';
 import ProfileIcon from './../../Assets/profileIcon.png';
+import { FaUser, FaRegHeart, FaShoppingCart, FaCog, FaBoxOpen, FaBell, FaUserCircle } from 'react-icons/fa';
+
 
 const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState('profile');
@@ -35,12 +37,24 @@ const ProfilePage = () => {
     switch (activeSection) {
       case 'profile':
         return (
+          <div className="profile-details-container">
           <div className="profile-details">
             <h2>Profile Details</h2>
             <form className="profile-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <img src={profileData.profileImage} alt="Profile" className="profile-image" />
-                <input type="file" id="profileImage" name="profileImage" onChange={handleImageUpload} />
+            <div className="image-wrapper">
+                  <img src={profileData.profileImage} alt="Profile" className="profile-image" />
+                </div>
+              <div className="form-group profile-image-group">
+                {/* <div className="image-wrapper">
+                  <img src={profileData.profileImage} alt="Profile" className="profile-image" />
+                </div> */}
+                <input
+                  type="file"
+                  id="profileImage"
+                  name="profileImage"
+                  className="upload-input"
+                  onChange={handleImageUpload}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -50,6 +64,7 @@ const ProfilePage = () => {
                   name="name"
                   value={profileData.name}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </div>
               <div className="form-group">
@@ -60,6 +75,7 @@ const ProfilePage = () => {
                   name="email"
                   value={profileData.email}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </div>
               <div className="form-group">
@@ -70,21 +86,13 @@ const ProfilePage = () => {
                   name="phoneNumber"
                   value={profileData.phoneNumber}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={profileData.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <button type="submit" className="update-button">Update</button>
             </form>
           </div>
+        </div>
+        
         );
       case 'account':
         return (
@@ -132,17 +140,52 @@ const ProfilePage = () => {
     <>
       <Header />
       <div className="profile-page">
-        <div className="sidebar">
-          <ul>
-            <li onClick={() => setActiveSection('profile')}>Profile Details</li>
-            <li onClick={() => setActiveSection('account')}>Account</li>
-            <li onClick={() => setActiveSection('settings')}>Settings</li>
-            <li onClick={() => setActiveSection('orders')}>Orders</li>
-            <li onClick={() => setActiveSection('wishlist')}>Wishlist</li>
-            <li onClick={() => setActiveSection('cart')}>Cart</li>
-            <li onClick={() => setActiveSection('notifications')}>Notifications</li>
-          </ul>
-        </div>
+      <div className="sidebar">
+      <ul>
+        <li
+          className={activeSection === 'profile' ? 'active' : ''}
+          onClick={() => setActiveSection('profile')}
+        >
+          <FaUserCircle className="icon" /> Profile Details
+        </li>
+        <li
+          className={activeSection === 'account' ? 'active' : ''}
+          onClick={() => setActiveSection('account')}
+        >
+          <FaUser className="icon" /> Account
+        </li>
+        <li
+          className={activeSection === 'settings' ? 'active' : ''}
+          onClick={() => setActiveSection('settings')}
+        >
+          <FaCog className="icon" /> Settings
+        </li>
+        <li
+          className={activeSection === 'orders' ? 'active' : ''}
+          onClick={() => setActiveSection('orders')}
+        >
+          <FaBoxOpen className="icon" /> Orders
+        </li>
+        <li
+          className={activeSection === 'wishlist' ? 'active' : ''}
+          onClick={() => setActiveSection('wishlist')}
+        >
+          <FaRegHeart className="icon" /> Wishlist
+        </li>
+        <li
+          className={activeSection === 'cart' ? 'active' : ''}
+          onClick={() => setActiveSection('cart')}
+        >
+          <FaShoppingCart className="icon" /> Cart
+        </li>
+        <li
+          className={activeSection === 'notifications' ? 'active' : ''}
+          onClick={() => setActiveSection('notifications')}
+        >
+          <FaBell className="icon" /> Notifications
+        </li>
+      </ul>
+    </div>
         <div className="content">
           {renderSection()}
         </div>

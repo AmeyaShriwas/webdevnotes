@@ -91,6 +91,82 @@ const notesData = {
       { pdfName: 'Advanced JavaScript', pdfLink: '' },
       { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
     ]
+  },
+  NextJs: {
+    name: 'Next Js',
+    price: 300,
+    img: js,
+    pdfs: [
+      { pdfName: 'JavaScript Basics', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'Advanced JavaScript', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+    ]
+  },
+  ReactNative: {
+    name: 'React Native',
+    price: 300,
+    img: js,
+    pdfs: [
+      { pdfName: 'React Introduction', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'React Hooks', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'Advanced React Patterns', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+    ]
+  },
+  TailwindCss: {
+    name: 'Tailwind css',
+    price: 300,
+    img: js,
+    pdfs: [
+      { pdfName: 'Express Basics', pdfLink: 'http://localhost:3001/pdf/1' },
+      { pdfName: 'Middleware in Express', pdfLink: 'http://localhost:3001/pdf/2' },
+      { pdfName: 'Advanced Express Patterns', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+    ]
+  },
+  Angular: {
+    name: 'Angular',
+    price: 300,
+    img: js,
+    pdfs: [
+      { pdfName: 'Node Introduction', pdfLink: pdf1 },
+      { pdfName: 'Asynchronous NodeJS', pdfLink: pdf2 },
+      { pdfName: 'Node with Express', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' },
+      { pdfName: 'JavaScript Basics', pdfLink: '' },
+      { pdfName: 'Advanced JavaScript', pdfLink: '' },
+      { pdfName: 'JavaScript ES6 Features', pdfLink: '' }
+    ]
   }
 };
 

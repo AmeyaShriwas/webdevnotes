@@ -9,7 +9,6 @@ import LeftPanel from '../../Components/LeftPanel/LeftPanel'
 import PurchaseCategory from '../../Components/PurchaseCategory/PurchaseCategory'
 import SocialMedia from '../../Components/SocialMedia/SocialMedia'
 import VideoReels from '../../Components/VideoReels/VideoReels'
-import Blog from '../../Components/BlogsBanner/BlogsBanner'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -35,8 +34,6 @@ const Landing = () => {
    
     <SocialMedia/>
      <PurchaseCategory/>
-     {/* <VideoReels/> */}
-     <Blog/>
     <Footer/>
     </>
   )

@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #C9C1F5;
+    background-color: #2C3E50;
     padding: 20px;
     width: 50%;
     height: 90vh;
@@ -23,7 +23,7 @@
   
   .pageLeft h1 {
     font-size: 3rem;
-    color: #2980b9;
+    color: #ffffff;
     text-align: center;
   }
   

@@ -15,7 +15,6 @@ const Contact = () => {
 
   const [formData, setFormData] = useState({
     name: user || '',  // Prepopulate name
-    email: email || '', // Prepopulate email
     message: '',
   });
 
@@ -25,7 +24,6 @@ const Contact = () => {
     setFormData((prev) => ({
       ...prev,
       name: user,
-      email: email,
     }));
   }, [user, email]);
   
@@ -85,18 +83,7 @@ const Contact = () => {
                 required
               />
             </div>
-            <div className="formGroup">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                readOnly // Make the input read-only
-                required
-              />
-            </div>
+          
             <div className="formGroup">
               <label htmlFor="message">Message</label>
               <textarea

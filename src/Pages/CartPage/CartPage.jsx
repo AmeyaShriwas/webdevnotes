@@ -81,39 +81,39 @@ const handlePayment = async () => {
   }
 };
 
-const handlePaymentVerify  = async(data)=> {
+const handlePaymentVerify = async (data) => {
   const options = {
-       key: process.env.RAZORPAY_KEY_ID,
-       amount: data.amount,
-       currency: data.currency,
-       name: "ameya",
-       description: "Test Mode",
-       order_id: data.id,
-       handler: async(response)=> {
-        console.log('response', response)
-        try{
-          const res = await axios.post(`${ApiUrl}/api/verify`, {
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature,
-          })
+    key: process.env.RAZORPAY_KEY_ID,
+    amount: data.amount,
+    currency: data.currency,
+    name: "ameya",
+    description: "Test Mode",
+    order_id: data.id,
+    handler: async (response) => {
+      console.log('response', response);
+      try {
+        const res = await axios.post(`${ApiUrl}/api/verify`, {
+          razorpay_order_id: response.razorpay_order_id,
+          razorpay_payment_id: response.razorpay_payment_id,
+          razorpay_signature: response.razorpay_signature,
+        });
 
-          const verifyData = res;
-          console.log('verify data', verifyData)
-
-          if(verifyData.message){
-            toast.success(verifyData.message)
-          }
+        // Ensure res.data is used correctly
+        console.log('verify data', res.data);
+        if (res.data.message) {
+          toast.success(res.data.message);
+        } else {
+          toast.error("Verification failed");
         }
-        catch(error){
-          console.log(error);
-          toast.error(error)
-        }
-       }
-  }
+      } catch (error) {
+        console.error(error);
+        toast.error("Error during payment verification");
+      }
+    }
+  };
   const rzp1 = new window.Razorpay(options);
   rzp1.open();
-}
+};
 
   return (
     <div className="cart-page-container">

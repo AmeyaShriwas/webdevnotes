@@ -48,43 +48,54 @@ const CartPage = () => {
 
 
   const handlePayment = async () => {
-    // Ensure amount and pdfArray are valid before making the request
+    // Ensure amount and ItemsCart are valid before making the request
     if (!amount || isNaN(amount) || amount <= 0 || ItemsCart.length === 0) {
-      console.log('Invalid amount or PDF list:', amount, ItemsCart);
+      console.log('Invalid amount or cart items:', amount, ItemsCart);
+      return;
+    }
+  
+    // Log the token to check if it's available
+    console.log('Token:', token);
+  
+    if (!token) {
+      console.error('Authorization token is missing');
       return;
     }
   
     try {
-      // Log the amount and PDF list
-      console.log('Processing payment for amount:', amount, 'and PDFs:', ItemsCart);
+      // Log the amount and ItemsCart for debugging
+      console.log('Processing payment for amount:', amount, 'and Items:', ItemsCart);
   
-      // Make POST request to your backend API with the payment amount and PDF list
-      const response = await axios.post(`${ApiUrl}/api/order`, {
-        amount,
-        ItemsCart, // Array of PDF names
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      // Make POST request to your backend API with the payment amount and cart items
+      const response = await axios.post(
+        `${ApiUrl}/api/order`,
+        {
+          amount,
+          ItemsCart, // Array of cart items (PDF names or whatever)
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in the Authorization header
+          },
+        }
+      );
   
       // Log and handle the response data from the API
-      console.log('Payment successful, data:', response.data);
-      handlePaymentVerify(response.data.data);
+      console.log('Payment successful, response data:', response.data);
+      handlePaymentVerify(response.data.data); // Call your payment verification logic
   
-      // Further logic after successful payment
     } catch (error) {
       // Handle any errors that occur during the request
       if (error.response) {
-        console.error('Server error:', error.response.data);
+        console.error('Server responded with an error:', error.response.data);
       } else if (error.request) {
-        console.error('No response from server:', error.request);
+        console.error('No response received from server:', error.request);
       } else {
         console.error('Error during payment request:', error.message);
       }
     }
   };
+  
   
   const handlePaymentVerify = async (data) => {
     const options = {

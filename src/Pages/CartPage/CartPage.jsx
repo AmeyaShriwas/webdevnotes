@@ -62,6 +62,7 @@ const handlePayment = async () => {
 
     // Log and handle the response data from the API
     console.log('Payment successful, data:', response.data);
+    handlePaymentVerify(response.data.data)
 
     // Further logic after successful payment can be added here
 

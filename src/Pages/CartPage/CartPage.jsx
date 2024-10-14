@@ -98,7 +98,8 @@ const handlePaymentVerify  = async(data)=> {
             razorpay_signature: response.razorpay_signature,
           })
 
-          const verifyData = await res.json()
+          const verifyData = res;
+          console.log('verify data', verifyData)
 
           if(verifyData.message){
             toast.success(verifyData.message)

@@ -17,6 +17,12 @@ const CartPage = () => {
   const navigate = useNavigate();
   const ItemsCart = useSelector((state) => state.cart.value);
   const dispatch = useDispatch();
+  const [amount, setTotalCartAmount] = useState()
+
+  useEffect(()=> {
+    setTotalCartAmount((ItemsCart.length*300)+(ItemsCart.length*300)/10 +50)
+
+  }, [ItemsCart])
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -36,9 +42,21 @@ const CartPage = () => {
   const shipping = subtotal > 1000 ? 0 : 50; // Free shipping on orders over 1000
   const totalAmount = (subtotal + tax + shipping).toFixed(2);
 
+  const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
+
+
   // Handle payment process
   const handlePayment = async () => {
     // payment logic here
+    try{
+      const result = await axios.post(`${ApiUrl}/api/order`, amount );
+      const data = await result.json()
+      console.log('data', data)
+
+
+    }catch(error){
+      console.log('error', error)
+    }
   };
 
   return (
@@ -115,7 +133,7 @@ const CartPage = () => {
               </div>
               <div className="summary-total">
                 <span>Total:</span>
-                <span className="total-amount">Rs {(ItemsCart.length*300)+(ItemsCart.length*300)/10 +50}</span>
+                <span className="total-amount">Rs {amount}</span>
               </div>
               <button className="checkout-btn" onClick={handlePayment}>
                 Proceed to Checkout

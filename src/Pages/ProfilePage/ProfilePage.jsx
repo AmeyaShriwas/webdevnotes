@@ -4,7 +4,7 @@ import Header from '../../Components/Header/Header';
 import ProfileIcon from './../../Assets/profileIcon.png';
 import { FaUser, FaRegHeart, FaShoppingCart, FaCog, FaBoxOpen, FaBell, FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
-
+import { useEffect } from 'react';
 
 const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState('profile');
@@ -15,6 +15,21 @@ const ProfilePage = () => {
     password: '********',
     profileImage: ProfileIcon
   });
+  const [pdfs, setPdfs] = useState([]);
+
+  // Simulate API call
+  useEffect(() => {
+    fetchPdfs(); // You can replace this with the actual API call
+  }, []);
+
+  const fetchPdfs = async () => {
+    // Simulated API response (replace with actual API call)
+    const apiResponse = []; // Empty array means no PDFs purchased yet
+
+    // Update state
+    setPdfs(apiResponse);
+  };
+
 
   const { error, isAuthenticated, user, email, number } = useSelector((state) => state.auth);
 
@@ -71,7 +86,7 @@ const ProfilePage = () => {
                   className="form-input"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="phoneNumber">Phone Number</label>
                 <input
                   type="text"
@@ -82,7 +97,7 @@ const ProfilePage = () => {
                   onChange={handleInputChange}
                   className="form-input"
                 />
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
@@ -91,32 +106,38 @@ const ProfilePage = () => {
       case 'account':
         return (
           <div className="account-details">
-            <h2>Account</h2>
-            <table>
-              <thead>
+          <h2>Account</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>PDF Name</th>
+                <th>PDF Invoice</th>
+                <th>Purchase Date</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pdfs.length === 0 ? (
                 <tr>
-                  <th>PDF Name</th>
-                  <th>PDF Invoice</th>
-                  <th>Purchase Date</th>
-                  <th>Download</th>
+                  <td colSpan="4" style={{ textAlign: 'center' }}>
+                    No PDFs purchased yet
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Invoice_001.pdf</td>
-                  <td>INV-001</td>
-                  <td>01/10/2024</td>
-                  <td><button>Download</button></td>
-                </tr>
-                <tr>
-                  <td>Invoice_002.pdf</td>
-                  <td>INV-002</td>
-                  <td>05/09/2024</td>
-                  <td><button>Download</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              ) : (
+                pdfs.map((pdf, index) => (
+                  <tr key={index}>
+                    <td>{pdf.name}</td>
+                    <td>{pdf.invoice}</td>
+                    <td>{pdf.purchaseDate}</td>
+                    <td>
+                      <button>Download</button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
         );
       case 'settings':
         return (
@@ -148,7 +169,7 @@ const ProfilePage = () => {
         >
           <FaUser className="icon" /> Account
         </li>
-        <li
+        {/* <li
           className={activeSection === 'settings' ? 'active' : ''}
           onClick={() => setActiveSection('settings')}
         >
@@ -177,7 +198,7 @@ const ProfilePage = () => {
           onClick={() => setActiveSection('notifications')}
         >
           <FaBell className="icon" /> Notifications
-        </li>
+        </li> */}
       </ul>
     </div>
         <div className="content">

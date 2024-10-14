@@ -43,8 +43,11 @@
 
 .cart-table {
   width: 100%;
+
   border-collapse: collapse;
 }
+
+
 
 .cart-table th, .cart-table td {
   padding: 15px;
@@ -121,6 +124,7 @@
 
 .empty-cart {
   text-align: center;
+  width: 100%;
 }
 
 .emptyCartImg {

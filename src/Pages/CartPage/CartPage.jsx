@@ -47,7 +47,7 @@ const CartPage = () => {
       <div className="cart-main">
         <div className="cart-header">
           <h2 className="cart-title">
-            Your Shopping Cart <AiOutlineShoppingCart />
+            {/* Your Shopping Cart <AiOutlineShoppingCart /> */}
           </h2>
         </div>
 
@@ -115,7 +115,7 @@ const CartPage = () => {
               </div>
               <div className="summary-total">
                 <span>Total:</span>
-                <span className="total-amount">Rs {(ItemsCart.length*300)-(ItemsCart.length*300)/10 -50}</span>
+                <span className="total-amount">Rs {(ItemsCart.length*300)+(ItemsCart.length*300)/10 +50}</span>
               </div>
               <button className="checkout-btn" onClick={handlePayment}>
                 Proceed to Checkout

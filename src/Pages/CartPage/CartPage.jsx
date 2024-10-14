@@ -45,19 +45,41 @@ const CartPage = () => {
   const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
 
 
-  // Handle payment process
-  const handlePayment = async () => {
-    // payment logic here
-    try{
-      const result = await axios.post(`${ApiUrl}/api/order`, amount );
-      const data = await result.json()
-      console.log('data', data)
+ // Handle payment process
+const handlePayment = async () => {
+  // Ensure amount is valid before making the request
+  if (!amount || isNaN(amount) || amount <= 0) {
+    console.log('Invalid amount value:', amount);
+    return;
+  }
 
+  try {
+    // Log the amount to ensure it's correct before sending the request
+    console.log('Processing payment for amount:', amount);
 
-    }catch(error){
-      console.log('error', error)
+    // Make POST request to your backend API with the payment amount
+    const response = await axios.post(`${ApiUrl}/api/order`, { amount });
+
+    // Log and handle the response data from the API
+    console.log('Payment successful, data:', response.data);
+
+    // Further logic after successful payment can be added here
+
+  } catch (error) {
+    // Handle any errors that occur during the request
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error('Server error:', error.response.data);
+    } else if (error.request) {
+      // Request was made, but no response was received
+      console.error('No response from server:', error.request);
+    } else {
+      // Other errors related to setting up the request
+      console.error('Error during payment request:', error.message);
     }
-  };
+  }
+};
+
 
   return (
     <div className="cart-page-container">

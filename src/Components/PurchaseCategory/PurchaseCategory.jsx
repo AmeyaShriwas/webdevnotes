@@ -5,6 +5,9 @@ import reactIcon from './../../Assets/reactIcon.png'; // Importing the JavaScrip
 import jsIcon from './../../Assets/jsIcon.png'; // Importing the JavaScript image
 import nodeIcon from './../../Assets/nodeIcon.png'; // Importing the JavaScript image
 import expressIcon from './../../Assets/expressIcon.png'; // Importing the JavaScript image
+import angularIcon from './../../Assets/angularIcon.webp'
+import tailwindIcon from './../../Assets/tailwindcssIcon.png'
+import nextIcon from './../../Assets/nextjsIcon.svg'
 
 // Unified notesData structure (same as in PurchaseCategory)
 const notesData = {
@@ -87,7 +90,7 @@ const notesData = {
   NextJs: {
     name: 'Next Js',
     price: 300,
-    img: expressIcon,
+    img: nextIcon,
     pdfs: [
       { pdfName: 'JavaScript Basics', pdfLink: 'http://localhost:3001/pdf/1' },
       { pdfName: 'Advanced JavaScript', pdfLink: 'http://localhost:3001/pdf/2' },
@@ -106,7 +109,7 @@ const notesData = {
   ReactNative: {
     name: 'React Native',
     price: 300,
-    img: expressIcon,
+    img: reactIcon,
     pdfs: [
       { pdfName: 'React Introduction', pdfLink: 'http://localhost:3001/pdf/1' },
       { pdfName: 'React Hooks', pdfLink: 'http://localhost:3001/pdf/2' },
@@ -125,7 +128,7 @@ const notesData = {
   TailwindCss: {
     name: 'Tailwind css',
     price: 300,
-    img: expressIcon,
+    img: tailwindIcon,
     pdfs: [
       { pdfName: 'Express Basics', pdfLink: 'http://localhost:3001/pdf/1' },
       { pdfName: 'Middleware in Express', pdfLink: 'http://localhost:3001/pdf/2' },
@@ -144,7 +147,7 @@ const notesData = {
   Angular: {
     name: 'Angular',
     price: 300,
-    img: expressIcon,
+    img: angularIcon,
     pdfs: [
       { pdfName: 'Node Introduction', pdfLink: '' },
       { pdfName: 'Asynchronous NodeJS', pdfLink: '' },

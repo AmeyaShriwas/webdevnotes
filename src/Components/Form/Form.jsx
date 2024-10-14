@@ -19,8 +19,7 @@ const AuthForm = () => {
   console.log('isAuth', isAuthenticated)
   console.log('user', user)
   console.log('email', email)
-  const [loginEmail, setLoginEmail]  = useState('ameyashriwas133@gmail.com')
-  const [loginPass, setLoginPass]  = useState('ameya')
+ 
   
 
   const [loading, setLoading] = useState({ login: false, signup: false, sendOtp: false, verifyOtp: false, resetPassword: false });
@@ -28,8 +27,8 @@ const AuthForm = () => {
 
 
   const [loginData, setLoginData] = useState({
-    email: 'ameyashriwas133@gmail.com',
-    password: 'ameya'
+    email: '',
+    password: ''
   });
 
   const [signupData, setSignupData] = useState({
@@ -272,7 +271,7 @@ const resetPasswordFuntion = ()=> {
               <input
                 type="email"
                 name="email"
-                value={loginEmail}
+               
                 placeholder="Email"
                 onChange={handleLoginChange}
               />
@@ -282,7 +281,7 @@ const resetPasswordFuntion = ()=> {
               <input
                 type="password"
                 name="password"
-                value={loginPass}
+              
                 placeholder="Password"
                 onChange={handleLoginChange}
               />

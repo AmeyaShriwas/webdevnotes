@@ -18,6 +18,8 @@ const CartPage = () => {
   const ItemsCart = useSelector((state) => state.cart.value);
   const dispatch = useDispatch();
   const [amount, setTotalCartAmount] = useState()
+  const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
+
 
   useEffect(()=> {
     setTotalCartAmount((ItemsCart.length*300)+(ItemsCart.length*300)/10 +50)
@@ -45,75 +47,81 @@ const CartPage = () => {
   const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
 
 
- // Handle payment process
-const handlePayment = async () => {
-  // Ensure amount is valid before making the request
-  if (!amount || isNaN(amount) || amount <= 0) {
-    console.log('Invalid amount value:', amount);
-    return;
-  }
-
-  try {
-    // Log the amount to ensure it's correct before sending the request
-    console.log('Processing payment for amount:', amount);
-
-    // Make POST request to your backend API with the payment amount
-    const response = await axios.post(`${ApiUrl}/api/order`, { amount });
-
-    // Log and handle the response data from the API
-    console.log('Payment successful, data:', response.data);
-    handlePaymentVerify(response.data.data)
-
-    // Further logic after successful payment can be added here
-
-  } catch (error) {
-    // Handle any errors that occur during the request
-    if (error.response) {
-      // Server responded with a status other than 2xx
-      console.error('Server error:', error.response.data);
-    } else if (error.request) {
-      // Request was made, but no response was received
-      console.error('No response from server:', error.request);
-    } else {
-      // Other errors related to setting up the request
-      console.error('Error during payment request:', error.message);
+  const handlePayment = async () => {
+    // Ensure amount and pdfArray are valid before making the request
+    if (!amount || isNaN(amount) || amount <= 0 || ItemsCart.length === 0) {
+      console.log('Invalid amount or PDF list:', amount, ItemsCart);
+      return;
     }
-  }
-};
-
-const handlePaymentVerify = async (data) => {
-  const options = {
-    key: process.env.RAZORPAY_KEY_ID,
-    amount: data.amount,
-    currency: data.currency,
-    name: "ameya",
-    description: "Test Mode",
-    order_id: data.id,
-    handler: async (response) => {
-      console.log('response', response);
-      try {
-        const res = await axios.post(`${ApiUrl}/api/verify`, {
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature,
-        });
-
-        // Ensure res.data is used correctly
-        console.log('verify data', res.data);
-        if (res.data.message) {
-          toast.success(res.data.message);
-        } else {
-          toast.error("Verification failed");
-        }
-      } catch (error) {
-        console.error(error);
-        toast.error("Error during payment verification");
+  
+    try {
+      // Log the amount and PDF list
+      console.log('Processing payment for amount:', amount, 'and PDFs:', ItemsCart);
+  
+      // Make POST request to your backend API with the payment amount and PDF list
+      const response = await axios.post(`${ApiUrl}/api/order`, {
+        amount,
+        ItemsCart, // Array of PDF names
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      // Log and handle the response data from the API
+      console.log('Payment successful, data:', response.data);
+      handlePaymentVerify(response.data.data);
+  
+      // Further logic after successful payment
+    } catch (error) {
+      // Handle any errors that occur during the request
+      if (error.response) {
+        console.error('Server error:', error.response.data);
+      } else if (error.request) {
+        console.error('No response from server:', error.request);
+      } else {
+        console.error('Error during payment request:', error.message);
       }
     }
   };
-  const rzp1 = new window.Razorpay(options);
-  rzp1.open();
-};
+  
+  const handlePaymentVerify = async (data) => {
+    const options = {
+      key: process.env.RAZORPAY_KEY_ID,
+      amount: data.amount,
+      currency: data.currency,
+      name: "ameya",
+      description: "Test Mode",
+      order_id: data.id,
+      handler: async (response) => {
+        console.log('Payment response', response);
+        try {
+          const res = await axios.post(`${ApiUrl}/api/verify`, {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          });
+  
+          const verifyData = res.data;
+          console.log('Verification data', verifyData);
+  
+          if (verifyData.message) {
+            toast.success(verifyData.message);
+          }
+  
+          // Additional logic after successful verification, e.g., fetching PDF links, updating profile
+        } catch (error) {
+          console.error('Verification error', error);
+          toast.error('Payment verification failed');
+        }
+      },
+    };
+  
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+  
 
   return (
     <div className="cart-page-container">

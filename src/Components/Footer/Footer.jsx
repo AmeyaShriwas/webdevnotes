@@ -23,6 +23,7 @@ const Footer = () => {
         </div>
         <p className="footer-email">Email: ameya0015@gmail.com</p>
         <p className="footer-number">Phone: 7354820386</p>
+        <p className="footer-number">Address: 153 sai bag colony indore , mp</p>
       </div>
 
       {/* Part 2: Categories */}

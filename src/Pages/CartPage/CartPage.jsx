@@ -80,6 +80,38 @@ const handlePayment = async () => {
   }
 };
 
+const handlePaymentVerify  = async(data)=> {
+  const options = {
+       key: process.env.RAZORPAY_KEY_ID,
+       amount: data.amount,
+       currency: data.currency,
+       name: "ameya",
+       description: "Test Mode",
+       order_id: data.id,
+       handler: async(response)=> {
+        console.log('response', response)
+        try{
+          const res = await axios.post(`${ApiUrl}/api/verify`, {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          })
+
+          const verifyData = await res.json()
+
+          if(verifyData.message){
+            toast.success(verifyData.message)
+          }
+        }
+        catch(error){
+          console.log(error);
+          toast.error(error)
+        }
+       }
+  }
+  const rzp1 = new window.Razorpay(options);
+  rzp1.open();
+}
 
   return (
     <div className="cart-page-container">

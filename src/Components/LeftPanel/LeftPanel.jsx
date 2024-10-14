@@ -29,7 +29,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, setDroppedPdf }) 
     // Drag and Drop handlers
     const handleDragStart = (pdf, index) => {
       console.log('pdf dragged', pdf)
-      setDroppedPdf(pdf); // Store the PDF name in the transfer data
+      // setDroppedPdf(pdf); // Store the PDF name in the transfer data
     };
 
   return (

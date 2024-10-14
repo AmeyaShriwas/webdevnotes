@@ -8,16 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { clearCart, removeItem } from '../../redux/slice/CartSlice';
-import EmptyCart from './../../Assets/empty.png'
+import EmptyCart from './../../Assets/empty.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const ItemsCart = useSelector((state)=> state.cart.value);
-  const dispatch = useDispatch()
-
+  const ItemsCart = useSelector((state) => state.cart.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -25,89 +24,21 @@ const CartPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'JavaScript Basics', category: 'JavaScript', amount: 300 },
-    { id: 2, name: 'React Introduction', category: 'ReactJS', amount: 300 },
-    { id: 3, name: 'Express Basics', category: 'ExpressJs', amount: 300 },
-    { id: 4, name: 'JavaScript Basics', category: 'JavaScript', amount: 300 },
-    { id: 5, name: 'React Introduction', category: 'ReactJS', amount: 300 },
-    { id: 6, name: 'Express Basics', category: 'ExpressJs', amount: 300 },
-  ]);
-
   // Remove item from cart
   const removeItemCart = (id) => {
-   dispatch(removeItem(id))
-   toast.error('Item remove from cart')
+    dispatch(removeItem(id));
+    toast.error('Item removed from cart');
   };
 
   // Calculate total amount
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.amount, 0).toFixed(2);
-
-  // Load Razorpay script
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
-  // Create order on the server
-  const createOrder = async (amount) => {
-    const orderData = {
-      amount: amount * 100, // Razorpay works with paisa (1 INR = 100 paisa)
-      currency: 'INR',
-      receipt: `receipt_${Date.now()}`,
-    };
-
-    const response = await axios.post('/api/payment/create-order', orderData);
-    return response.data.order;
-  };
+  const subtotal = ItemsCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const tax = subtotal * 0.10; // Assuming 10% tax
+  const shipping = subtotal > 1000 ? 0 : 50; // Free shipping on orders over 1000
+  const totalAmount = (subtotal + tax + shipping).toFixed(2);
 
   // Handle payment process
   const handlePayment = async () => {
-    const res = await loadRazorpayScript();
-
-    if (!res) {
-      alert('Razorpay SDK failed to load');
-      return;
-    }
-
-    // Create an order on the server
-    const order = await createOrder(totalAmount);
-
-    // Set up payment options
-    const options = {
-      key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Your Razorpay key from environment variables
-      amount: order.amount, // Amount in paisa
-      currency: 'INR',
-      name: 'Your Website Name',
-      description: 'Purchase Notes',
-      order_id: order.id, // Razorpay order ID
-      handler: async (response) => {
-        // Verify payment on the server
-        const verifyResponse = await axios.post('/api/payment/verify-payment', {
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature,
-        });
-
-        if (verifyResponse.data.success) {
-          alert('Payment successful!');
-          // After success, redirect or trigger download for notes/PDF
-        } else {
-          alert('Payment verification failed');
-        }
-      },
-      theme: {
-        color: '#F37254', // Optional theme color
-      },
-    };
-
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+    // payment logic here
   };
 
   return (
@@ -115,42 +46,44 @@ const CartPage = () => {
       <Header />
       <div className="cart-main">
         <div className="cart-header">
-          {/* <h2 className="cart-title">
+          <h2 className="cart-title">
             Your Shopping Cart <AiOutlineShoppingCart />
-          </h2> */}
+          </h2>
         </div>
-     
 
         <div className="cart-content">
           {ItemsCart?.length === 0 ? (
             <div className="empty-cart">
               <h1>Your cart is empty.</h1>
-              <img className='emptyCartImg' src={EmptyCart}/>
-             
+              <img className="emptyCartImg" src={EmptyCart} alt="Empty Cart" />
             </div>
           ) : (
             <div className="cart-items">
               <table className="cart-table">
                 <thead>
                   <tr>
-                    <th>PDF Name</th>
-                    <th>Amount</th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    {/* <th>Quantity</th> */}
+                    {/* <th>Total</th> */}
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody className='cartEachItem'>
+                <tbody className="cartEachItem">
                   {ItemsCart?.map((item, index) => (
                     <tr key={index}>
-                      <td className="pdf-icon-name">
-                        <img src={pdfImg} alt="PDF icon" className="pdf-icon" />
-                        {item}
+                      <td className="product-image">
+                        <img src={item.image || pdfImg} alt="Product" className="product-img" />
                       </td>
+                      <td>{item}</td>
                       <td>Rs 300</td>
+                      {/* <td>{item.quantity}</td> */}
+                      {/* <td>Rs {item.price * item.quantity}</td> */}
                       <td>
                         <button
                           className="delete-btn"
-                          onClick={()=>removeItemCart(index)}
-                          
+                          onClick={() => removeItemCart(index)}
                         >
                           <FiTrash2 />
                         </button>
@@ -159,21 +92,39 @@ const CartPage = () => {
                   ))}
                 </tbody>
               </table>
-              <div className='clearCartButton' onClick={()=>dispatch(clearCart())}>
-          <h3>Clear Cart</h3>
-        </div>
-
+              <div className="clearCartButton" onClick={() => dispatch(clearCart())}>
+                <h3>Clear Cart</h3>
+              </div>
             </div>
-            
           )}
-         
-          <div className="cart-summary">
-            <h3>Total Amount: <span className="total-amount">Rs {totalAmount}</span></h3>
-            <button className="checkout-btn" onClick={handlePayment}>Proceed to Checkout</button>
-          </div>
+          
+          {ItemsCart?.length > 0 && (
+            <div className="cart-summary">
+              <h3>Cart Summary</h3>
+              <div className="summary-item">
+                <span>Subtotal:</span>
+                <span>Rs {ItemsCart.length*300}</span>
+              </div>
+              <div className="summary-item">
+                <span>Tax (10%):</span>
+                <span>Rs {(ItemsCart.length*300)/10}</span>
+              </div>
+              <div className="summary-item">
+                <span>Shipping:</span>
+                <span>Rs {shipping}</span>
+              </div>
+              <div className="summary-total">
+                <span>Total:</span>
+                <span className="total-amount">Rs {(ItemsCart.length*300)-(ItemsCart.length*300)/10 -50}</span>
+              </div>
+              <button className="checkout-btn" onClick={handlePayment}>
+                Proceed to Checkout
+              </button>
+            </div>
+          )}
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

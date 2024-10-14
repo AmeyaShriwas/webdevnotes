@@ -21,8 +21,8 @@ const Footer = () => {
           <FaInstagram className="social-icon" />
           <FaLinkedin className="social-icon" />
         </div>
-        <p className="footer-email">Email: info@company.com</p>
-        <p className="footer-number">Phone: +123 456 7890</p>
+        <p className="footer-email">Email: ameya0015@gmail.com</p>
+        <p className="footer-number">Phone: 7354820386</p>
       </div>
 
       {/* Part 2: Categories */}

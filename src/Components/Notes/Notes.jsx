@@ -18,9 +18,13 @@ const Notes = () => {
 
   const selectedCategory = location.state?.category || '';
 
+  console.log('get sele', selectedCategory)
+
   const [selectedPdf, setSelectedPdf] = useState(null); // Selected PDF for viewing
   const [selectedPart, setSelectedPart] = useState(selectedCategory); // Selected category
   const [droppedPdf, setDroppedPdf] = useState(null); // Drag-and-drop PDF functionality
+
+  console.log('siii', selectedPart)
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the pathname changes

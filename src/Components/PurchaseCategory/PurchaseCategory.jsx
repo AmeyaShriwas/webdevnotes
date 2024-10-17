@@ -52,7 +52,7 @@ const PurchaseCategory = () => {
           >
             <div className="Pcategory-image">
               <img
-src={`https://ameyashriwas.in/${category.pdfImg}`} // Ensure the slash is there
+src={`${ApiUrl}/${category.pdfImg}`} // Ensure the slash is there
 // alt={`${category.pdfName} Image`} // Use pdfName for alt text
                 className="Pcategory-img"
               />

@@ -20,7 +20,7 @@ const Notes = () => {
 
   // Independent state to handle selected part and PDF
   const [selectedPdf, setSelectedPdf] = useState(null);
-  const [selectedPart, setSelectedPart] = useState(selectedCategory); // Independent from selectedCategory
+  const [selectedPart, setSelectedPart] = useState(''); // Independent from selectedCategory
   const [droppedPdf, setDroppedPdf] = useState(null); 
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Notes = () => {
     if (selectedCategory) {
       setSelectedPart(selectedCategory);
     }
-  }, [selectedCategory]);
+  }, []);
 
   // Add PDF to Cart
   const handleAddCategoryToCart = (pdf) => {

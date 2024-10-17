@@ -18,17 +18,21 @@ const Notes = () => {
 
   const selectedCategory = location.state?.category || '';
 
-  console.log('get sele', selectedCategory)
-
-  const [selectedPdf, setSelectedPdf] = useState(null); // Selected PDF for viewing
-  const [selectedPart, setSelectedPart] = useState(selectedCategory); // Selected category
-  const [droppedPdf, setDroppedPdf] = useState(null); // Drag-and-drop PDF functionality
-
-  console.log('siii', selectedPart)
+  // Independent state to handle selected part and PDF
+  const [selectedPdf, setSelectedPdf] = useState(null);
+  const [selectedPart, setSelectedPart] = useState(selectedCategory); // Independent from selectedCategory
+  const [droppedPdf, setDroppedPdf] = useState(null); 
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the pathname changes
   }, [location]);
+
+  // Whenever `selectedCategory` changes, update `selectedPart`
+  useEffect(() => {
+    if (selectedCategory) {
+      setSelectedPart(selectedCategory);
+    }
+  }, [selectedCategory]);
 
   // Add PDF to Cart
   const handleAddCategoryToCart = (pdf) => {
@@ -59,7 +63,7 @@ const Notes = () => {
         setDroppedPdf={setDroppedPdf}
       />
       <RightPanel 
-        pdf={selectedCategory} // Pass selected PDF
+        pdf={selectedPdf || selectedCategory} // Pass selected PDF
         handleAddCategoryToCart={handleAddCategoryToCart} // Add to cart
         droppedPdf={droppedPdf}
       />

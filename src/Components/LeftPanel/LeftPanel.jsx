@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import pdfIcon from './../../Assets/pdf.png';
 import './LeftPanel.css'; // Importing the CSS file
 
-const LeftPanel = ({ notesData, selectedPart, setSelectedPart, setDroppedPdf }) => {
+const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, setDroppedPdf }) => {
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
   const [typesData, setTypesData] = useState({}); // Initialize state as an array
@@ -42,7 +42,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, setDroppedPdf }) 
         {data.map((pdf, index) => (
           <li 
             key={index} 
-            onClick={() => handleCategoryClick(pdf)}
+            onClick={() => handlePdfClick(pdf.pdfName)}
             className={selectedPart === pdf.pdfName ? 'active-category' : ''}
           >
             {pdf.pdfName}

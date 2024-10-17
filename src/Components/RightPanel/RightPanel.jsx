@@ -20,7 +20,7 @@ const RightPanel = ({ pdf, handleAddCategoryToCart, droppedPdf }) => {
           <h3>{pdf.pdfName}</h3>
           <div className="pdf-viewer-container">
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-          <Viewer fileUrl={pdf? `${ApiUrl}/${pdf.pdfLink}`:pdfReact } />
+          <Viewer fileUrl={pdf? `${ApiUrl}${pdf.pdfLink}`:pdfReact } />
         </Worker>
       </div>
           <p>Price: {pdf.pdfPrice} INR</p>

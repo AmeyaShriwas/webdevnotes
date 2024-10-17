@@ -4,7 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers } from 'redux';
 import CartReducers from './slice/CartSlice';
 import pdfReducers from './slice/pdfSlice';
-import AuthReducers from './slice/AuthSlice';
+import authSlice from './slice/AuthSlice'; // Case-sensitive
 import {thunk }from 'redux-thunk'; // Use default export from redux-thunk
 
 // Configuration for redux-persist
@@ -14,7 +14,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  auth: AuthReducers,
+  auth: authSlice,
   cart: CartReducers,
   pdfs: pdfReducers,
 });

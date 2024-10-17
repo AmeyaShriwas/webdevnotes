@@ -112,7 +112,7 @@ const initialState = {
   message: null,  // For signup success message
 };
 
-const AuthSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -217,5 +217,5 @@ const AuthSlice = createSlice({
   },
 });
 
-export const { logout } = AuthSlice.actions;
-export default AuthSlice.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

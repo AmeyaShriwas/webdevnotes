@@ -28,7 +28,7 @@ const RightPanel = ({ pdf, handleAddCategoryToCart }) => {
           </div>
           <button
             className="add-to-cart-btn"
-            onClick={() => handleAddCategoryToCart(pdf)}
+            onClick={() => handleAddCategoryToCart(pdf.pdfName)}
           >
             Add to Cart
           </button>

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from './slice/AuthSlice';
+import authSlice from './slice/authSlice';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers } from 'redux';

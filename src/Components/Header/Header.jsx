@@ -3,7 +3,7 @@ import "./Header.css";
 import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/slice/AuthSlice";
+import { logout } from "../../redux/slice/authSlice";
 import ProfileIcon from './../../Assets/profileIcon.png'
 
 const Header = () => {

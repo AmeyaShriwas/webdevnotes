@@ -112,7 +112,7 @@ const initialState = {
   message: null,  // For signup success message
 };
 
-const azuthSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {

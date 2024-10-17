@@ -47,6 +47,7 @@ const Notes = () => {
 
   // Handle PDF selection
   const handlePdfClick = (pdf) => {
+    setSelectedPart(pdf)
     setSelectedPdf(pdf); // Set the selected PDF to view in RightPanel
   };
 

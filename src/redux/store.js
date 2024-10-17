@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import authSlice from './slice/AuthSlice';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers } from 'redux';
 import CartReducers from './slice/CartSlice';
 import pdfReducers from './slice/pdfSlice';
-import authSlice from './slice/AuthSlice'; // Case-sensitive
 import {thunk }from 'redux-thunk'; // Use default export from redux-thunk
 
 // Configuration for redux-persist

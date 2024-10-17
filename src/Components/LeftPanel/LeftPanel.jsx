@@ -6,14 +6,14 @@ import './LeftPanel.css'; // Importing the CSS file
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart, setDroppedPdf }) => {
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
-  const [typesData, setTypesData] = useState([]); // Initialize state as an array
+  const [typesData, setTypesData] = useState({}); // Initialize state as an array
 
   console.log('sljjj', notesData)
 
   // Update typesData when data or selectedPart changes
   useEffect(() => {
     findData();
-    console.log('sl', selectedPart, notesData)
+    console.log('sl', notesData)
 
   }, [data, selectedPart]); // Add selectedPart as a dependency
 

@@ -52,7 +52,7 @@ const PurchaseCategory = () => {
           >
             <div className="Pcategory-image">
               <img
-                src={`${ApiUrl}/${category.pdfImg}`} // Corrected the URL format
+                src={`${ApiUrl}${category.pdfImg}`} // Corrected the URL format
                 // alt={`${category.pdfName} Image`} // Use pdfName for alt text
                 className="Pcategory-img"
               />

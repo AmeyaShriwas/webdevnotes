@@ -22,6 +22,10 @@ const CartPage = () => {
   const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
   const [showModal, setShowModal] = useState(true);
 
+  useEffect(()=> {
+        console.log('itemCart', ItemsCart)
+  }, [ItemsCart])
+
 
 
   useEffect(()=> {

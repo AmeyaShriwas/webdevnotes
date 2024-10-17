@@ -12,13 +12,13 @@ const LeftPanel = ({ selectedPart, setSelectedPart, handlePdfClick, setDroppedPd
   // Update typesData when data or selectedPart changes
   useEffect(() => {
     findData();
-
+  console.log('selected new', selectedPart)
   }, [data, selectedPart]); // Add selectedPart as a dependency
 
   // Function to find the selected part's data
   const findData = () => {
     const findData = data.find((obj) => obj.pdfName === selectedPart.pdfName); // Use find instead of filter to get one result
-    setTypesData(findData || {}); // Set found data or empty object if not found
+    setSelectedPart(findData || {}); // Set found data or empty object if not found
   };
 
   console.log('Selected Part:', selectedPart, 'Types Data:', typesData);

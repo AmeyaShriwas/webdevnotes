@@ -42,7 +42,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
         {data.map((pdf, index) => (
           <li 
             key={index} 
-            onClick={() => handlePdfClick(pdf.pdfName)}
+            onClick={() => handlePdfClick(pdf?.pdfName)}
             className={selectedPart === pdf.pdfName ? 'active-category' : ''}
           >
             {pdf.pdfName}

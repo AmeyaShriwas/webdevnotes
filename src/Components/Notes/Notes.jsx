@@ -20,7 +20,7 @@ const Notes = () => {
 
   // Independent state to handle selected part and PDF
   const [selectedPdf, setSelectedPdf] = useState(null);
-  const [selectedPart, setSelectedPart] = useState(); // Independent from selectedCategory
+  const [selectedPart, setSelectedPart] = useState(selectedCategory); // Independent from selectedCategory
   const [droppedPdf, setDroppedPdf] = useState(null); 
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Notes = () => {
   return (
     <div className="notes-container">
       <LeftPanel
-        notesData={selectedPart.pdfName}
+        notesData={selectedCategory.pdfName}
         selectedPart={selectedPart}
         setSelectedPart={setSelectedPart}
         handlePdfClick={handlePdfClick} // Pass down the click handler

@@ -51,11 +51,11 @@ const PurchaseCategory = () => {
             onClick={() => OnSelectCategory(category)}
           >
             <div className="Pcategory-image">
-              <img
-                src={`${ApiUrl}/${category.pdfImg}`} // Ensure the slash is there
-                alt={`${category.pdfName} Image`} // Use pdfName for alt text
-                className="Pcategory-img"
-              />
+            <img
+  src={`${ApiUrl}uploads/${category.pdfImg}`} // Include the `/uploads/` directory in the URL
+  alt={`${category.pdfName} Image`} // Descriptive alt text
+  className="Pcategory-img"
+/>
 
             </div>
             <p className="Pcategory-title">{category.pdfName}</p>

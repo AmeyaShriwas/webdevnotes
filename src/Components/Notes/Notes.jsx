@@ -56,8 +56,8 @@ const Notes = () => {
   return (
     <div className="notes-container">
       <LeftPanel
-        notesData={selectedPart.pdfName}
-        selectedPart={selectedPart}
+        notesData={selectedPdf.pdfName}
+        selectedPart={selectedPdf}
         setSelectedPart={setSelectedPart}
         handlePdfClick={handlePdfClick} // Pass down the click handler
         setDroppedPdf={setDroppedPdf}

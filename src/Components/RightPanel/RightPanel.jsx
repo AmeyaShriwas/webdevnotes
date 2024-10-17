@@ -5,6 +5,7 @@ import '@react-pdf-viewer/core/lib/styles/index.css'; // Import required styles 
 import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
 
+const ApiUrl = process.env.REACT_APP_BASE_URL
 
 const RightPanel = ({ pdf, handleAddCategoryToCart, droppedPdf }) => {
 
@@ -19,7 +20,7 @@ const RightPanel = ({ pdf, handleAddCategoryToCart, droppedPdf }) => {
           <h3>{pdf.pdfName}</h3>
           <div className="pdf-viewer-container">
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-          <Viewer fileUrl={pdf? pdf.pdfLink:pdfReact } />
+          <Viewer fileUrl={pdf? `${ApiUrl}/${pdf.pdfLink}`:pdfReact } />
         </Worker>
       </div>
           <p>Price: {pdf.pdfPrice} INR</p>

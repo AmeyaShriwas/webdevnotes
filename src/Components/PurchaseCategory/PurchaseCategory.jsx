@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPDFs } from '../../redux/slice/pdfSlice';
 
-const ApiUrl = process.env.REACT_APP_BASE_URL
+const ApiUrl = 'https://notesapi.ameyashriwas.in/'
 
 const PurchaseCategory = () => {
   const navigate = useNavigate();

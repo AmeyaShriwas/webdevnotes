@@ -103,10 +103,10 @@ const ProfilePage = () => {
         </div>
         
         );
-      case 'account':
+      case 'pdf':
         return (
           <div className="account-details">
-          <h2>Account</h2>
+          <h2>PDF</h2>
           <table>
             <thead>
               <tr>
@@ -164,24 +164,24 @@ const ProfilePage = () => {
           <FaUserCircle className="icon" /> Profile Details
         </li>
         <li
-          className={activeSection === 'account' ? 'active' : ''}
-          onClick={() => setActiveSection('account')}
+          className={activeSection === 'pdf' ? 'active' : ''}
+          onClick={() => setActiveSection('pdf')}
         >
-          <FaUser className="icon" /> Account
-        </li>
-        {/* <li
-          className={activeSection === 'settings' ? 'active' : ''}
-          onClick={() => setActiveSection('settings')}
-        >
-          <FaCog className="icon" /> Settings
+          <FaUser className="icon" /> PDF
         </li>
         <li
           className={activeSection === 'orders' ? 'active' : ''}
           onClick={() => setActiveSection('orders')}
         >
-          <FaBoxOpen className="icon" /> Orders
+          <FaCog className="icon" /> Orders
         </li>
-        <li
+      <li
+          className={activeSection === 'setting' ? 'active' : ''}
+          onClick={() => setActiveSection('setting')}
+        >
+          <FaCog className="icon" /> Setting
+        </li>
+         {/*<li
           className={activeSection === 'wishlist' ? 'active' : ''}
           onClick={() => setActiveSection('wishlist')}
         >

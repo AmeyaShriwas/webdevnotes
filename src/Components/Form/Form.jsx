@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock, FaEnvelope, FaPhone, FaKey } from 'react-icons/fa';
 import './Form.css'; // Add your CSS here for styling
-import { loginUser, signupUser, verifyUser, forgotPassword, resetPasswordFun } from '../../redux/slice/authSlice';
+import { loginUser, signupUser, verifyUser, forgotPassword, resetPasswordFun } from '../../redux/slice/AuthSlice';
 import { useDispatch } from 'react-redux';
 import banner from './../../Assets/banner.png';
 import { ToastContainer, toast } from 'react-toastify';

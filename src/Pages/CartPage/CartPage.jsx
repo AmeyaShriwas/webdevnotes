@@ -11,6 +11,7 @@ import { clearCart, removeItem } from '../../redux/slice/CartSlice';
 import EmptyCart from './../../Assets/empty.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PurchaseInfoModal from '../../Components/PurchaseInfoModel/PurchaseModel';
 
 const CartPage = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -19,6 +20,8 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const [amount, setTotalCartAmount] = useState()
   const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
+  const [showModal, setShowModal] = useState(true);
+
 
 
   useEffect(()=> {
@@ -119,6 +122,9 @@ const CartPage = () => {
   
           if (verifyData.message) {
             toast.success(verifyData.message);
+            dispatch(clearCart())
+            setShowModal(true)
+
           }
   
           // Additional logic after successful verification, e.g., fetching PDF links, updating profile
@@ -217,6 +223,7 @@ const CartPage = () => {
           )}
         </div>
       </div>
+      <PurchaseInfoModal showModal={showModal} setShowModal={setShowModal}/>
       <ToastContainer />
     </div>
   );

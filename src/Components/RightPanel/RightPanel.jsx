@@ -6,34 +6,32 @@ import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
 
 
-const RightPanel = ({ pdfs, price, handleAddCategoryToCart, droppedPdf }) => {
-  console.log('pdfs name', droppedPdf);
+const RightPanel = ({ pdf, handleAddCategoryToCart, droppedPdf }) => {
 
-  
+  console.log('ge pdf', pdf)
+
 
   return (
     <div className="right-panel">
-   
-   <h1 className='rightPanelPdfHeading'>{droppedPdf ? droppedPdf.pdfName : 'Select a PDF to view'}</h1>
-
-      {/* PDF Viewer displayed directly in the RightPanel */}
-      <div className="pdf-viewer-container">
+      <h2>PDF Details</h2>
+      {pdf ? (
+        <div className="pdf-details">
+          <h3>{pdf.pdfName}</h3>
+          <div className="pdf-viewer-container">
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-          <Viewer fileUrl={droppedPdf? droppedPdf.pdfLink:pdfReact } />
+          <Viewer fileUrl={pdf? pdf.pdfLink:pdfReact } />
         </Worker>
       </div>
-
-      {/* Add to Cart button placed at the bottom */}
-      <div className="pricing-section">
-        <div className="price-box">
-          <span className="price-label">Price for Category:</span>
-          <span className="price-amount">₹{price}</span>
+          <p>Price: {pdf.pdfPrice} INR</p>
+       
+          
+          <button onClick={() => handleAddCategoryToCart(pdf)}>
+            Add to Cart
+          </button>
         </div>
-
-        <button className="add-to-cart-btn" onClick={() => handleAddCategoryToCart(pdfs.name)}>
-          Add to Cart
-        </button>
-      </div>
+      ) : (
+        <p>Select a category to see available PDFs</p>
+      )}
     </div>
   );
 };

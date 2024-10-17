@@ -3,23 +3,21 @@ import { useSelector } from 'react-redux';
 import pdfIcon from './../../Assets/pdf.png';
 import './LeftPanel.css'; // Importing the CSS file
 
-const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, setDroppedPdf }) => {
+const LeftPanel = ({ selectedPart, setSelectedPart, handlePdfClick, setDroppedPdf }) => {
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
   const [typesData, setTypesData] = useState({}); // Initialize state as an array
 
-  console.log('sljjj', notesData)
 
   // Update typesData when data or selectedPart changes
   useEffect(() => {
     findData();
-    console.log('sl', notesData)
 
   }, [data, selectedPart]); // Add selectedPart as a dependency
 
   // Function to find the selected part's data
   const findData = () => {
-    const findData = data.find((obj) => obj.pdfName === notesData); // Use find instead of filter to get one result
+    const findData = data.find((obj) => obj.pdfName === selectedPart.pdfName); // Use find instead of filter to get one result
     setTypesData(findData || {}); // Set found data or empty object if not found
   };
 

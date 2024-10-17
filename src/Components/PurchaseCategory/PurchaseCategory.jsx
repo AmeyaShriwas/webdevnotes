@@ -52,7 +52,7 @@ const PurchaseCategory = () => {
           >
             <div className="Pcategory-image">
               <img
-                src={`https://notesapi.ameyashriwas.in/uploads/${category.pdfImg}`}
+                src={`https://notesapi.ameyashriwas.in${category.pdfImg}`}
                 alt={`${category.pdfName} Image`}
                 className="Pcategory-img"
               />

@@ -19,7 +19,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
 
   // Function to find the selected part's data
   const findData = () => {
-    const findData = data.find((obj) => obj.pdfName === notesData); // Use find instead of filter to get one result
+    const findData = data.find((obj) => obj.pdfName === selectedPart.pdfName); // Use find instead of filter to get one result
     setTypesData(findData || {}); // Set found data or empty object if not found
   };
 
@@ -51,11 +51,11 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
       </ul>
 
       {/* Display the subtypes if a category is selected */}
-      {selectedPart?.pdfSubTypes?.length > 0 && (
+      {typesData?.pdfSubTypes?.length > 0 && (
         <div className="pdf-subtypes">
-          <h3>{selectedPart.pdfName}</h3>
+          <h3>{typesData.pdfName}</h3>
           <div className="individualDataTypes">
-            {selectedPart.pdfSubTypes.map((type, index) => (
+            {typesData.pdfSubTypes.map((type, index) => (
               <div key={index} className="pdf-subtype">
                   <p>{type}</p>
                 <img src={pdfIcon} alt="PDF Icon" className="pdf-icon" />

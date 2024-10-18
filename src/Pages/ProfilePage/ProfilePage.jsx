@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
 import Header from '../../Components/Header/Header';
-import ProfileIcon from './../../Assets/profileIcon.png';
+// import ProfileIcon from './../../Assets/profileIcon.png';
 import { FaUser, FaRegHeart, FaShoppingCart, FaCog, FaBoxOpen, FaBell, FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -13,7 +13,7 @@ const ProfilePage = () => {
     email: 'johndoe@example.com',
     phoneNumber: '+1234567890',
     password: '********',
-    profileImage: ProfileIcon
+   
   });
   const [pdfs, setPdfs] = useState([]);
 
@@ -61,7 +61,7 @@ const ProfilePage = () => {
             <h2>Profile Details</h2>
             <form className="profile-form" onSubmit={handleSubmit}>
             <div className="image-wrapper">
-                  <img src={profileData.profileImage} alt="Profile" className="profile-image" loading="lazy"  />
+                  {/* <img src={profileData.profileImage} alt="Profile" className="profile-image" loading="lazy"  /> */}
                 </div>
               
               <div className="form-group">

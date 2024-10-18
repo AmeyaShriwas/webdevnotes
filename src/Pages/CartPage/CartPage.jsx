@@ -29,7 +29,11 @@ const CartPage = () => {
 
 
   useEffect(()=> {
-    setTotalCartAmount((ItemsCart.length*300)+(ItemsCart.length*300)/10 +50)
+    const totalAmount = 0;
+    for(let key of ItemsCart){
+        totalAmount += key.pdfPrice
+    }
+    setTotalCartAmount(totalAmount)
 
   }, [ItemsCart])
 
@@ -147,7 +151,86 @@ const CartPage = () => {
   return (
     <div className="cart-page-container">
       <Header />
-     
+      <div className="cart-main">
+        <div className="cart-header">
+          <h2 className="cart-title">
+            {/* Your Shopping Cart <AiOutlineShoppingCart /> */}
+          </h2>
+        </div>
+
+        <div className="cart-content">
+          {ItemsCart?.length === 0 ? (
+            <div className="empty-cart">
+              <h1>Your cart is empty.</h1>
+              <img className="emptyCartImg" src={EmptyCart} alt="Empty Cart" />
+            </div>
+          ) : (
+            <div className="cart-items">
+              <table className="cart-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    {/* <th>Quantity</th> */}
+                    {/* <th>Total</th> */}
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody className="cartEachItem">
+                  {ItemsCart?.map((item, index) => (
+                    <tr key={index}>
+                      <td className="product-image">
+                        <img src={`${ApiUrl}${item.pdfImg}`} alt="Product" className="product-img" />
+                      </td>
+                      <td>{item.pdfName}</td>
+                      <td>Rs {item.pdfPrice}</td>
+                      {/* <td>{item.quantity}</td> */}
+                      {/* <td>Rs {item.price * item.quantity}</td> */}
+                      <td>
+                        <button
+                          className="delete-btn"
+                          onClick={() => removeItemCart(index)}
+                        >
+                          <FiTrash2 />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="clearCartButton" onClick={() => dispatch(clearCart())}>
+                <h3>Clear Cart</h3>
+              </div>
+            </div>
+          )}
+          
+          {ItemsCart?.length > 0 && (
+            <div className="cart-summary">
+              <h3>Cart Summary</h3>
+              <div className="summary-item">
+                <span>Subtotal:</span>
+                <span>Rs {ItemsCart.length*300}</span>
+              </div>
+              <div className="summary-item">
+                <span>Tax (10%):</span>
+                <span>Rs {(ItemsCart.length*300)/10}</span>
+              </div>
+              <div className="summary-item">
+                <span>Shipping:</span>
+                <span>Rs {shipping}</span>
+              </div>
+              <div className="summary-total">
+                <span>Total:</span>
+                <span className="total-amount">Rs {amount}</span>
+              </div>
+              <button className="checkout-btn" onClick={handlePayment}>
+                Proceed to Checkout
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       <PurchaseInfoModal showModal={showModal} setShowModal={setShowModal}/>
       <ToastContainer />
     </div>

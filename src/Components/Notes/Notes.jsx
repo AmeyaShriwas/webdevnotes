@@ -39,7 +39,11 @@ const Notes = () => {
     const findExisting = ItemsCart.find(item => item._id === pdf._id);
     if (findExisting) {
       toast.error('Already added to cart');
-    } else {
+    }
+    else if(pdf == undefined){
+      toast.error('undefined');
+    }
+     else {
       dispatch(addItems(pdf)); // Add the full PDF object to the cart
       toast.success(`Item added to cart: ${pdf.pdfName}`);
     }

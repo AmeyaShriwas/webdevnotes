@@ -28,14 +28,15 @@ const CartPage = () => {
 
 
 
-  useEffect(()=> {
+  useEffect(() => {
     let totalAmount = 0;
-    for(let key of ItemsCart){
-        totalAmount += key.pdfPrice
+    for (let item of ItemsCart) {
+        totalAmount += Number(item.pdfPrice); // Convert pdfPrice to a number
     }
-    setTotalCartAmount(totalAmount)
+    setTotalCartAmount(totalAmount);
+}, [ItemsCart]);
 
-  }, [ItemsCart])
+
 
   useEffect(() => {
     if (!isAuthenticated) {

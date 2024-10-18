@@ -121,6 +121,7 @@
     padding: 10px;
     border-radius: 10px;
     max-width: 40%; /* Control the maximum width for 2 items per row */
+    min-width: 140px;
   }
 
   .pdf-icon {

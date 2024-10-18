@@ -53,7 +53,7 @@ const CartPage = () => {
   // const subtotal = ItemsCart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
   // const tax = subtotal * 0.10; // Assuming 10% tax
   const shipping = amount > 1000 ? 0 : 50; // Free shipping on orders over 1000
-  const totalAmount = (subtotal + tax + shipping).toFixed(2);
+  // const totalAmount = (subtotal + tax + shipping).toFixed(2);
 
   const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
 

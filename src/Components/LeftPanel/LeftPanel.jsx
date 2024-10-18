@@ -6,10 +6,12 @@ import './LeftPanel.css'; // Importing the CSS file
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, setDroppedPdf }) => {
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
-  const [pageTotal, setPageTotal] = useState(1)
-  const [showItems, setShowItems] = useState([])
+  const [currentPage, setCurrentPage] = useState(1); // Current page state
+  const itemsPerPage = 10; // Number of items per page
+  const [showItems, setShowItems] = useState([]);
 
-  console.log('Selected Part:', selectedPart)
+  console.log('Selected Part:', selectedPart);
+
   useEffect(() => {
     // Ensure data exists and selectedPart has a value before running the loop
     if (data && selectedPart) {
@@ -22,44 +24,41 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
       }
     }
 
-    const data = selectedPart?.pdfSubTypes.slice(0, 11)
-    setShowItems(data)
-  
-  }, [data, selectedPart]); // Add data to the dependency array
+    // Set the items to show based on the current page
+    if (selectedPart?.pdfSubTypes) {
+      const startIndex = (currentPage - 1) * itemsPerPage; // Calculate start index
+      const endIndex = startIndex + itemsPerPage; // Calculate end index
+      const dataToShow = selectedPart.pdfSubTypes.slice(startIndex, endIndex);
+      setShowItems(dataToShow);
+    }
 
-  const ChangePageFuntion = ()=> {
-    
+  }, [data, selectedPart, currentPage]); // Add currentPage to the dependency array
+
+  const ChangePageFunction = (pageNumber) => {
+    setCurrentPage(pageNumber); // Update current page when clicked
   }
 
   const findLength = () => {
     const pageLen = selectedPart?.pdfSubTypes?.length;
-    const itemsPerPage = 10; // Number of items per page
     const totalPages = Math.ceil(pageLen / itemsPerPage); // Calculate total pages
-  
+
     const pageNumbers = []; // Array to hold the page numbers
-  
+
     for (let index = 1; index <= totalPages; index++) {
       pageNumbers.push(
-        <div onClick={ChangePageFuntion} key={index} className='paginationSingle'>
+        <div onClick={() => ChangePageFunction(index)} key={index} className={`paginationSingle ${currentPage === index ? 'active-page' : ''}`}>
           {index}
         </div>
       );
     }
-  
+
     return <div className="paginationContainer">{pageNumbers}</div>; // Return all page numbers
   };
-  
- 
-  console.log('total len',pageTotal)
-
-  
-  
 
   // Return early if loading or error
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
- 
   return (
     <div className="left-panel">
       <ul className="category-list">
@@ -77,22 +76,20 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
       {/* Display the subtypes if a category is selected */}
       {selectedPart?.pdfSubTypes?.length > 0 && (
         <div className="pdf-subtypes">
-          {/* <h3>{selectedPart.pdfName}</h3> */}
           <div className="individualDataTypes">
             {showItems?.map((type, index) => (
               <div key={index} className="pdf-subtype">
                   <p>{type}</p>
                 <img src={pdfIcon} alt="PDF Icon" className="pdf-icon" />
-              
               </div>
             ))}
           </div>
         </div>
       )}
 
-       <div className='panigationContainer'>
-      {findLength()}
-       </div>
+      <div className='paginationContainer'>
+        {findLength()}
+      </div>
     </div>
   );
 };

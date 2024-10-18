@@ -82,7 +82,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
         </div>
       )}
 
-       <div>
+       <div className='panigationContainer'>
       {findLength()}
        </div>
     </div>

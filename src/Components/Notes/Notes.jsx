@@ -23,6 +23,8 @@ const Notes = () => {
   const [selectedPart, setSelectedPart] = useState(''); // Independent from selectedCategory
   const [droppedPdf, setDroppedPdf] = useState(null); 
 
+  console.log('selected in notes', selectedPart)
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the pathname changes
   }, [location]);
@@ -51,6 +53,7 @@ const Notes = () => {
 
   // Handle PDF selection
   const handlePdfClick = (pdf) => {
+    console.log('pdf in funtion', pdf)
     setSelectedPart(pdf)
     setSelectedPdf(pdf); // Set the selected PDF to view in RightPanel
   };

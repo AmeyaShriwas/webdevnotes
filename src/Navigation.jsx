@@ -21,7 +21,7 @@ const Navigation = () => {
       <Routes>
         <Route path="/" element={<AuthForm />} />
         <Route path="/landing" element={<Landing />} />
-        <Route path="/notes" element={<NotesPage />} />
+        {/* <Route path="/notes" element={<NotesPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/terms" element={<TermsAndConditions />} />
@@ -29,7 +29,7 @@ const Navigation = () => {
         <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

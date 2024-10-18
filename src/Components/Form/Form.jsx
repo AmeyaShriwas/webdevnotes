@@ -7,7 +7,6 @@ import banner from './../../Assets/banner.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
 
 const AuthForm = () => { 
@@ -15,10 +14,7 @@ const AuthForm = () => {
   const [otpVerified, setOtpVerified] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { error, isAuthenticated, user, email } = useSelector((state) => state.auth);
-  console.log('isAuth', isAuthenticated)
-  console.log('user', user)
-  console.log('email', email)
+
  
   
 

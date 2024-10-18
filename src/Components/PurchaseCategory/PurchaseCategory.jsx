@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPDFs } from '../../redux/slice/pdfSlice';
 
-const ApiUrl = 'https://notesapi.ameyashriwas.in/'
 
 const PurchaseCategory = () => {
   const navigate = useNavigate();
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const dispatch = useDispatch();
 
-  const { data, loading, error } = useSelector((state) => state.pdfs);
+  const { data} = useSelector((state) => state.pdfs);
 
   useEffect(() => {
     dispatch(fetchPDFs()); // Fetch the PDF data when the component mounts

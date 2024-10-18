@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { logout } from "../../redux/slice/authSlice";
 import ProfileIcon from './../../Assets/profile.png'
 
 const Header = () => {
-  const { error, isAuthenticated } = useSelector((state) => state?.auth);
+  const {isAuthenticated } = useSelector((state) => state?.auth);
   const dispatch = useDispatch()
   const ItemsCart = useSelector((state)=> state?.cart?.value);
 
@@ -41,7 +41,7 @@ const Header = () => {
 
           </li>
           <li className="loginButton" onClick={LogoutFuntion}><p href="/login"><Link to='/'>{isAuthenticated? 'Logout': 'Login'}</Link></p></li>
-          <li className="profileIconheader" ><Link to='/profile'>{isAuthenticated?<img loading="lazy"  src={ProfileIcon}/>: null}</Link></li>
+          <li className="profileIconheader" ><Link to='/profile'>{isAuthenticated?<img loading="lazy" alt="img"  src={ProfileIcon}/>: null}</Link></li>
           
          
           <li className="cart">

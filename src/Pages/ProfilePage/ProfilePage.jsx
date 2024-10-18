@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ProfilePage.css';
 import Header from '../../Components/Header/Header';
 import ProfileIcon from './../../Assets/profile.png';
-import { FaUser, FaRegHeart, FaShoppingCart, FaCog, FaBoxOpen, FaBell, FaUserCircle } from 'react-icons/fa';
+import { FaUser,FaCog,  FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -31,7 +31,7 @@ const ProfilePage = () => {
   };
 
 
-  const { error, isAuthenticated, user, email, number } = useSelector((state) => state.auth);
+  const {user, email} = useSelector((state) => state.auth);
 
 
   const handleInputChange = (e) => {
@@ -39,12 +39,7 @@ const ProfilePage = () => {
     setProfileData({ ...profileData, [name]: value });
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfileData({ ...profileData, profileImage: URL.createObjectURL(file) });
-    }
-  };
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();

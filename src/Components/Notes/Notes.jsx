@@ -13,7 +13,7 @@ const Notes = () => {
   const dispatch = useDispatch();
   
   // Fetch data from Redux
-  const { data, loading, error } = useSelector((state) => state.pdfs);
+  const {loading, error } = useSelector((state) => state.pdfs);
   const ItemsCart = useSelector((state) => state?.cart?.value || []);
 
   const selectedCategory = location.state?.category || '';

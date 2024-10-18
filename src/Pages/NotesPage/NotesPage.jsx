@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const NotesPage = () => {
-  const { error, isAuthenticated } = useSelector((state) => state.auth);
+  const {isAuthenticated } = useSelector((state) => state.auth);
   const navigate = useNavigate()
 
   useEffect(()=> {

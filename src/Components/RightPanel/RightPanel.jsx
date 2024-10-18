@@ -9,7 +9,7 @@ const ApiUrl = process.env.REACT_APP_BASE_URL;
 
 const RightPanel = ({ pdf, setSelectedPart,selectedPart, handleAddCategoryToCart }) => {
   console.log('ge pdf', pdf);
-  const { data, loading, error } = useSelector((state) => state.pdfs);
+  const { data} = useSelector((state) => state.pdfs);
 
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
-console.log('process', process.env)
+
 
 // Thunk for login
 export const loginUser = createAsyncThunk(
@@ -36,7 +36,6 @@ export const signupUser = createAsyncThunk(
       if (response.status !== 201) {
         throw new Error('Failed to register');
       }
-      const data = await response.data;
       return { message: response.data.message };
     } catch (error) {
       return rejectWithValue(error.message);
@@ -54,7 +53,6 @@ export const verifyUser = createAsyncThunk(
         if (response.status !== 200) {
           throw new Error('Failed to verify user');
         }
-        const data = await response.data;
         return { message: response.data.message };
       } catch (error) {
         return rejectWithValue(error.message);
@@ -73,7 +71,6 @@ export const verifyUser = createAsyncThunk(
         if (response.status !== 200) {
           throw new Error('Failed to verify user');
         }
-        const data = await response.data;
         return { message: response.data.message };
       } catch (error) {
         return rejectWithValue(error.message);
@@ -93,7 +90,6 @@ export const verifyUser = createAsyncThunk(
         if (response.status !== 200) {
           throw new Error('Failed to verify user');
         }
-        const data = await response.data;
         return { message: response.data.message };
       } catch (error) {
         return rejectWithValue(error.message);

@@ -41,7 +41,7 @@ const Header = () => {
 
           </li>
           <li className="loginButton" onClick={LogoutFuntion}><p href="/login"><Link to='/'>{isAuthenticated? 'Logout': 'Login'}</Link></p></li>
-          <li className="profileIconheader" ><Link to='/profile'>{isAuthenticated?<img loading="lazy"  src={ProfileIcon}/>: null}</Link></li>
+          <li className="profileIconheader" ><Link to='/profile'>{isAuthenticated?'P': null}</Link></li>
           
          
           <li className="cart">

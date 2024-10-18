@@ -1,26 +1,31 @@
-// webpack.config.js
 const path = require('path');
 
 module.exports = {
-  // Entry point for your bundle
   entry: './src/index.js',
-  
-  // Output configuration for bundled files
   output: {
-    filename: 'bundle.js', // The name of the bundled JavaScript file
-    path: path.resolve(__dirname, 'dist'), // Directory where files will be output
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
-
-  // Define rules for how different file types will be processed
+  mode: 'production', // or 'development'
   module: {
     rules: [
       {
-        test: /\.css$/, // Regular expression for matching CSS files
-        use: ['style-loader', 'css-loader'], // Loaders to process CSS
+        test: /\.js$/, // This applies to .js and .jsx files
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
+        test: /\.css$/, // If you have CSS imports
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
-
-  // Enable source maps for easier debugging
-  devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'], // Allows imports without specifying file extensions
+  },
 };

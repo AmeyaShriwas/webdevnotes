@@ -8,12 +8,19 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   const { data, loading, error } = useSelector((state) => state.pdfs);
 
   console.log('Selected Part:', selectedPart)
-  useEffect(()=> {
-     const findData = data.find((obj, index)=> obj.pdfName === selectedPart)
-     console.log('find', findData)
-      setSelectedPart(findData)
-     
-  }, [selectedPart])
+  useEffect(() => {
+    // Ensure data exists and selectedPart has a value before running the loop
+    if (data && selectedPart) {
+      for (let key of data) {
+        if (key.pdfName === selectedPart) {
+          console.log('key', key);
+          setSelectedPart(key); // Update state with the matched key
+          break; // Exit loop after the first match
+        }
+      }
+    }
+  }, [data, selectedPart]); // Add data to the dependency array
+  
 
   // Return early if loading or error
   if (loading) return <div>Loading...</div>;

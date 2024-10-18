@@ -1,7 +1,6 @@
 import React from 'react';
 import { Worker, Viewer } from '@react-pdf-viewer/core'; // Import PDF viewer components
 import '@react-pdf-viewer/core/lib/styles/index.css'; // Import required styles for PDF viewer
-import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,7 +34,7 @@ const RightPanel = ({ pdf, setSelectedPart,selectedPart, handleAddCategoryToCart
           <h3 className="rightPanelPdfHeading">{selectedPart.pdfName}</h3>
           <div className="pdf-viewer-container">
             <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-              <Viewer fileUrl={pdf ? `${ApiUrl}${selectedPart.pdfLink}` : pdfReact} />
+              <Viewer fileUrl={pdf ? `${ApiUrl}${selectedPart.pdfLink}` : ''} />
             </Worker>
           </div>
           <div className="pricing-section">

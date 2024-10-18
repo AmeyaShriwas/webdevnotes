@@ -6,6 +6,7 @@ import './LeftPanel.css'; // Importing the CSS file
 const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, setDroppedPdf }) => {
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
+  const [pageTotal, setPageTotal] = useState(1)
 
   console.log('Selected Part:', selectedPart)
   useEffect(() => {
@@ -19,7 +20,31 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
         }
       }
     }
+  
   }, [data, selectedPart]); // Add data to the dependency array
+
+  const findLength = ()=> {
+    const pageLen = selectedPart.pdfSubTypes.length
+    const page = pageLen/10
+    if(pageLen % 10 !== 0){
+      const totalPageLne = page +1
+      for (let index = 0; index <= totalPageLne; index++) {
+         return (
+          <div className='paginationSingle'>
+            {index}
+          </div>
+         )
+        
+       }
+      
+     
+    }
+  }
+
+ 
+  console.log('total len',pageTotal)
+
+  
   
 
   // Return early if loading or error
@@ -56,6 +81,10 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
           </div>
         </div>
       )}
+
+       <div>
+      {findLength()}
+       </div>
     </div>
   );
 };

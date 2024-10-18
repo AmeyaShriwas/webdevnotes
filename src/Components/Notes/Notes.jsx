@@ -71,7 +71,9 @@ const Notes = () => {
         setDroppedPdf={setDroppedPdf}
       />
       <RightPanel 
-        pdf={selectedPdf || selectedCategory} // Pass selected PDF
+        pdf={selectedPart} // Pass selected PDF
+        setSelectedPart={setSelectedPart}
+        selectedPart={selectedPart}
         handleAddCategoryToCart={handleAddCategoryToCart} // Add to cart
         droppedPdf={droppedPdf}
       />

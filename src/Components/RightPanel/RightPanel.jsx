@@ -6,29 +6,45 @@ import './RightPanel.css'; // Add your CSS styles here
 
 const ApiUrl = process.env.REACT_APP_BASE_URL;
 
-const RightPanel = ({ pdf, handleAddCategoryToCart }) => {
+const RightPanel = ({ pdf, setSelectedPart,selectedPart, handleAddCategoryToCart }) => {
   console.log('ge pdf', pdf);
+  const { data, loading, error } = useSelector((state) => state.pdfs);
+
+
+  useEffect(() => {
+    // Ensure data exists and selectedPart has a value before running the loop
+    if (data) {
+      for (let key of data) {
+        if (key.pdfName === pdf) {
+          console.log('key', key);
+          setSelectedPart(key); // Update state with the matched key
+          break; // Exit loop after the first match
+        }
+      }
+    }
+  }, [data, selectedPart]); // Add data to the dependency array
+  
 
   return (
     <div className="right-panel">
       <h2 className="right-panel-heading">PDF Details</h2>
-      {pdf ? (
+      {selectedPart ? (
         <div className="pdf-details">
-          <h3 className="rightPanelPdfHeading">{pdf.pdfName}</h3>
+          <h3 className="rightPanelPdfHeading">{selectedPart.pdfName}</h3>
           <div className="pdf-viewer-container">
             <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.worker.min.js`}>
-              <Viewer fileUrl={pdf ? `${ApiUrl}${pdf.pdfLink}` : pdfReact} />
+              <Viewer fileUrl={pdf ? `${ApiUrl}${selectedPart.pdfLink}` : pdfReact} />
             </Worker>
           </div>
           <div className="pricing-section">
             <div className="price-box">
               <span className="price-label">Price:</span>
-              <span className="price-amount">{pdf.pdfPrice} INR</span>
+              <span className="price-amount">{selectedPart.pdfPrice} INR</span>
             </div>
           </div>
           <button
             className="add-to-cart-btn"
-            onClick={() => handleAddCategoryToCart(pdf)}
+            onClick={() => handleAddCategoryToCart(selectedPart)}
           >
             Add to Cart
           </button>

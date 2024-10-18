@@ -24,7 +24,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   }, [data, selectedPart]); // Add data to the dependency array
 
   const findLength = ()=> {
-    const pageLen = selectedPart.pdfSubTypes.length
+    const pageLen = selectedPart?.pdfSubTypes?.length
     const page = pageLen/10
     if(pageLen % 10 !== 0){
       const totalPageLne = page +1

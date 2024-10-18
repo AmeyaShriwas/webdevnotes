@@ -76,6 +76,7 @@
 
 .individualDataTypes {
   display: flex;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -120,8 +121,7 @@
   .pdf-subtype {
     padding: 10px;
     border-radius: 10px;
-    max-width: 50%; /* Control the maximum width for 2 items per row */
-    min-width: 50%;
+    min-width: 45%;
   }
 
   .pdf-icon {

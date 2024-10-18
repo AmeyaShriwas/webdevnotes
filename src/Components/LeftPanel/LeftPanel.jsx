@@ -39,6 +39,16 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
       
      
     }
+    else{
+      for (let index = 0; index <= page; index++) {
+        return (
+         <div className='paginationSingle'>
+           {index}
+         </div>
+        )
+       
+      }
+    }
   }
 
  

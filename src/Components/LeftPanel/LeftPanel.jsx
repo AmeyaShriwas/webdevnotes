@@ -36,6 +36,9 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
     setDroppedPdf(null); // Reset dropped PDF if a new category is selected
   };
 
+  useEffect(()=> {
+      console.log('pdf item mention', typesData)
+  }, [typesData])
   return (
     <div className="left-panel">
       <ul className="category-list">

@@ -8,6 +8,12 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   const { data, loading, error } = useSelector((state) => state.pdfs);
 
   console.log('Selected Part:', selectedPart)
+  useEffect(()=> {
+     const findData = data.find((obj, index)=> obj.pdfName === selectedPart)
+     console.log('find', findData)
+      setSelectedPart(findData)
+     
+  }, [selectedPart])
 
   // Return early if loading or error
   if (loading) return <div>Loading...</div>;

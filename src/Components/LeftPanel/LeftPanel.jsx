@@ -80,7 +80,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
             {showItems?.map((type, index) => (
               <div key={index} className="pdf-subtype">
                   <p>{type}</p>
-                <img src={pdfIcon} alt="PDF Icon" className="pdf-icon" />
+                <img loading="lazy"  src={pdfIcon} alt="PDF Icon" className="pdf-icon" />
               </div>
             ))}
           </div>

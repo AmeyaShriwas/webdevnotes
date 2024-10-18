@@ -164,7 +164,7 @@ const CartPage = () => {
           {ItemsCart?.length === 0 ? (
             <div className="empty-cart">
               <h1>Your cart is empty.</h1>
-              <img className="emptyCartImg" src={EmptyCart} alt="Empty Cart" />
+              <img className="emptyCartImg" src={EmptyCart} alt="Empty Cart" loading="lazy"  />
             </div>
           ) : (
             <div className="cart-items">
@@ -183,7 +183,7 @@ const CartPage = () => {
                   {ItemsCart?.map((item, index) => (
                     <tr key={index}>
                       <td className="product-image">
-                        <img src={`${ApiUrl}${item.pdfImg}`} alt="Product" className="product-img" />
+                        <img src={`${ApiUrl}${item.pdfImg}`} alt="Product" className="product-img" loading="lazy"  />
                       </td>
                       <td>{item.pdfName}</td>
                       <td>Rs {item.pdfPrice}</td>

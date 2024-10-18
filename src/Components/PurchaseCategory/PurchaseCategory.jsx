@@ -55,6 +55,7 @@ const PurchaseCategory = () => {
                 src={`https://notesapi.ameyashriwas.in${category.pdfImg}`}
                 alt={`${category.pdfName} Image`}
                 className="Pcategory-img"
+                loading="lazy" 
               />
 
             </div>
@@ -69,6 +70,7 @@ const PurchaseCategory = () => {
                   src={category?.pdfImg} // Use pdfImg for popup
                   alt="Category Preview"
                   className="Ppopup-img"
+                  loading="lazy" 
                 />
               </div>
             )}

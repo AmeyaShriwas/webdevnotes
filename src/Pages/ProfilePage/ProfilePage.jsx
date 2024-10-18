@@ -61,7 +61,7 @@ const ProfilePage = () => {
             <h2>Profile Details</h2>
             <form className="profile-form" onSubmit={handleSubmit}>
             <div className="image-wrapper">
-                  <img src={profileData.profileImage} alt="Profile" className="profile-image" />
+                  <img src={profileData.profileImage} alt="Profile" className="profile-image" loading="lazy"  />
                 </div>
               
               <div className="form-group">

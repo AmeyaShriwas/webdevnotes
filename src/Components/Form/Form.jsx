@@ -260,7 +260,7 @@ const resetPasswordFuntion = ()=> {
       <Header/>
       <div className='formContainerMain'>
         <div className="auth-banner">
-          <img src={banner} alt="Banner" />
+          <img loading="lazy"  src={banner} alt="Banner" />
         </div>
 
         {formType === 'login' && (

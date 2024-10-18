@@ -21,8 +21,8 @@ const DownloadApp = () => {
 
       {/* Right Section */}
       <div className="download-app-right">
-        <img src={ph1} alt="App screenshot 1" className="phone-image" />
-        <img src={ph2} alt="App screenshot 2" className="phone-image" />
+        <img loading="lazy"  src={ph1} alt="App screenshot 1" className="phone-image" />
+        <img loading="lazy"  src={ph2} alt="App screenshot 2" className="phone-image" />
       </div>
     </div>
   );

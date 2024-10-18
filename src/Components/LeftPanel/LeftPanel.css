@@ -1,94 +1,128 @@
 .left-panel {
-    width: 30%;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    background-color: #f9f9f9;
-  }
-  
-  .left-panel h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .category-list {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-    border-radius: 20px;
+  width: 30%;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  background-color: #f9f9f9;
+  box-sizing: border-box; /* Ensure proper padding */
+}
+
+.left-panel h2 {
+  font-size: 1.75rem; /* Slightly larger for readability */
+  margin-bottom: 25px;
+}
+
+.category-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem; /* Increased gap for better spacing */
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.category-list li {
+  padding: 12px 18px; /* Slightly larger padding for comfort */
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.category-list li:hover {
+  background-color: #e9e9e9;
+  transform: scale(1.05); /* Small scale on hover */
+}
+
+.category-list li.active-category {
+  background-color: #d1ffd1; /* Softer green for active */
+  font-weight: 600; /* Slightly bolder */
+}
+
+.pdf-subtypes {
+  margin-top: 30px;
+}
+
+.pdf-subtypes h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.pdf-subtype {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 6px;
+  border-radius: 15px;
+  background-color: #fff; /* Adding background for better visibility */
+  transition: transform 0.2s ease;
+}
+
+.pdf-subtype:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.pdf-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.individualDataTypes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .left-panel {
     width: 100%;
-    overflow: scroll;
-  }
-  
-  .category-list li {
-    padding: 10px 15px;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .category-list li:hover {
-    background-color: #e9e9e9;
-  }
-  
-  .category-list li.active-category {
-    background-color: #d9f9d9;
-    font-weight: bold;
-  }
-  
-  .pdf-subtypes {
-    margin-top: 20px;
-  }
-  
-  .pdf-subtypes h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-  
-  .pdf-subtype {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 20px;
-  }
-  
-  .pdf-icon {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-  }
-  
-  .individualDataTypes{
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    padding: 15px;
   }
 
-  @media screen and (max-width: 768px) {
-    .pdf-subtypes h3 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-    
-    .pdf-subtype {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
-      margin-bottom: 10px;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      border-radius: 10px;
-    }
-    
-    .pdf-icon {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
+  .category-list {
+    gap: 1rem;
   }
+
+  .pdf-subtypes h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+
+  .pdf-subtype {
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 6px;
+    border-radius: 12px;
+  }
+
+  .pdf-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .category-list {
+    gap: 0.5rem;
+  }
+
+  .pdf-subtypes h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .pdf-subtype {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .pdf-icon {
+    width: 50px;
+    height: 50px;
+  }
+}

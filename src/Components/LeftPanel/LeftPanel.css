@@ -69,3 +69,26 @@
     gap: 1rem;
     flex-wrap: wrap;
   }
+
+  @media screen and(max-width: 768px) {
+    .pdf-subtypes h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    
+    .pdf-subtype {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 10px;
+    }
+    
+    .pdf-icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+  }

@@ -44,7 +44,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
       {/* Display the subtypes if a category is selected */}
       {selectedPart?.pdfSubTypes?.length > 0 && (
         <div className="pdf-subtypes">
-          <h3>{selectedPart.pdfName}</h3>
+          {/* <h3>{selectedPart.pdfName}</h3> */}
           <div className="individualDataTypes">
             {selectedPart.pdfSubTypes.map((type, index) => (
               <div key={index} className="pdf-subtype">

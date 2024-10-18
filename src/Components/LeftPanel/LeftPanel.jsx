@@ -57,8 +57,9 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
           <div className="individualDataTypes">
             {selectedPart.pdfSubTypes.map((type, index) => (
               <div key={index} className="pdf-subtype">
+                  <p>{type}</p>
                 <img src={pdfIcon} alt="PDF Icon" className="pdf-icon" />
-                <p>{type}</p>
+              
               </div>
             ))}
           </div>

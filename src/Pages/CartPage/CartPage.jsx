@@ -49,10 +49,10 @@ const CartPage = () => {
     toast.error('Item removed from cart');
   };
 
-  // Calculate total amount
-  const subtotal = ItemsCart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const tax = subtotal * 0.10; // Assuming 10% tax
-  const shipping = subtotal > 1000 ? 0 : 50; // Free shipping on orders over 1000
+  // // Calculate total amount
+  // const subtotal = ItemsCart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  // const tax = subtotal * 0.10; // Assuming 10% tax
+  const shipping = amount > 1000 ? 0 : 50; // Free shipping on orders over 1000
   const totalAmount = (subtotal + tax + shipping).toFixed(2);
 
   const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
@@ -210,11 +210,11 @@ const CartPage = () => {
               <h3>Cart Summary</h3>
               <div className="summary-item">
                 <span>Subtotal:</span>
-                <span>Rs {ItemsCart.length*300}</span>
+                <span>Rs {amount}</span>
               </div>
               <div className="summary-item">
                 <span>Tax (10%):</span>
-                <span>Rs {(ItemsCart.length*300)/10}</span>
+                <span>Rs {amount/10}</span>
               </div>
               <div className="summary-item">
                 <span>Shipping:</span>
@@ -222,7 +222,7 @@ const CartPage = () => {
               </div>
               <div className="summary-total">
                 <span>Total:</span>
-                <span className="total-amount">Rs {amount}</span>
+                <span className="total-amount">Rs {`${amount}-${amount/10}- ${shipping}`}</span>
               </div>
               <button className="checkout-btn" onClick={handlePayment}>
                 Proceed to Checkout

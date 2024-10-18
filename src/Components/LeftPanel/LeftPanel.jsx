@@ -7,6 +7,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   // Fetch the available data from the Redux store
   const { data, loading, error } = useSelector((state) => state.pdfs);
   const [pageTotal, setPageTotal] = useState(1)
+  const [showItems, setShowItems] = useState([])
 
   console.log('Selected Part:', selectedPart)
   useEffect(() => {
@@ -20,8 +21,15 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
         }
       }
     }
+
+    const data = selectedPart?.pdfSubTypes.slice(0, 11)
+    setShowItems(data)
   
   }, [data, selectedPart]); // Add data to the dependency array
+
+  const ChangePageFuntion = ()=> {
+    
+  }
 
   const findLength = () => {
     const pageLen = selectedPart?.pdfSubTypes?.length;
@@ -32,7 +40,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   
     for (let index = 1; index <= totalPages; index++) {
       pageNumbers.push(
-        <div key={index} className='paginationSingle'>
+        <div onClick={ChangePageFuntion} key={index} className='paginationSingle'>
           {index}
         </div>
       );
@@ -71,7 +79,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
         <div className="pdf-subtypes">
           {/* <h3>{selectedPart.pdfName}</h3> */}
           <div className="individualDataTypes">
-            {selectedPart.pdfSubTypes.map((type, index) => (
+            {showItems?.map((type, index) => (
               <div key={index} className="pdf-subtype">
                   <p>{type}</p>
                 <img src={pdfIcon} alt="PDF Icon" className="pdf-icon" />

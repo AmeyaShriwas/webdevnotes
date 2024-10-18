@@ -15,7 +15,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
     findData();
     console.log('sl', notesData)
 
-  }, [data, selectedPart]); // Add selectedPart as a dependency
+  }, [data, selectedPart, typesData]); // Add selectedPart as a dependency
 
   useEffect(()=> {
     console.log('pdf item mention', typesData)
@@ -23,7 +23,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
 
   // Function to find the selected part's data
   const findData = () => {
-    const findData = data.find((obj) => obj.pdfName === selectedPart.pdfName); // Use find instead of filter to get one result
+    const findData = data.find((obj) => obj.pdfName === selectedPart); // Use find instead of filter to get one result
     setTypesData(findData || {}); // Set found data or empty object if not found
   };
 

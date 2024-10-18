@@ -29,7 +29,7 @@ const CartPage = () => {
 
 
   useEffect(()=> {
-    const totalAmount = 0;
+    let totalAmount = 0;
     for(let key of ItemsCart){
         totalAmount += key.pdfPrice
     }

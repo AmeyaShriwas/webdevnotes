@@ -17,6 +17,10 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
 
   }, [data, selectedPart]); // Add selectedPart as a dependency
 
+  useEffect(()=> {
+    console.log('pdf item mention', typesData)
+}, [typesData])
+
   // Function to find the selected part's data
   const findData = () => {
     const findData = data.find((obj) => obj.pdfName === selectedPart.pdfName); // Use find instead of filter to get one result
@@ -36,9 +40,7 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
     setDroppedPdf(null); // Reset dropped PDF if a new category is selected
   };
 
-  useEffect(()=> {
-      console.log('pdf item mention', typesData)
-  }, [typesData])
+  
   return (
     <div className="left-panel">
       <ul className="category-list">

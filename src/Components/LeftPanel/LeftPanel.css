@@ -48,6 +48,7 @@
   font-size: 1.5rem;
   margin-bottom: 20px;
   font-weight: 600;
+  text-align: center;
 }
 
 .pdf-subtype {
@@ -116,16 +117,18 @@
   .pdf-subtypes h3 {
     font-size: 1rem;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .pdf-subtype {
     padding: 10px;
     border-radius: 10px;
     min-width: 45%;
+    height: 120px;
   }
 
   .pdf-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }

@@ -3,6 +3,8 @@ import { Worker, Viewer } from '@react-pdf-viewer/core'; // Import PDF viewer co
 import '@react-pdf-viewer/core/lib/styles/index.css'; // Import required styles for PDF viewer
 import pdfReact from './../../Assets/mysql.pdf'; // Your PDF file to display
 import './RightPanel.css'; // Add your CSS styles here
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const ApiUrl = process.env.REACT_APP_BASE_URL;
 

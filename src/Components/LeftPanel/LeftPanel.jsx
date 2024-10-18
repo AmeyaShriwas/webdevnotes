@@ -23,34 +23,24 @@ const LeftPanel = ({ notesData, selectedPart, setSelectedPart, handlePdfClick, s
   
   }, [data, selectedPart]); // Add data to the dependency array
 
-  const findLength = ()=> {
-    const pageLen = selectedPart?.pdfSubTypes?.length
-    const page = pageLen/10
-    if(pageLen % 10 !== 0){
-      const totalPageLne = page +1
-      for (let index = 0; index <= totalPageLne; index++) {
-         return (
-          <div className='paginationSingle'>
-            {index}
-          </div>
-         )
-        
-       }
-      
-     
+  const findLength = () => {
+    const pageLen = selectedPart?.pdfSubTypes?.length;
+    const itemsPerPage = 10; // Number of items per page
+    const totalPages = Math.ceil(pageLen / itemsPerPage); // Calculate total pages
+  
+    const pageNumbers = []; // Array to hold the page numbers
+  
+    for (let index = 1; index <= totalPages; index++) {
+      pageNumbers.push(
+        <div key={index} className='paginationSingle'>
+          {index}
+        </div>
+      );
     }
-    else{
-      for (let index = 0; index <= page; index++) {
-        return (
-         <div className='paginationSingle'>
-           {index}
-         </div>
-        )
-       
-      }
-    }
-  }
-
+  
+    return <div className="paginationContainer">{pageNumbers}</div>; // Return all page numbers
+  };
+  
  
   console.log('total len',pageTotal)
 

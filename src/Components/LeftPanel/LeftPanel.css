@@ -54,14 +54,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center content vertically */
+  width: 200px; /* Fixed width for all items */
+  height: 200px; /* Fixed height for all items */
   padding: 20px;
-  margin: 0; /* Remove margin to align items in a grid */
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px; /* Add margin for spacing */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 6px;
   border-radius: 15px;
   background-color: #fff; /* Adding background for better visibility */
   transition: transform 0.2s ease;
-  flex: 1 0 21%; /* Flex property to create 4 items per row */
-  max-width: 24%; /* Control the maximum width of each item */
 }
 
 .pdf-subtype:hover {
@@ -97,8 +98,8 @@
   }
 
   .pdf-subtype {
-    padding: 15px;
-    max-width: 48%; /* Control the maximum width for 2 items per row */
+    width: 200px; /* Ensure fixed width */
+    height: 200px; /* Ensure fixed height */
   }
 
   .pdf-icon {
@@ -118,9 +119,8 @@
   }
 
   .pdf-subtype {
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 48%; /* Control the maximum width for 2 items per row */
+    width: 200px; /* Ensure fixed width */
+    height: 200px; /* Ensure fixed height */
   }
 
   .pdf-icon {

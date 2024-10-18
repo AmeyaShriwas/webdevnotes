@@ -64,9 +64,9 @@ const PurchaseCategory = () => {
             {hoveredCategory?._id === category._id && ( // Check hovered category by ID
               <div className="Ppopup">
                 <h3>{category.pdfName} Content</h3> {/* Access pdfName directly */}
-                <p>{category.pdfSubTypes.join(', ')}</p> {/* Display subtypes */}
+                <p>{category?.pdfSubTypes?.join(', ')}</p> {/* Display subtypes */}
                 <img
-                  src={category.pdfImg} // Use pdfImg for popup
+                  src={category?.pdfImg} // Use pdfImg for popup
                   alt="Category Preview"
                   className="Ppopup-img"
                 />

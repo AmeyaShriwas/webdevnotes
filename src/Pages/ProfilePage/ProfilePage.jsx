@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
 import Header from '../../Components/Header/Header';
-import ProfileIcon from './../../Assets/profile.png';
+import ProfileIcon from './../../Assets/profile.webp';
 import { FaUser,FaCog,  FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';

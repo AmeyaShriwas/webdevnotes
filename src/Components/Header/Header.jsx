@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slice/authSlice";
-import ProfileIcon from './../../Assets/profile.png'
+import ProfileIcon from './../../Assets/profile.webp'
 
 const Header = () => {
   const {isAuthenticated } = useSelector((state) => state?.auth);

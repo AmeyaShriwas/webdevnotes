@@ -6,7 +6,7 @@ import Footer from '../../Components/Footer/Footer'
 import PurchaseCategory from '../../Components/PurchaseCategory/PurchaseCategory'
 import SocialMedia from '../../Components/SocialMedia/SocialMedia'
 import { useSelector } from 'react-redux'
-import { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 

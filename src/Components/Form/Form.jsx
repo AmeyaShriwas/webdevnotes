@@ -1,8 +1,10 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser, signupUser, verifyOTP, forgotPassword, resetPassword } from './../../redux/slice/authSlice'; // Assuming you have these actions
+import { loginUser, signupUser, verifyUser, forgotPassword, resetPasswordFun } from './../../redux/slice/authSlice'; // Assuming you have these actions
 import { toast } from 'react-toastify';
 import './Form.css';
+
+
 
 const AuthForm = () => {
   const dispatch = useDispatch();
@@ -53,7 +55,7 @@ const AuthForm = () => {
     if (!otp) {
       return toast.error('Please enter the OTP.');
     }
-    dispatch(verifyOTP({ otp }));
+    dispatch(verifyUser({ otp }));
   }, [formData.otp, dispatch]);
 
   const handleForgotPasswordSubmit = useCallback(() => {
@@ -69,7 +71,7 @@ const AuthForm = () => {
     if (!newPassword) {
       return toast.error('Please enter a new password.');
     }
-    dispatch(resetPassword({ newPassword }));
+    dispatch(resetPasswordFun({ newPassword }));
   }, [formData.resetPassword, dispatch]);
 
   // Debouncing input handler for form changes to avoid excessive re-renders

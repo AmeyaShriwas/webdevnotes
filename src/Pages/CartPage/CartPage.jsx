@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 import './CartPage.css';
 import Header from '../../Components/Header/Header';

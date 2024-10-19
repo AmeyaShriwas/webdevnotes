@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from './Pages/Landing/Landing';
+const Landing = React.lazy(() => import('./Pages/Landing/Landing'));
 import AuthForm from './Components/Form/Form';
-import NotesPage from './Pages/NotesPage/NotesPage';
-import CartPage from './Pages/CartPage/CartPage';
-import NotFoundPage from './Pages/PageNotFound/PageNotFound';
-import ResetPassword from './Components/ResetPassword/ResetPassword';
-import Contact from './Pages/Contact/Contact';
-import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
-import RefundPolicy from './Pages/RefundPolicy/RefundPolicy';
-import ShippingPolicy from './Pages/ShippingPolicy/ShippingPolicy';
-import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
-import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
-import ProfilePage from './Pages/ProfilePage/ProfilePage';
+const NotesPage = React.lazy(() => import('./Pages/NotesPage/NotesPage'));
+const CartPage = React.lazy(() => import('./Pages/CartPage/CartPage'));
+const NotFoundPage = React.lazy(() => import('./Pages/PageNotFound/PageNotFound'));
+const ResetPassword = React.lazy(() => import('./Components/ResetPassword/ResetPassword'));
+const Contact = React.lazy(() => import('./Pages/Contact/Contact'));
+const PrivacyPolicy = React.lazy(() => import('./Pages/PrivacyPolicy/PrivacyPolicy'));
+const RefundPolicy = React.lazy(() => import('./Pages/RefundPolicy/RefundPolicy'));
+const ShippingPolicy = React.lazy(() => import('./Pages/ShippingPolicy/ShippingPolicy'));
+const TermsAndConditions = React.lazy(() => import('./Pages/TermsAndConditions/TermsAndConditions'));
+const ScrollToTop = React.lazy(() => import('./Components/ScrollToTop/ScrollToTop'));
+const ProfilePage = React.lazy(() => import('./Pages/ProfilePage/ProfilePage'));
 
 const Navigation = () => {
   return (

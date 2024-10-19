@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 const Landing = React.lazy(() => import('./Pages/Landing/Landing'));
-import AuthForm from './Components/Form/Form';
+const AuthForm = React.lazy(() => import('./Components/Form/Form'));
 const NotesPage = React.lazy(() => import('./Pages/NotesPage/NotesPage'));
 const CartPage = React.lazy(() => import('./Pages/CartPage/CartPage'));
 const NotFoundPage = React.lazy(() => import('./Pages/PageNotFound/PageNotFound'));

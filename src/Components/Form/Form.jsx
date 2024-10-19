@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser, signupUser, verifyOTP, forgotPassword, resetPassword } from './redux/actions'; // Assuming you have these actions
+import { loginUser, signupUser, verifyOTP, forgotPassword, resetPassword } from './../../redux/slice/authSlice'; // Assuming you have these actions
 import { toast } from 'react-toastify';
 import './Form.css';
 

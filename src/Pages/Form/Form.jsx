@@ -5,7 +5,7 @@ import AuthForm from '../../Components/Form/Form'
 const Form = () => {
   return (
     <>
-    {/* <Header/> */}
+    <Header/>
     <AuthForm/>
     </>
   )

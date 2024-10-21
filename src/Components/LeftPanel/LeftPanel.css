@@ -141,20 +141,40 @@
   }
 }
 
-.paginationSingle{
-  width: 30px;
-  height: 30px;
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.paginationSingle {
+  width: 40px; /* Increased for better usability */
+  height: 40px; /* Increased for better usability */
   border: 1px solid rgb(41, 39, 39);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: red;
+  color: #fff; /* Changed text color for better contrast */
+  background-color: #007bff; /* Primary color for pagination */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
 }
-.paginationContainer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem;
 
+.paginationSingle:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.paginationSingle.active {
+  background-color: #0056b3; /* Active page highlighting */
+  border: 1px solid #0056b3; /* Match border with background */
+  color: #fff; /* Keep text color white for active page */
+}
+
+.paginationSingle.disabled {
+  color: #ccc; /* Lighter color for disabled buttons */
+  background-color: #f0f0f0; /* Grey background for disabled buttons */
+  cursor: not-allowed; /* Change cursor to indicate it's not clickable */
 }

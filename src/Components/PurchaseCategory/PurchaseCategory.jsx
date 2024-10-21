@@ -38,7 +38,7 @@ const PurchaseCategory = () => {
     <div className="Pcategory-wrapper">
       <h1 className="Pcategory-heading">Explore Our Categories</h1>
       <div className="Pcategory-container">
-        {data.map((category, index) => (
+        {data?.map((category, index) => (
           <div
             key={category._id} // Use the unique ID instead of index
             className="Pcategory-box"

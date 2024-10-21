@@ -10,7 +10,7 @@ import pdfReducers from './slice/pdfSlice';
 const persistConfig = {
   key: 'root',
   storage,  // defines where to store the data
-  whitelist: ['auth', 'cart', 'pdfs'],  // optionally define which reducers to persist
+ 
 };
 
 const rootReducer = combineReducers({
@@ -25,12 +25,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Configuring the store
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'], // Ignore redux-persist actions if needed
-      },
-    }), 
+ 
 });
 
 export default store;

@@ -5,8 +5,8 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 
 // Async Thunk to fetch PDFs data
 export const fetchPDFs = createAsyncThunk('pdfs/fetchPDFs', async () => {
-  const response = await axios.post('https://notesapi.ameyashriwas.in/api/get-collection-details', {collectionName: 'pdfmodels'});
-  return response.data; // Return the data of the response
+  // const response = await axios.post('https://notesapi.ameyashriwas.in/api/get-collection-details', {collectionName: 'pdfmodels'});
+  // return response.data; // Return the data of the response
 });
 
 // Create the PDF slice

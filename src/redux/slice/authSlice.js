@@ -3,21 +3,21 @@ import axios from 'axios';
 
 const ApiUrl = process.env.REACT_APP_BASE_URL; // Correct variable name
 
+// Common function to handle API requests
+const apiPost = async (endpoint, data) => {
+  const response = await axios.post(`${ApiUrl}${endpoint}`, data);
+  if (![200, 201].includes(response.status)) {
+    throw new Error(`Failed request: ${endpoint}`);
+  }
+  return response.data;
+};
 
 // Thunk for login
 export const loginUser = createAsyncThunk(
   '/login',
-  async(userData, {rejectWithValue}) => {
-    console.log('process', process.env)
-    
+  async (userData, { rejectWithValue }) => {
     try {
-      console.log('api url', ApiUrl)
-      const response = await axios.post(`${ApiUrl}/login`, userData);
-      if (response.status !== 200) {
-        throw new Error('Failed to login');
-      }
-      const data = await response.data;
-      console.log('login data', response.data)
+      const data = await apiPost('/login', userData);
       return { message: data.message, token: data.token, user: data.user, email: data.email, number: data.number };
     } catch (error) {
       return rejectWithValue(error.message);
@@ -28,74 +28,54 @@ export const loginUser = createAsyncThunk(
 // Thunk for signup
 export const signupUser = createAsyncThunk(
   '/signup',
-  async(userData, {rejectWithValue}) => {
-    console.log('userdata', userData)
+  async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${ApiUrl}/signup`, userData);
-      console.log('response api get', response)
-      if (response.status !== 201) {
-        throw new Error('Failed to register');
-      }
-      return { message: response.data.message };
+      const data = await apiPost('/signup', userData);
+      return { message: data.message };
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
+// Thunk for OTP verification
 export const verifyUser = createAsyncThunk(
-    '/verify-otp',
-    async(userData, {rejectWithValue}) => {
-      console.log('userdata', userData)
-      try {
-        const response = await axios.post(`${ApiUrl}/verify-otp`, userData);
-        console.log('response', response)
-        if (response.status !== 200) {
-          throw new Error('Failed to verify user');
-        }
-        return { message: response.data.message };
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+  '/verify-otp',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await apiPost('/verify-otp', userData);
+      return { message: data.message };
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
 
-  export const forgotPassword = createAsyncThunk(
-    '/forgot-password',
-    async(userData, {rejectWithValue}) => {
-      console.log('userdata', userData)
-     
-      try {
-        const response = await axios.post(`${ApiUrl}/forgot-password`, {email: userData});
-        console.log('response', response)
-        if (response.status !== 200) {
-          throw new Error('Failed to verify user');
-        }
-        return { message: response.data.message };
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+// Thunk for forgot password
+export const forgotPassword = createAsyncThunk(
+  '/forgot-password',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await apiPost('/forgot-password', { email: userData });
+      return { message: data.message };
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
 
-
-  export const resetPasswordFun = createAsyncThunk(
-    '/reset-password',
-    async(userData, {rejectWithValue}) => {
-      console.log('userdata', userData)
-     
-      try {
-        const response = await axios.post(`${ApiUrl}/reset-password`, userData);
-        console.log('response', response)
-        if (response.status !== 200) {
-          throw new Error('Failed to verify user');
-        }
-        return { message: response.data.message };
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+// Thunk for resetting password
+export const resetPasswordFun = createAsyncThunk(
+  '/reset-password',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await apiPost('/reset-password', userData);
+      return { message: data.message };
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
 
 const initialState = {
   isAuthenticated: false,
@@ -105,7 +85,7 @@ const initialState = {
   token: null,
   loading: false,
   error: null,
-  message: null,  // For signup success message
+  message: null,  // For signup or OTP success message
 };
 
 const authSlice = createSlice({
@@ -116,100 +96,65 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.email= action.payload.email;
-      state.number = action.payload.number
+      state.email = action.payload.email;
+      state.number = action.payload.number;
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
       state.token = null;
       state.email = null;
-      state.number = null
+      state.number = null;
     },
   },
   extraReducers: (builder) => {
+    const handlePending = (state) => {
+      state.loading = true;
+      state.error = null;
+      state.message = null;
+    };
+    const handleError = (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    };
+    const handleFulfilled = (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    };
+
     // Handle login
     builder
-      .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
+        handleFulfilled(state, action);
         state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.email = action.payload.email;
-        state.number  = action.payload.number
+        state.number = action.payload.number;
       })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addCase(loginUser.rejected, handleError);
 
-    // Handle signup
+    // Handle signup, OTP verification, forgot password, reset password
     builder
-      .addCase(signupUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.message = null;
-      })
-      .addCase(signupUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message;  // Set signup success message
-      })
-      .addCase(signupUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addCase(signupUser.pending, handlePending)
+      .addCase(signupUser.fulfilled, handleFulfilled)
+      .addCase(signupUser.rejected, handleError);
 
-      builder
-      .addCase(verifyUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.message = null;
-      })
-      .addCase(verifyUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message;  // Success message for OTP verification
-        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
-      })
-      .addCase(verifyUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    builder
+      .addCase(verifyUser.pending, handlePending)
+      .addCase(verifyUser.fulfilled, handleFulfilled)
+      .addCase(verifyUser.rejected, handleError);
 
-      builder
-      .addCase(forgotPassword.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.message = null;
-      })
-      .addCase(forgotPassword.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message;  // Success message for OTP verification
-        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
-      })
-      .addCase(forgotPassword.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    builder
+      .addCase(forgotPassword.pending, handlePending)
+      .addCase(forgotPassword.fulfilled, handleFulfilled)
+      .addCase(forgotPassword.rejected, handleError);
 
-      builder
-      .addCase(resetPasswordFun.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.message = null;
-      })
-      .addCase(resetPasswordFun.fulfilled, (state, action) => {
-        state.loading = false;
-        state.message = action.payload.message;  // Success message for OTP verification
-        // state.isAuthenticated = true; // Set isAuthenticated to true after verification
-      })
-      .addCase(resetPasswordFun.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    builder
+      .addCase(resetPasswordFun.pending, handlePending)
+      .addCase(resetPasswordFun.fulfilled, handleFulfilled)
+      .addCase(resetPasswordFun.rejected, handleError);
   },
 });
 

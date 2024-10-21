@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Lazy load your components
+
 const Landing = React.lazy(() => import('./Pages/Landing/Landing'));
 const AuthForm = React.lazy(() => import('./Components/Form/Form'));
 const NotesPage = React.lazy(() => import('./Pages/NotesPage/NotesPage'));

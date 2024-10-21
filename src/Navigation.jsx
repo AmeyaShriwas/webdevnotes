@@ -1,44 +1,39 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-// Lazy load your components
-
-const Landing = React.lazy(() => import('./Pages/Landing/Landing'));
-const AuthForm = React.lazy(() => import('./Components/Form/Form'));
-const NotesPage = React.lazy(() => import('./Pages/NotesPage/NotesPage'));
-const CartPage = React.lazy(() => import('./Pages/CartPage/CartPage'));
-const NotFoundPage = React.lazy(() => import('./Pages/PageNotFound/PageNotFound'));
-const ResetPassword = React.lazy(() => import('./Components/ResetPassword/ResetPassword'));
-const Contact = React.lazy(() => import('./Pages/Contact/Contact'));
-const PrivacyPolicy = React.lazy(() => import('./Pages/PrivacyPolicy/PrivacyPolicy'));
-const RefundPolicy = React.lazy(() => import('./Pages/RefundPolicy/RefundPolicy'));
-const ShippingPolicy = React.lazy(() => import('./Pages/ShippingPolicy/ShippingPolicy'));
-const TermsAndConditions = React.lazy(() => import('./Pages/TermsAndConditions/TermsAndConditions'));
-const ScrollToTop = React.lazy(() => import('./Components/ScrollToTop/ScrollToTop'));
-const ProfilePage = React.lazy(() => import('./Pages/ProfilePage/ProfilePage'));
-
-const Loading = () => <div>Loading...</div>; // Loading component for lazy loading
+// Directly import your components
+import Landing from './Pages/Landing/Landing';
+import AuthForm from './Components/Form/Form';
+import NotesPage from './Pages/NotesPage/NotesPage';
+import CartPage from './Pages/CartPage/CartPage';
+import NotFoundPage from './Pages/PageNotFound/PageNotFound';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import Contact from './Pages/Contact/Contact';
+import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
+import RefundPolicy from './Pages/RefundPolicy/RefundPolicy';
+import ShippingPolicy from './Pages/ShippingPolicy/ShippingPolicy';
+import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
+import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
 
 const Navigation = () => {
   return (
     <Router>
-      <Suspense fallback={<Loading />}>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<AuthForm />} />
-          <Route path="/landing" element={<Landing />} />
-          <Route path="/notes" element={<NotesPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/resetPassword" element={<ResetPassword />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/shipping-policy" element={<ShippingPolicy />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<AuthForm />} />
+        <Route path="/landing" element={<Landing />} />
+        <Route path="/notes" element={<NotesPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </Router>
   );
 };

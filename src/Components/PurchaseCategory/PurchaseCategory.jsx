@@ -14,7 +14,7 @@ const PurchaseCategory = () => {
 
   useEffect(() => {
     dispatch(fetchPDFs()); // Fetch the PDF data when the component mounts
-  }, []);
+  }, [dispatch]);
 
 
   const handleMouseEnter = (category) => {

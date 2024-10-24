@@ -247,6 +247,8 @@ const resetPasswordFuntion = ()=> {
 
 
   const handleToggleForm = (type) => {
+    console.log(`Changing form type from ${formType} to ${type}`); // Debugging line
+
     setFormType(type);
     setOtpVerified(false);
   };

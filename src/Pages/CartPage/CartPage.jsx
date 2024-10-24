@@ -92,7 +92,6 @@ const CartPage = () => {
       );
   
       // Log and handle the response data from the API
-      console.log('Payment successful, response data:', response.data);
       handlePaymentVerify(response.data.data); // Call your payment verification logic
   
     } catch (error) {

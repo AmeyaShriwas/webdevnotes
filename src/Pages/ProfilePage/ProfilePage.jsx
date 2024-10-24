@@ -20,6 +20,7 @@ const ProfilePage = () => {
   const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
 
 
+  // Fetch data from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,30 +29,33 @@ const ProfilePage = () => {
             Authorization: `Bearer ${token}` // Ensure token is valid
           }
         });
-        console.log('resp', response.data);
+        
+        // Extract PDFs from the orders
+        const orders = response.data.data;
+        const pdfData = [];
+
+        orders.forEach(order => {
+          order.pdfs.forEach(pdf => {
+            pdfData.push({
+              name: pdf.name, // assuming name is inside the pdf object
+              invoice: pdf.invoice || order.razorpay_order_id, // you can use order id if invoice is not available
+              purchaseDate: order.purchaseDate || 'N/A', // use a fallback if no date is provided
+              downloadLink: pdf.downloadLink || '#' // assuming there is a link for downloading
+            });
+          });
+        });
+
+        setPdfs(pdfData); // Update state with extracted PDF data
+
       } catch (error) {
-        console.error('error', error);
+        console.error('error fetching PDFs', error);
       }
     };
 
     if (token) {
       fetchData(); // Call the function if the token exists
     }
-
-    // Optional cleanup function if needed
-    return () => {
-      // You can add cleanup logic here if any (e.g., canceling an axios request)
-    };
-  }, [token, activeSection]); // Ensure token is included in the dependency array
-
-
-  const fetchPdfs = async () => {
-    // Simulated API response (replace with actual API call)
-    const apiResponse = []; // Empty array means no PDFs purchased yet
-
-    // Update state
-    setPdfs(apiResponse);
-  };
+  }, [token, activeSection]);
 
 
   const {user, email} = useSelector((state) => state.auth);
@@ -124,38 +128,40 @@ const ProfilePage = () => {
       case 'pdf':
         return (
           <div className="account-details">
-          <h2>PDF</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>PDF Name</th>
-                <th>PDF Invoice</th>
-                <th>Purchase Date</th>
-                <th>Download</th>
+      <h2>PDFs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>PDF Name</th>
+            <th>PDF Invoice</th>
+            <th>Purchase Date</th>
+            <th>Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pdfs.length === 0 ? (
+            <tr>
+              <td colSpan="4" style={{ textAlign: 'center' }}>
+                No PDFs purchased yet
+              </td>
+            </tr>
+          ) : (
+            pdfs.map((pdf, index) => (
+              <tr key={index}>
+                <td>{pdf.name}</td>
+                <td>{pdf.invoice}</td>
+                <td>{pdf.purchaseDate}</td>
+                <td>
+                  <a href={pdf.downloadLink} download>
+                    <button>Download</button>
+                  </a>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {pdfs.length === 0 ? (
-                <tr>
-                  <td colSpan="4" style={{ textAlign: 'center' }}>
-                    No PDFs purchased yet
-                  </td>
-                </tr>
-              ) : (
-                pdfs.map((pdf, index) => (
-                  <tr key={index}>
-                    <td>{pdf.name}</td>
-                    <td>{pdf.invoice}</td>
-                    <td>{pdf.purchaseDate}</td>
-                    <td>
-                      <button>Download</button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
         );
       case 'settings':
         return (

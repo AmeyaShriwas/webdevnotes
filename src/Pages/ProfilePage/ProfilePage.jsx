@@ -20,19 +20,30 @@ const ProfilePage = () => {
   const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
 
 
-  // Simulate API call
   useEffect(() => {
-     axios.get('https://notesapi.ameyashriwas.in/userOrder', {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://notesapi.ameyashriwas.in/userOrder', {
+          headers: {
+            Authorization: `Bearer ${token}` // Ensure token is valid
+          }
+        });
+        console.log('resp', response.data);
+      } catch (error) {
+        console.error('error', error);
       }
-     }).then((response)=> {
-      console.log('resp', response.data)
-     }).catch((error)=> {
-      console.log('error', error)
-     })
-    
-  }, [activeSection]);
+    };
+
+    if (token) {
+      fetchData(); // Call the function if the token exists
+    }
+
+    // Optional cleanup function if needed
+    return () => {
+      // You can add cleanup logic here if any (e.g., canceling an axios request)
+    };
+  }, [token, activeSection]); // Ensure token is included in the dependency array
+
 
   const fetchPdfs = async () => {
     // Simulated API response (replace with actual API call)

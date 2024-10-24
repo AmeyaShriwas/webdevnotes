@@ -5,6 +5,7 @@ import ProfileIcon from './../../Assets/profile.webp';
 import { FaUser,FaCog,  FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState('profile');
@@ -16,11 +17,22 @@ const ProfilePage = () => {
     profileImage: ProfileIcon
   });
   const [pdfs, setPdfs] = useState([]);
+  const token = useSelector((state) => state?.auth?.token);   // Get authentication token from Redux
+
 
   // Simulate API call
   useEffect(() => {
-    fetchPdfs(); // You can replace this with the actual API call
-  }, []);
+     axios.get('https://notesapi.ameyashriwas.in/userOrder', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+     }).then((response)=> {
+      console.log('resp', response.data)
+     }).catch((error)=> {
+      console.log('error', error)
+     })
+    
+  }, [activeSection]);
 
   const fetchPdfs = async () => {
     // Simulated API response (replace with actual API call)

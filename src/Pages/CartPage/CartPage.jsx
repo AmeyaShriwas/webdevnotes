@@ -110,42 +110,41 @@ const CartPage = () => {
   
   const handlePaymentVerify = async (data) => {
     const options = {
-      key: process.env.RAZORPAY_KEY_ID,
-      amount: data.amount,
-      currency: data.currency,
-      name: "ameya",
-      description: "Test Mode",
-      order_id: data.id,
-      handler: async (response) => {
-        console.log('Payment response', response);
-        try {
-          const res = await axios.post(`${ApiUrl}/api/verify`, {
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature,
-          });
-  
-          const verifyData = res.data;
-          console.log('Verification data', verifyData);
-  
-          if (verifyData.message) {
-            toast.success(verifyData.message);
-            dispatch(clearCart())
-            setShowModal(true)
+        key: process.env.RAZORPAY_KEY_ID,
+        amount: data.amount,
+        currency: data.currency,
+        name: "ameya",
+        description: "Test Mode",
+        order_id: data.id,
+        handler: async (response) => {
+            console.log('Payment response', response);
+            try {
+                // After payment is done in Razorpay modal, verify with backend
+                const res = await axios.post(`${ApiUrl}/api/verify`, {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature,
+                });
 
-          }
-  
-          // Additional logic after successful verification, e.g., fetching PDF links, updating profile
-        } catch (error) {
-          console.error('Verification error', error);
-          toast.error('Payment verification failed');
-        }
-      },
+                const verifyData = res.data;
+                console.log('Verification data', verifyData);
+
+                if (verifyData.message) {
+                    toast.success(verifyData.message);
+                    dispatch(clearCart());  // Clear the cart only after successful verification
+                    setShowModal(true); // Show modal after successful payment
+                }
+            } catch (error) {
+                console.error('Verification error', error);
+                toast.error('Payment verification failed');
+            }
+        },
     };
-  
+
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
-  };
+};
+
   
 
   return (

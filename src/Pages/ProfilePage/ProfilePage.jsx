@@ -32,6 +32,7 @@ const ProfilePage = () => {
         
         // Extract PDFs from the orders
         const orders = response.data.data;
+        console.log(response.data.data)
         const pdfData = [];
 
         orders.forEach(order => {
